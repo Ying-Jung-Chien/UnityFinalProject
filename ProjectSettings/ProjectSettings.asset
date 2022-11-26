@@ -700,7 +700,11 @@ PlayerSettings:
     m_VersionCode: 1
     m_VersionName: 
   apiCompatibilityLevel: 6
+<<<<<<< HEAD
   activeInputHandler: 2
+=======
+  activeInputHandler: 1
+>>>>>>> c7fa3ea4 (boss 場景 ＆ Time control v0)
   cloudProjectId: 
   framebufferDepthMemorylessMode: 0
   qualitySettingsNames: []
