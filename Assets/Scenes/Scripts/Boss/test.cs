@@ -51,19 +51,6 @@ namespace StarterAssets
         {
             if(value.isPressed)
             {
-                //Debug.Log("press T, clock: " + TimeController.isTurningBackTheClock);
-                //if (TimeController.isTurningBackTheClock)
-                //{
-                //    Debug.Log("reset: " + Time.time);
-                //    TimeController.startTime = Time.time;
-                //    TimeController.endTime = TimeController.startTime + 5.0f;
-                //    TimeController.isTurningBackTheClock = false;
-                //}
-                //else if (TimeController.curTime > TimeController.endTime + TimeController._cdTime && !TimeController.pressT)
-                //{
-                //    Debug.Log("start" + Time.time);
-                //    TimeController.pressT = true;
-                //}
                 TimeController.pressT = true;
                 Debug.Log("test.Ontest4.isPressed");
             }
