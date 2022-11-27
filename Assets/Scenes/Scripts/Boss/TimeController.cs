@@ -21,8 +21,8 @@ public class TimeController : MonoBehaviour
     private float startTime;
     private float endTime;
     private float nextTimeInTurningBack;
-    private Vector3[] pastPosition = new Vector3[50];
-    private Quaternion[] pastRotation = new Quaternion[50];
+    private Vector3[] pastPosition;
+    private Quaternion[] pastRotation;
     private int pastPosIndex;
     private int timePosIndex;
     private int totalNumOfPos;
@@ -37,6 +37,8 @@ public class TimeController : MonoBehaviour
         pastPosIndex = 0;
         isTurningBackTheClock = false;
         totalNumOfPos = (int)(lenOfRecord_s / frequence_s);
+        pastPosition = new Vector3[totalNumOfPos];
+        pastRotation = new Quaternion[totalNumOfPos];
     }
 
     // Update is called once per frame
