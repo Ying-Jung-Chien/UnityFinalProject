@@ -730,7 +730,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bag: {fileID: 782234100}
   close1: {fileID: 1684651908}
-  press: {fileID: 8300000, guid: 38c05e1a722bb7242a31f4cb3e85f806, type: 3}
+  press: {fileID: 8300000, guid: 67adad778cabacf4e9b50bcc3287bc8d, type: 3}
   audioPlayer: {fileID: 2055972439}
 --- !u!4 &633155072
 Transform:

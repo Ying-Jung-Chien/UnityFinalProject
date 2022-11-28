@@ -11,13 +11,13 @@ public class bluecontrol : MonoBehaviour
 
     void Awake()
     {
-        GameObject[] objs = GameObject.FindGameObjectsWithTag("blue");
+        /*GameObject[] objs = GameObject.FindGameObjectsWithTag("blue");
 				
         if (objs.Length > 1 && this.tag == "blue")
         {
             Destroy(this.gameObject);
         }
-        if(this.tag == "blue") DontDestroyOnLoad(this.gameObject);
+        if(this.tag == "blue") DontDestroyOnLoad(this.gameObject);*/
     }
 
     // Start is called before the first frame update

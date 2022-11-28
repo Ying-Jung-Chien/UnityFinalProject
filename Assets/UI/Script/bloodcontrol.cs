@@ -19,13 +19,13 @@ public class bloodcontrol : MonoBehaviour
 
     void Awake()
     {
-        GameObject[] objs = GameObject.FindGameObjectsWithTag("blood");
+        /*GameObject[] objs = GameObject.FindGameObjectsWithTag("blood");
 				
         if (objs.Length > 1 && this.tag == "blood")
         {
             Destroy(this.gameObject);
         }
-        if(this.tag == "blood") DontDestroyOnLoad(this.gameObject);
+        if(this.tag == "blood") DontDestroyOnLoad(this.gameObject);*/
     }
 
     // Start is called before the first frame update
