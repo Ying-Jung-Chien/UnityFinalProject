@@ -21,11 +21,13 @@ namespace ThirdPersonController
         public GameObject CinemachineCameraTarget;
         public float TopClamp = 70.0f;
         public float BottomClamp = -30.0f;
+        public float CameraRotationSpeed = 2.0f;
         public float CameraAngleOverride = 0.0f;
         public bool LockCameraPosition = false;
         // cinemachine
         private float _cinemachineTargetYaw;
         private float _cinemachineTargetPitch;
+        private float OriginRotationSpeed;
         private const float _threshold = 0.01f;
         private StarterAssetsInputs _input;
 
@@ -62,6 +64,9 @@ namespace ThirdPersonController
             _cinemachineTargetYaw = CinemachineCameraTarget.transform.rotation.eulerAngles.y;
             _input = GetComponent<StarterAssetsInputs>();
             _controller = GetComponent<CharacterController>();
+            OriginRotationSpeed = CameraRotationSpeed;
+            Cursor.visible = false;
+            Cursor.lockState = CursorLockMode.Confined;
         }
 
         // Update is called once per frame
@@ -88,11 +93,8 @@ namespace ThirdPersonController
             // if there is an input and camera position is not fixed
             if (_input.look.sqrMagnitude >= _threshold && !LockCameraPosition)
             {
-                //Don't multiply mouse input by Time.deltaTime;
-                float deltaTimeMultiplier = 1.0f;
-
-                _cinemachineTargetYaw += _input.look.x * deltaTimeMultiplier;
-                _cinemachineTargetPitch += _input.look.y * deltaTimeMultiplier;
+                _cinemachineTargetYaw += _input.look.x * CameraRotationSpeed;
+                _cinemachineTargetPitch += _input.look.y * CameraRotationSpeed;
             }
 
             // clamp our rotations so our values are limited 360 degrees
@@ -113,11 +115,16 @@ namespace ThirdPersonController
     
         void CursorVisible()
         {
-            Cursor.visible = true;
-            Cursor.lockState = CursorLockMode.None;
+            if (Input.GetKeyDown(KeyCode.Q)) {
+                Cursor.visible = Cursor.visible ? false : true;
+                CameraRotationSpeed = CameraRotationSpeed > 0 ? 0 : OriginRotationSpeed;
+            }
+            
         }
         void PlayerInput()
         {
+            targetDirection = new Vector3(0, 0, 0);
+            
             if (Grounded && _velocity.y < 0) _velocity.y = 0f;
 
             if (Input.GetKeyDown(KeyCode.Space) && Grounded && !isAttacking) {
@@ -148,7 +155,6 @@ namespace ThirdPersonController
                     isWalking = false;
                 }
                 
-                targetDirection = new Vector3(0, 0, 0);
                 if (_input.move != Vector2.zero)
                 {
                     _targetRotation = Mathf.Atan2(inputDirection.x, inputDirection.z) * Mathf.Rad2Deg +
