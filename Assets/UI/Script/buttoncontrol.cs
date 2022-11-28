@@ -5,8 +5,9 @@ using UnityEngine;
 public class buttoncontrol : MonoBehaviour
 {
     public GameObject bag;
-    public GameObject close1;
+    public GameObject bagbutton1;
     public AudioClip press;
+    public AudioClip over;
     public AudioSource audioPlayer;
 
     // Start is called before the first frame update
@@ -24,13 +25,14 @@ public class buttoncontrol : MonoBehaviour
     public void Showbag()
     {
         bag.gameObject.SetActive(true);
-        audioPlayer.PlayOneShot(press);
+        bagbutton1.gameObject.SetActive(true);
+        audioPlayer.PlayOneShot(over);
     }
 
     public void hidebag()
     {
         bag.gameObject.SetActive(false);
-        close1.gameObject.SetActive(false);
-        audioPlayer.PlayOneShot(press);
+        bagbutton1.gameObject.SetActive(false);
+        audioPlayer.PlayOneShot(over);
     }
 }

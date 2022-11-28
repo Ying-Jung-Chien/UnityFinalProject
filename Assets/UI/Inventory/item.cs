@@ -7,7 +7,10 @@ public class item : ScriptableObject
 {
     public string itemName;
     public Sprite itemimage;
+    public Sprite itemimage1;
     public int itemHeld;
+    public int itemType;
+    public int itemactive;
     [TextArea]
     public string itemInfo;
 }
