@@ -130,7 +130,7 @@ namespace ThirdPersonController
                 isRising = true;
                 _velocity.y = Mathf.Sqrt(JumpHeight * -2f * Gravity);
                 _beforeJump = transform.position.y;
-            } else if (Input.GetKeyDown(KeyCode.F)) {
+            } else if (Input.GetMouseButtonDown(0)) {
                 isAttacking = true;
                 move = new Vector3(0, 0, 0);
             }
