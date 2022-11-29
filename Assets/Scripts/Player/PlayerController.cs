@@ -123,8 +123,6 @@ namespace ThirdPersonController
         }
         void PlayerInput()
         {
-            targetDirection = new Vector3(0, 0, 0);
-            
             if (Grounded && _velocity.y < 0) _velocity.y = 0f;
 
             if (Input.GetKeyDown(KeyCode.Space) && Grounded && !isAttacking) {
@@ -136,8 +134,9 @@ namespace ThirdPersonController
                 isAttacking = true;
                 move = new Vector3(0, 0, 0);
             }
-                
-            if (!isAttacking && !isRising && !isFalling && !isLanding) {
+
+            if (isAttacking || isLanding) targetDirection = new Vector3(0, 0, 0);
+            else if (!isRising && !isFalling) {
                 // Get Input
                 float v = _input.move.y;
                 float h = _input.move.x;
@@ -154,7 +153,7 @@ namespace ThirdPersonController
                     isRunning = false;
                     isWalking = false;
                 }
-                
+
                 if (_input.move != Vector2.zero)
                 {
                     _targetRotation = Mathf.Atan2(inputDirection.x, inputDirection.z) * Mathf.Rad2Deg +
@@ -165,7 +164,7 @@ namespace ThirdPersonController
                     // rotate to face input direction relative to camera position
                     transform.rotation = Quaternion.Euler(0.0f, rotation, 0.0f);
                     targetDirection = Quaternion.Euler(0.0f, _targetRotation, 0.0f) * Vector3.forward;
-                }
+                } else targetDirection = new Vector3(0, 0, 0);
             }
             
             _velocity.y += Gravity * Time.deltaTime;
