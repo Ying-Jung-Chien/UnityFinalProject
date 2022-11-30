@@ -68,14 +68,15 @@ public class PlayerController : MonoBehaviour
         Cursor.lockState = CursorLockMode.Confined;
     }
 
-    // Update is called once per frame
-    private void Update()
-    {
-        GroundedCheck();
-        PlayerInput();
-        JumpingProcess();
-        CursorVisible();
-    }
+        // Update is called once per frame
+        private void Update()
+        {
+            GroundedCheck();
+            PlayerInput();
+            JumpingProcess();
+            CursorVisible();
+            SearchMode();
+        }
 
     private void LateUpdate()
     {
@@ -116,7 +117,62 @@ public class PlayerController : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Q)) {
             Cursor.visible = Cursor.visible ? false : true;
-            CameraRotationSpeed = CameraRotationSpeed > 0 ? 0 : OriginRotationSpeed;
+        }
+        
+    }
+
+    void SearchMode()
+    {
+        if (Input.GetMouseButtonDown(1) && Cursor.visible) {
+            CameraRotationSpeed = 0;
+        } else if (Input.GetMouseButtonUp(1) && Cursor.visible) {
+            CameraRotationSpeed = OriginRotationSpeed;
+        }
+    }
+    void PlayerInput()
+    {
+        if (Grounded && _velocity.y < 0) _velocity.y = 0f;
+
+        if (Input.GetKeyDown(KeyCode.Space) && Grounded && !isAttacking) {
+            // Enable Jump
+            isRising = true;
+            _velocity.y = Mathf.Sqrt(JumpHeight * -2f * Gravity);
+            _beforeJump = transform.position.y;
+        } else if (Input.GetMouseButtonDown(0) && !Cursor.visible) {
+            isAttacking = true;
+            move = new Vector3(0, 0, 0);
+        }
+
+        if (isAttacking || isLanding) targetDirection = new Vector3(0, 0, 0);
+        else if (!isRising && !isFalling) {
+            // Get Input
+            float v = _input.move.y;
+            float h = _input.move.x;
+            move = new Vector3(h, 0, v);
+            Vector3 inputDirection = new Vector3(h, 0.0f, v).normalized;
+
+            if (Mathf.Sqrt(Mathf.Pow(v, 2) + Mathf.Pow(h, 2)) >= 0.8) {
+                isWalking = false;
+                isRunning = true;
+            } else if (move != Vector3.zero) {
+                isRunning = false;
+                isWalking = true;
+            } else {
+                isRunning = false;
+                isWalking = false;
+            }
+
+            if (_input.move != Vector2.zero)
+            {
+                _targetRotation = Mathf.Atan2(inputDirection.x, inputDirection.z) * Mathf.Rad2Deg +
+                                _mainCamera.transform.eulerAngles.y;
+                float rotation = Mathf.SmoothDampAngle(transform.eulerAngles.y, _targetRotation, ref _rotationVelocity,
+                    RotationSmoothTime);
+
+                // rotate to face input direction relative to camera position
+                transform.rotation = Quaternion.Euler(0.0f, rotation, 0.0f);
+                targetDirection = Quaternion.Euler(0.0f, _targetRotation, 0.0f) * Vector3.forward;
+            } else targetDirection = new Vector3(0, 0, 0);
         }
             
     }
