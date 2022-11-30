@@ -16,6 +16,7 @@ namespace ThirdPersonController
         private int normalState;
         private int fireballState;
         private int shieldState;
+        private int damageState;
         private Animator animator;
 
         public GameObject shield;
@@ -40,6 +41,7 @@ namespace ThirdPersonController
             normalState = Animator.StringToHash("Base Layer.Male Attack 3");
             fireballState = Animator.StringToHash("Base Layer.Standing_2H_Magic_Attack_01");
             shieldState = Animator.StringToHash("Base Layer.Standing_2H_Magic_Area_Attack_01");
+            damageState = Animator.StringToHash("Base Layer.Male Sword Damage Light");
 
             animator = gameObject.GetComponent<Animator>();
         }
@@ -47,7 +49,14 @@ namespace ThirdPersonController
         // Update is called once per frame
         void Update()
         {
-            if(PlayerController.isRising){
+            if(DontDestroyVariable.PlayerDamage){
+                if(IsInState(damageState)){
+                    if(CurrentStateDone()) DontDestroyVariable.PlayerDamage = false;
+                } 
+                else PlayStateIfNotInState(damageState);
+                
+            }
+            else if(PlayerController.isRising){
                 PlayStateIfNotInState(jumpState);
             }
             else if(PlayerController.isFalling){
