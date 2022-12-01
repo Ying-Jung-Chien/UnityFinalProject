@@ -3,7 +3,6 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 #endif
 
-
 public class StarterAssetsInputs : MonoBehaviour
 {
 	[Header("Character Input Values")]
@@ -75,4 +74,3 @@ public class StarterAssetsInputs : MonoBehaviour
 		Cursor.lockState = newState ? CursorLockMode.Locked : CursorLockMode.None;
 	}
 }
-	

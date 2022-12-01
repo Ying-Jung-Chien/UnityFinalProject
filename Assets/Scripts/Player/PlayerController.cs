@@ -4,7 +4,6 @@ using UnityEngine.InputSystem;
 using UnityEngine;
 using Cinemachine;
 
-
 public class PlayerController : MonoBehaviour
 {
     [Header("Player")]
@@ -46,6 +45,7 @@ public class PlayerController : MonoBehaviour
     public static bool isAttacking;
     public static bool isWalking;
     public static bool isRunning;
+    public static bool isDamaging;
 
     // camera
     private GameObject _mainCamera;
@@ -68,7 +68,7 @@ public class PlayerController : MonoBehaviour
         Cursor.lockState = CursorLockMode.Confined;
     }
 
-        // Update is called once per frame
+    // Update is called once per frame
     private void Update()
     {
         GroundedCheck();
@@ -133,7 +133,6 @@ public class PlayerController : MonoBehaviour
         }
     }
     
-    
     void PlayerInput()
     {
         if (Grounded && _velocity.y < 0) _velocity.y = 0f;
@@ -143,7 +142,7 @@ public class PlayerController : MonoBehaviour
             isRising = true;
             _velocity.y = Mathf.Sqrt(JumpHeight * -2f * Gravity);
             _beforeJump = transform.position.y;
-        } else if (Input.GetMouseButtonDown(0)) {
+        } else if (Input.GetMouseButtonDown(0) && !Cursor.visible) {
             isAttacking = true;
             move = new Vector3(0, 0, 0);
         }
@@ -179,7 +178,7 @@ public class PlayerController : MonoBehaviour
                 targetDirection = Quaternion.Euler(0.0f, _targetRotation, 0.0f) * Vector3.forward;
             } else targetDirection = new Vector3(0, 0, 0);
         }
-            
+        
         _velocity.y += Gravity * Time.deltaTime;
         _controller.Move((targetDirection.normalized * Speed + _velocity) * Time.deltaTime);
     }

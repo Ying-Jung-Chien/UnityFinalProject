@@ -8,6 +8,7 @@ public class MonsterAController : MonoBehaviour
     public float attackTimeInterval = 2.0f;
     public float attackDistance = 2.0f;
     public static float monsterAHealth =  100.0f;
+    public LayerMask playerLayer;
 
     private NavMeshAgent agent;
     private Transform player;
@@ -25,8 +26,10 @@ public class MonsterAController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (DetectPlayerA.isPlayerIn) ChaseAndAttackPlayer();
-        else Back();
+        if (!DontDestroyVariable.isMonsterADead) {
+            if (DetectPlayerA.isPlayerIn) ChaseAndAttackPlayer();
+            else Back();
+        }
     }
 
     bool CheckAniClip ( string clipname )
@@ -41,11 +44,15 @@ public class MonsterAController : MonoBehaviour
 
     void ChaseAndAttackPlayer()
     {
-        agent.SetDestination(player.position + player.forward);
+        bool playerInAttackRange = Physics.CheckSphere(transform.position, attackDistance, playerLayer);
+
         if ( hasAniComp == true ) {
-            if ( CheckAniClip( "run" ) && agent.remainingDistance > attackDistance) {
+            if ( CheckAniClip( "run" ) && !playerInAttackRange) {
+                agent.SetDestination(player.position);
 				GetComponent<Animation>().CrossFade("run");
-			} else if (agent.remainingDistance <= attackDistance) {
+			} else if (playerInAttackRange) {
+                agent.SetDestination(transform.position);
+                
                 if ( GetComponent<Animation>().IsPlaying("run") && CheckAniClip( "idle01" ) )
                     GetComponent<Animation>().CrossFade("idle01",0.5f);
                 
@@ -55,7 +62,7 @@ public class MonsterAController : MonoBehaviour
     }
     void Attack()
     {
-        if ( CheckAniClip( "attack01" ) ) {
+        if ( CheckAniClip( "attack01" ) && GetComponent<Animation>().IsPlaying("idle01") ) {
             transform.LookAt(player);
 			GetComponent<Animation>().CrossFade("attack01",0.2f);
 			GetComponent<Animation>().CrossFadeQueued("idle01");
@@ -83,7 +90,7 @@ public class MonsterAController : MonoBehaviour
 
     void SetPlayerDamage()
     {
-        DontDestroyVariable.PlayerDamage = true;
+        PlayerController.isDamaging = true;
     }
 
     private void OnTriggerEnter(Collider other)
@@ -91,6 +98,17 @@ public class MonsterAController : MonoBehaviour
         isTriggerPlayer = false;
         if (other.gameObject.tag == "Player") {
             isTriggerPlayer = true;
+        }
+
+        if (other.name == "Sword_2_Long" && PlayerController.isAttacking && !DontDestroyVariable.isMonsterADead) {
+            monsterAHealth -= 10.0f;
+            if(monsterAHealth <= 0) {
+                DontDestroyVariable.isMonsterADead = true;
+                GetComponent<Animation>().CrossFade("dead",0.1f);
+            } else {
+                GetComponent<Animation>().CrossFade("damage",0.2f);
+                GetComponent<Animation>().CrossFadeQueued("idle01");
+            }
         }
     }
 }
