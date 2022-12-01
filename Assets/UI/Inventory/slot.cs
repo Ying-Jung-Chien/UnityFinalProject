@@ -21,13 +21,13 @@ public class slot : MonoBehaviour
     public void itemOnClicked()
     {
         audioPlayer.PlayOneShot(over);
-        StartCoroutine(ExampleCoroutine());
+        StartCoroutine(ExampleCoroutine(1));
     }
 
-    IEnumerator ExampleCoroutine()
+    IEnumerator ExampleCoroutine(int i)
     {
         yield return new WaitForSeconds(0.2f);
-        manager.UpdateItemInfo(slotitem.itemInfo, slotitem);
+        if (i == 1) manager.UpdateItemInfo(slotitem.itemInfo, slotitem);
     }
 
     public void itemOnClose()

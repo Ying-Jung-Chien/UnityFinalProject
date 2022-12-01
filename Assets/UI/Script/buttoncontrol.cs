@@ -6,6 +6,9 @@ public class buttoncontrol : MonoBehaviour
 {
     public GameObject bag;
     public GameObject bagbutton1;
+    public GameObject testui;
+    public GameObject testui1;
+    public GameObject leave1;
     public AudioClip press;
     public AudioClip over;
     public AudioSource audioPlayer;
@@ -34,5 +37,19 @@ public class buttoncontrol : MonoBehaviour
         bag.gameObject.SetActive(false);
         bagbutton1.gameObject.SetActive(false);
         audioPlayer.PlayOneShot(over);
+    }
+
+    public void closetestui()
+    {
+        testui.gameObject.SetActive(false);
+        testui1.gameObject.SetActive(false);
+        leave1.gameObject.SetActive(false);
+        audioPlayer.PlayOneShot(over);
+    }
+
+    public void itemUsed()
+    {
+        audioPlayer.PlayOneShot(over);
+        manager.UpdateItemUse();
     }
 }

@@ -10,6 +10,8 @@ TagManager:
   - button
   - remark_A
   - button_A
+  - test
+  - key
   layers:
   - Default
   - TransparentFX
