@@ -1,0 +1,21 @@
+<<<<<<< HEAD:Assets/Player/Scripts/SetCharacter/Editor.meta
+fileFormatVersion: 2
+guid: 8cbf280ac32285b43ad7edce04a0df2f
+folderAsset: yes
+timeCreated: 1573240507
+licenseType: Store
+DefaultImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+=======
+fileFormatVersion: 2
+guid: 1b393f6b29a9ee84c803af1ab4944b71
+folderAsset: yes
+DefaultImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+>>>>>>> c7fa3ea4 (boss 場景 ＆ Time control v0):Library/PackageCache/com.unity.ide.rider@3.0.14/Rider/Editor.meta

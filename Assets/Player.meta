@@ -1,0 +1,19 @@
+<<<<<<< HEAD:Assets/Player.meta
+fileFormatVersion: 2
+guid: dee46960be3cf684d826123ac0238936
+folderAsset: yes
+DefaultImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+=======
+fileFormatVersion: 2
+guid: 4baf9d3a89175c143b9d1bb3e62526e7
+folderAsset: yes
+DefaultImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+>>>>>>> c7fa3ea4 (boss 場景 ＆ Time control v0):Library/PackageCache/com.unity.editorcoroutines@1.0.0/Editor.meta

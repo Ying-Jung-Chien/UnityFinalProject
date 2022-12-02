@@ -1,0 +1,17 @@
+<<<<<<< HEAD:Assets/Prefabs/Player.prefab.meta
+fileFormatVersion: 2
+guid: 1e31ebac462ba0d4dbfd4b4b86deca03
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+=======
+fileFormatVersion: 2
+guid: f4e822a0337b6cf4aade8abffaf819a8
+TextScriptImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+>>>>>>> c7fa3ea4 (boss 場景 ＆ Time control v0):Library/PackageCache/com.unity.editorcoroutines@1.0.0/CHANGELOG.md.meta

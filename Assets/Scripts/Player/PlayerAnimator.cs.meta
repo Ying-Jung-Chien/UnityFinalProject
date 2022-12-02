@@ -1,0 +1,25 @@
+<<<<<<< HEAD:Assets/Scripts/Player/PlayerAnimator.cs.meta
+fileFormatVersion: 2
+guid: 7d13ca1f44f40b6499723970dcf517e3
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+=======
+fileFormatVersion: 2
+guid: 087be8c1503662144b530229dddcfce4
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+>>>>>>> c7fa3ea4 (boss 場景 ＆ Time control v0):Library/PackageCache/com.unity.editorcoroutines@1.0.0/Editor/EditorWaitForSeconds.cs.meta

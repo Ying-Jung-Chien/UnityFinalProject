@@ -1,0 +1,18 @@
+<<<<<<< HEAD:Assets/Player/Weapons/Sword_2/3D/Materials/Sword_2.mat.meta
+fileFormatVersion: 2
+guid: 5a76f0f76a57447498976e05ab01ff24
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 2100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+=======
+fileFormatVersion: 2
+guid: 7fd8423f910d2394b8580e2705aa247a
+TextScriptImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+>>>>>>> c7fa3ea4 (boss 場景 ＆ Time control v0):Library/PackageCache/com.unity.editorcoroutines@1.0.0/LICENSE.md.meta

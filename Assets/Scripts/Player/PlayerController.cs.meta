@@ -1,0 +1,25 @@
+<<<<<<< HEAD:Assets/Scripts/Player/PlayerController.cs.meta
+fileFormatVersion: 2
+guid: e0cdef59266ec0e4185d8758e2a20c04
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+=======
+fileFormatVersion: 2
+guid: e3e62174891db9d43b9adee028159625
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+>>>>>>> c7fa3ea4 (boss 場景 ＆ Time control v0):Library/PackageCache/com.unity.editorcoroutines@1.0.0/Editor/EditorWindowCoroutineExtension.cs.meta
