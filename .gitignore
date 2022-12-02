@@ -73,8 +73,10 @@ crashlytics-build.properties
 
 <<<<<<< HEAD
 */DS_Store
+*/.DS_Store
 
 /Library/ArtifactDB/
 =======
 */DS_Store
+*/.DS_Store
 >>>>>>> f5d339c0 (update .gitignore)
