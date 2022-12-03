@@ -42,13 +42,13 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Test1",
-                    "type": "Button",
+                    "name": "MouseScroll",
+                    "type": "Value",
                     "id": "868ec505-35ea-4113-a9d4-8811c030367e",
-                    "expectedControlType": "Button",
+                    "expectedControlType": "Axis",
                     "processors": "",
                     "interactions": "",
-                    "initialStateCheck": false
+                    "initialStateCheck": true
                 },
                 {
                     "name": "Test2",
@@ -258,11 +258,11 @@
                 {
                     "name": "",
                     "id": "5e5853b2-93a5-4179-8ca2-5d517736060f",
-                    "path": "<Keyboard>/q",
+                    "path": "<Mouse>/scroll/y",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
-                    "action": "Test1",
+                    "groups": "KeyboardMouse",
+                    "action": "MouseScroll",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
