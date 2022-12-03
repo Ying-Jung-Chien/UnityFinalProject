@@ -1102,7 +1102,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 116186586932395134, guid: 1e31ebac462ba0d4dbfd4b4b86deca03, type: 3}
       propertyPath: m_Center.y
-      value: 0.9
+      value: 0.97
       objectReference: {fileID: 0}
     - target: {fileID: 116186586932395134, guid: 1e31ebac462ba0d4dbfd4b4b86deca03, type: 3}
       propertyPath: m_Center.z
@@ -1119,6 +1119,14 @@ PrefabInstance:
     - target: {fileID: 4410037662581050984, guid: 1e31ebac462ba0d4dbfd4b4b86deca03, type: 3}
       propertyPath: JumpHeight
       value: 1.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4410037662581050984, guid: 1e31ebac462ba0d4dbfd4b4b86deca03, type: 3}
+      propertyPath: GroundedOffset
+      value: 0.06
+      objectReference: {fileID: 0}
+    - target: {fileID: 4410037662581050984, guid: 1e31ebac462ba0d4dbfd4b4b86deca03, type: 3}
+      propertyPath: GroundLayers.m_Bits
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1e31ebac462ba0d4dbfd4b4b86deca03, type: 3}
@@ -1622,40 +1630,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e1554b2d856ee482eaaea1b8e58ef5f7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &36150922
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 36150911}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 26e54e5a728a9234ab24fcf1460ed8a2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  MoveSpeed: 2
-  SprintSpeed: 5.335
-  RotationSmoothTime: 0.12
-  SpeedChangeRate: 10
-  LandingAudioClip: {fileID: 0}
-  FootstepAudioClips: []
-  FootstepAudioVolume: 0.5
-  JumpHeight: 1.2
-  Gravity: -15
-  JumpTimeout: 0.5
-  FallTimeout: 0.15
-  Grounded: 1
-  GroundedOffset: -0.14
-  GroundedRadius: 0.28
-  GroundLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  CinemachineCameraTarget: {fileID: 0}
-  TopClamp: 70
-  BottomClamp: -30
-  CameraAngleOverride: 0
-  LockCameraPosition: 0
 --- !u!114 &36150923
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1686,7 +1660,7 @@ CapsuleCollider:
   m_Radius: 0.3
   m_Height: 1.8
   m_Direction: 1
-  m_Center: {x: 0, y: 0.9, z: 0}
+  m_Center: {x: 0, y: 0.97, z: 0}
 --- !u!1001 &37509533
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -40225,6 +40199,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1997565747632984503, guid: 61350e1d996aad84293be62115d2a8a8, type: 3}
+      propertyPath: CameraRadius
+      value: 0.001
+      objectReference: {fileID: 0}
+    - target: {fileID: 1997565747632984503, guid: 61350e1d996aad84293be62115d2a8a8, type: 3}
+      propertyPath: DampingIntoCollision
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1997565748228022390, guid: 61350e1d996aad84293be62115d2a8a8, type: 3}
       propertyPath: m_Follow
       value: 
