@@ -33,7 +33,7 @@ public class BossAnimationController : MonoBehaviour
             {
                 animator.SetBool("goScream", false);
                 Boss.goScream = false;
-                Boss.goFly = true;
+                //Boss.goFly = true;
             }
         }
 
