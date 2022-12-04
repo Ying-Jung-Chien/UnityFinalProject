@@ -16,7 +16,16 @@ public class PlayerControllerInBossScene : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if(Boss.goScream)
+        {
+            gameObject.GetComponent<CharacterController>().enabled = false;
+            gameObject.GetComponent<Animator>().enabled = false;
+        }
+        else
+        {
+            gameObject.GetComponent<CharacterController>().enabled = true;
+            gameObject.GetComponent<Animator>().enabled = true;
+        }
     }
 
     private void OnCollisionEnter(Collision collision)

@@ -24,38 +24,38 @@ public class BossAnimationController : MonoBehaviour
         curDir = transform.rotation.eulerAngles.y;
         curTime = Time.time;
 
-        if(Boss.goScream)
+        if (Boss.goScream)
         {
             Debug.Log("Black dragon scream.");
             animator.SetBool("goScream", true);
-            
+
             if (CurrentStateDone())
             {
                 animator.SetBool("goScream", false);
                 Boss.goScream = false;
-                //Boss.goFly = true;
+                Boss.goFly = true;
             }
         }
 
-        if(Boss.goFly)
+        if (Boss.goFly)
         {
             Debug.Log("Black dragon go fly.");
             animator.SetBool("goFly", true);
         }
 
-        if(curTime > nextTime)
+        if (curTime > nextTime)
         {
             nextTime += 0.1f;
             preDir = curDir;
         }
 
-        if(Boss.isRotating)
+        if (Boss.goAttack)
         {
-            animator.SetBool("isRotating", true);
+            animator.SetBool("goAttack", true);
         }
         else
         {
-            animator.SetBool("isRotating", false);
+            animator.SetBool("goAttack", false);
         }
     }
 

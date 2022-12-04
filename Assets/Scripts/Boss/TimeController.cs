@@ -54,19 +54,11 @@ public class TimeController : MonoBehaviour
                 pastRotation[pastPosIndex] = player.transform.rotation;
                 pastPosIndex = (pastPosIndex + 1) % totalNumOfPos;
             }
-            /*
-            string tmp = "";
-            foreach (var vec in pastPosition)
-            {
-                tmp += vec.ToString();
-            }
-            Debug.Log(tmp);
-            */
         }
-        
 
-        
-        if(pressT)
+
+
+        if (pressT)
         {
             Debug.Log("keydown T, " + (curTime > startTime + 0.1f));
             pressT = false;
@@ -95,7 +87,7 @@ public class TimeController : MonoBehaviour
             }
             else if (curTime > endTime + cdTime)
             {
-                Debug.Log("turn on time controller");
+                //Debug.Log("turn on time controller");
                 representativeObj.transform.position = pastPosition[((pastPosIndex - 1) % totalNumOfPos)];
                 representativeObj.transform.rotation = pastRotation[((pastPosIndex - 1) % totalNumOfPos)];
                 representativeObj.SetActive(true);
@@ -104,38 +96,31 @@ public class TimeController : MonoBehaviour
                 player.GetComponent<CharacterController>().enabled = false;
                 player.GetComponent<Animator>().enabled = false;
 
-                //for(int i = 0; i < 50; i++)
-                //{
-                //    int curIdx = (pastPosIndex + i) % 50;
-                //    Instantiate(showPositionPrefeb, pastPosition[curIdx], showPositionPrefeb.transform.rotation);
-                //}
-
                 isTurningBackTheClock = true;
                 startTime = curTime;
                 endTime = curTime + lenOfRecord_s;
                 nextTimeInTurningBack = curTime + frequence_s;
                 timePosIndex = (pastPosIndex - 1 < 0) ? (totalNumOfPos - 1) : (pastPosIndex - 1);
-                Debug.Log("stratTime = " + startTime + ", endTime = " + endTime);
+                //Debug.Log("stratTime = " + startTime + ", endTime = " + endTime);
             }
 
         }
 
         if (isTurningBackTheClock)
         {
-            Debug.Log("isTurningBackTheClock");
-            if(curTime >= nextTimeInTurningBack)
+            //Debug.Log("isTurningBackTheClock");
+            if (curTime >= nextTimeInTurningBack)
             {
-                Debug.Log("next position");
+                //Debug.Log("next position");
                 nextTimeInTurningBack += frequence_s;
 
-                representativeObj.transform.position = pastPosition[timePosIndex];// + new Vector3(0, 0.9f, 0);
+                representativeObj.transform.position = pastPosition[timePosIndex];
                 representativeObj.transform.rotation = pastRotation[timePosIndex];
-                //player.transform.position = pastPosition[timePosIndex];
 
                 timePosIndex = (timePosIndex - 1 < 0) ? (totalNumOfPos - 1) : (timePosIndex - 1);
                 if (timePosIndex == pastPosIndex)
                 {
-                    Debug.Log("last position");
+                    //Debug.Log("last position");
                     isTurningBackTheClock = false;
                     representativeObj.SetActive(false);
 
@@ -145,6 +130,6 @@ public class TimeController : MonoBehaviour
                 }
             }
         }
-        
+
     }
 }

@@ -4,16 +4,18 @@ using UnityEngine;
 
 public class Boss : MonoBehaviour
 {
+    public GameObject attackTrigger;
     public GameObject direction;
     public GameObject player;
-    public GameObject EScornor;
-    public GameObject WScornor;
-    public GameObject ENcornor;
-    public GameObject WNcornor;
-    //public GameObject attackTrigger;
+    public GameObject playerFront;
+    public GameObject[] spiral;
+    private int spiralSize;
     public float Health = 1000;
     public float transitionSpead = 0.5f;
-    //public float dampTime;
+    public float dampTime = 3f;
+    public int attackFreq_UpperBound = 10;
+    public int attackFreq_LowerBound = 40;
+    public float rotateSpeed = 1f;
 
     public bool scream;
     public bool fly;
@@ -24,38 +26,50 @@ public class Boss : MonoBehaviour
     public static bool goScream { get; set; } = false;
     public static bool goFly { get; set; } = false;
     public static bool isIdle { get; set; } = false;
-    public static bool isRotating { get; set; } = false;
-    public static bool isGetHit { get; set; } = false;
-    public static bool isDead { get; set; } = false;
+
+    public static bool goAttack { get; set; } = false;
+    //public static bool isGetHit { get; set; } = false;
+    //public static bool isDead { get; set; } = false;
 
     private Vector3 initPos;
-    private Quaternion initRotation;
+    private Vector3 initDir;
     private Vector3 targetPos;
-    private Quaternion targetRotation;
     private Vector3 velocity;
     private bool smoothToTarget;
-    private float dampTime;
+    private bool spiralTrigger;
+    private bool dashToPlayer;
+    private bool backToInitPos;
+    private bool justStartFlying;
+    private float _dampTime;
     private float curTime;
     private float nextTime;
     private float counter;
-    private int cornorCounter;
-    private bool cornorTrigger;
+    private int spiralCounter;
+    private int attackCounter;
+    private int attackRandomNum;
+
 
     private void Init()
     {
-        initPos = transform.position;
-        initRotation = transform.rotation;
-        smoothToTarget = false;
-        dampTime = 10;
         nextTime = 0;
         counter = 0;
-        cornorCounter = -1;
-        cornorTrigger = false;
+        spiralCounter = -1;
+        spiralTrigger = false;
+        attackCounter = 0;
+        attackRandomNum = -1;
+        justStartFlying = false;
     }
 
     // Start is called before the first frame update
     void Start()
     {
+        initPos = transform.position;
+        initDir = transform.forward;
+        smoothToTarget = false;
+        _dampTime = dampTime;
+        spiralSize = spiral.Length;
+        dashToPlayer = false;
+        backToInitPos = false;
         Init();
     }
 
@@ -67,86 +81,111 @@ public class Boss : MonoBehaviour
 
         curTime = Time.time;
 
-        if(goFly)
+        if (goFly)
         {
             goFly = false;
+
+            justStartFlying = true;
             float steps = Time.deltaTime * transitionSpead;
             targetPos = new Vector3(transform.position.x, 12, transform.position.z - 15);
-            targetRotation = Quaternion.Euler(-30, 180, 0);
+            dampTime = 10;
             smoothToTarget = true;
+            attackRandomNum = Random.Range(attackFreq_LowerBound, attackFreq_UpperBound);
+            attackCounter = 0;
         }
 
-        if (cornorCounter == 0 && cornorTrigger)
+        if (attackCounter == attackRandomNum)
         {
-            targetPos = EScornor.transform.position;
-            float aDotb = Vector3.Dot(direction.transform.position - transform.position, targetPos - transform.position);
-            float aLen = Vector3.Distance(direction.transform.position, transform.position);
-            float bLen = Vector3.Distance(EScornor.transform.position, transform.position);
-            if (targetRotation.eulerAngles.x != 0)
-                targetRotation = Quaternion.Euler(0, 180, 0);
+            Debug.Log("attackCounter == attackRandomNum = " + attackCounter);
+            dashToPlayer = true;
+            dampTime = 1;
+            targetPos = playerFront.transform.position;
+            attackRandomNum = Random.Range(10, 40);
+            attackCounter = 0;
+        }
+
+        if (spiralTrigger && spiralCounter > -1)
+        {
+            targetPos = spiral[spiralCounter].transform.position;
+            if (justStartFlying)
+            {
+                dampTime = 3;
+                if (spiralCounter >= 2)
+                    justStartFlying = false;
+            }
             else
-                targetRotation = Quaternion.Euler(0, transform.eulerAngles.y + Mathf.Acos(aDotb / aLen / bLen) * 180 / Mathf.PI, 0);
-            dampTime = 7;
-            cornorTrigger = false;
-        }
-        else if (cornorCounter == 1 && cornorTrigger)
-        {
-            targetPos = WScornor.transform.position;
-            float aDotb = Vector3.Dot(direction.transform.position - transform.position, targetPos - transform.position);
-            float aLen = Vector3.Distance(direction.transform.position, transform.position);
-            float bLen = Vector3.Distance(WScornor.transform.position, transform.position);
-            targetRotation = Quaternion.Euler(0, transform.rotation.eulerAngles.y + Mathf.Acos(aDotb / aLen / bLen) * 180 / Mathf.PI, 0);
-            dampTime = 3;
-            cornorTrigger = false;
-        }
-        else if (cornorCounter == 2 && cornorTrigger)
-        {
-            float aDotb = Vector3.Dot(direction.transform.position - transform.position, WNcornor.transform.position - transform.position);
-            float aLen = Vector3.Distance(direction.transform.position, transform.position);
-            float bLen = Vector3.Distance(WNcornor.transform.position, transform.position);
-            targetRotation = Quaternion.Euler(0, transform.rotation.eulerAngles.y + Mathf.Acos(aDotb / aLen / bLen) * 180 / Mathf.PI, 0);
-            targetPos = WNcornor.transform.position;
-            dampTime = 7;
-            cornorTrigger = false;
-        }
-        else if (cornorCounter == 3 && cornorTrigger)
-        {
-            targetPos = ENcornor.transform.position;
-            float aDotb = Vector3.Dot(direction.transform.position - transform.position, targetPos - transform.position);
-            float aLen = Vector3.Distance(direction.transform.position, transform.position);
-            float bLen = Vector3.Distance(WScornor.transform.position, transform.position);
-            targetRotation = Quaternion.Euler(0, transform.rotation.eulerAngles.y + Mathf.Acos(aDotb / aLen / bLen) * 180 / Mathf.PI, 0);
-            dampTime = 3;
-            cornorTrigger = false;
+                dampTime = _dampTime;
+            spiralTrigger = false;
+            attackCounter++;
         }
 
         if (smoothToTarget)
         {
-            if (Vector3.Distance(transform.position, targetPos) >= 8)
+            if (dashToPlayer)
             {
-                if (cornorCounter == -1 && curTime >= nextTime)
+                if (Vector3.Distance(transform.position, targetPos) <= 5 && Vector3.Distance(transform.position, targetPos) > 2)
+                {
+                    Debug.Log("goAttack");
+                    goAttack = true;
+                }
+                if (Vector3.Distance(transform.position, targetPos) <= 2)
+                {
+                    Debug.Log("face to init pos");
+                    goAttack = false;
+                    Init();
+                    transform.rotation = Quaternion.LookRotation(Vector3.RotateTowards(transform.forward, initPos - transform.position, Time.deltaTime * rotateSpeed, 0.0F));
+                    if (Vector3.Distance(transform.forward, (initPos - transform.position) / Vector3.Distance(initPos, transform.position)) <= 1)
+                    {
+                        dampTime = 3;
+                        targetPos = initPos;
+                        dashToPlayer = false;
+                        backToInitPos = true;
+                    }
+                }
+                else
+                {
+                    Debug.Log("dashToplayer");
+                    transform.position = Vector3.SmoothDamp(transform.position, targetPos, ref velocity, dampTime);
+                    transform.rotation = Quaternion.LookRotation(Vector3.RotateTowards(transform.forward, targetPos - transform.position, Time.deltaTime * 5, 0.0F));
+                }
+
+            }
+            else if (backToInitPos)
+            {
+                Debug.Log("backToInitPos");
+                if (Vector3.Distance(transform.position, targetPos) <= 5)
+                {
+                    Debug.Log("at init pos");
+                    transform.position = Vector3.SmoothDamp(transform.position, targetPos, ref velocity, dampTime);
+                    transform.rotation = Quaternion.LookRotation(Vector3.RotateTowards(transform.forward, initDir, Time.deltaTime * rotateSpeed, 0.0F));
+                    if (Vector3.Distance(transform.forward, initDir) <= 0.1)
+                    {
+                        backToInitPos = false;
+                        goFly = true;
+                    }
+                }
+                else
+                {
+                    transform.position = Vector3.SmoothDamp(transform.position, targetPos, ref velocity, dampTime);
+                    transform.rotation = Quaternion.LookRotation(Vector3.RotateTowards(transform.forward, targetPos - transform.position, Time.deltaTime * rotateSpeed, 0.0F));
+                }
+            }
+            else if (Vector3.Distance(transform.position, targetPos) >= 5)
+            {
+                if (spiralCounter == -1 && curTime >= nextTime)
                 {
                     counter += 1f;
                     nextTime = curTime + 0.2f;
                     dampTime = Mathf.Max(dampTime - (0.1f * counter), 3);
                 }
-                Debug.Log("targetPos = " + targetPos + ", targetRotation = " + targetRotation.eulerAngles);
-                if (Mathf.Abs(transform.rotation.eulerAngles.y - targetRotation.eulerAngles.y) > 70)
-                {
-                    //isRotating = true;
-                    transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, 1f);
-                }
-                else
-                {
-                    isRotating = false;
-                    transform.position = Vector3.SmoothDamp(transform.position, targetPos, ref velocity, dampTime);
-                    transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, 1f);
-                }
+
+                transform.position = Vector3.SmoothDamp(transform.position, targetPos, ref velocity, dampTime);
+                transform.rotation = Quaternion.LookRotation(Vector3.RotateTowards(transform.forward, targetPos - transform.position, Time.deltaTime * rotateSpeed, 0.0F));
             }
             else
             {
-                cornorCounter = (cornorCounter + 1) % 4;
-                cornorTrigger = true;
+                spiralCounter = (spiralCounter + 1) % spiralSize;
+                spiralTrigger = true;
             }
         }
     }
