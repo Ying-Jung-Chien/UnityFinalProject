@@ -84,7 +84,6 @@ public class Boss : MonoBehaviour
         if (goFly)
         {
             goFly = false;
-
             justStartFlying = true;
             float steps = Time.deltaTime * transitionSpead;
             targetPos = new Vector3(transform.position.x, 12, transform.position.z - 15);

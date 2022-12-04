@@ -24,7 +24,6 @@ public class GameController : MonoBehaviour
             Ray ray = new Ray(blackDragon.transform.position, player.transform.position - blackDragon.transform.position);
             if (Physics.Raycast(ray, out m_hit, Vector3.Distance(blackDragon.transform.position, player.transform.position)))
             {
-
                 if (m_hit.transform.tag != "Player" && m_hit.transform.name != "Boss")
                 {
                     //Debug.Log("Collider name: " + m_hit.transform.name);
@@ -35,6 +34,11 @@ public class GameController : MonoBehaviour
                     Boss.goScream = true;
                     firstScream = false;
                 }
+            }
+            else
+            {
+                Boss.goScream = true;
+                firstScream = false;
             }
         }
     }

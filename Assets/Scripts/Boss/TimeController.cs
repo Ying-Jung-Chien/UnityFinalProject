@@ -56,15 +56,13 @@ public class TimeController : MonoBehaviour
             }
         }
 
-
-
         if (pressT)
         {
-            Debug.Log("keydown T, " + (curTime > startTime + 0.1f));
+            //Debug.Log("keydown T, " + (curTime > startTime + 0.1f));
             pressT = false;
             if ((curTime > startTime + 0.1f) && (isTurningBackTheClock))
             {
-                Debug.Log("turn off time controller");
+                //Debug.Log("turn off time controller");
                 isTurningBackTheClock = false;
                 representativeObj.SetActive(false);
 
@@ -82,8 +80,10 @@ public class TimeController : MonoBehaviour
                 player.transform.rotation = pastRotation[timePosIndex];
 
                 // 開放操作
+                //Debug.Log("U can move! And back to the position that U choosed.");
                 player.GetComponent<CharacterController>().enabled = true;
                 player.GetComponent<Animator>().enabled = true;
+                player.GetComponent<Rigidbody>().WakeUp();
             }
             else if (curTime > endTime + cdTime)
             {
@@ -93,8 +93,10 @@ public class TimeController : MonoBehaviour
                 representativeObj.SetActive(true);
 
                 // 停止操作
+                //Debug.Log("U can not move...");
                 player.GetComponent<CharacterController>().enabled = false;
                 player.GetComponent<Animator>().enabled = false;
+                player.GetComponent<Rigidbody>().Sleep();
 
                 isTurningBackTheClock = true;
                 startTime = curTime;
@@ -125,8 +127,10 @@ public class TimeController : MonoBehaviour
                     representativeObj.SetActive(false);
 
                     // 開放操作
+                    //Debug.Log("U can move! But U didn't use the ability of time-control.");
                     player.GetComponent<CharacterController>().enabled = true;
                     player.GetComponent<Animator>().enabled = true;
+                    player.GetComponent<Rigidbody>().WakeUp();
                 }
             }
         }
