@@ -46,12 +46,7 @@ public class manager : MonoBehaviour
                 if (instance.mybag.itemList[i].itemType == 0)
                 {
                     instance.mybag.itemList[i].itemHeld -= 1;
-                }
-                if(instance.mybag.itemList[i].itemHeld == 0)
-                {
-                    UpdateItemInfo("", instance.mybag.itemList[i]);
-                }
-                if (instance.mybag.itemList[i].name == "key" && status == 1)
+                }else if (instance.mybag.itemList[i].name == "key" && status == 1)
                 {
                     instance.mybag.itemList[i].itemHeld -= 1;
                     status = 0;
@@ -59,6 +54,11 @@ public class manager : MonoBehaviour
                 else
                 {
                     UpdateItemInfo("使用無效", instance.mybag.itemList[i]);
+                }
+
+                if(instance.mybag.itemList[i].itemHeld == 0)
+                {
+                    UpdateItemInfo("", instance.mybag.itemList[i]);
                 }
             } 
         }
