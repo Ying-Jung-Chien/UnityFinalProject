@@ -71,6 +71,12 @@ crashlytics-build.properties
 /[Aa]ssets/[Ss]treamingAssets/aa.meta
 /[Aa]ssets/[Ss]treamingAssets/aa/*
 
+<<<<<<< HEAD
 */DS_Store
+*/.DS_Store
 
 /Library/ArtifactDB/
+=======
+*/DS_Store
+*/.DS_Store
+>>>>>>> f5d339c0 (update .gitignore)

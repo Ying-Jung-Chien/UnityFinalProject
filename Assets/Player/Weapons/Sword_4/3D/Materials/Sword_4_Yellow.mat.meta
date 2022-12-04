@@ -1,3 +1,4 @@
+<<<<<<< HEAD:Assets/Player/Weapons/Sword_4/3D/Materials/Sword_4_Yellow.mat.meta
 fileFormatVersion: 2
 guid: f2013b95037b0aa48a3170f71df13812
 timeCreated: 1579568156
@@ -8,3 +9,13 @@ NativeFormatImporter:
   userData: 
   assetBundleName: 
   assetBundleVariant: 
+=======
+fileFormatVersion: 2
+guid: 07ea0326ed848fb4489187cb58f96113
+folderAsset: yes
+DefaultImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+>>>>>>> c7fa3ea4 (boss 場景 ＆ Time control v0):Library/PackageCache/com.unity.test-framework@1.1.31/UnityEditor.TestRunner/GUI/TestListBuilder.meta

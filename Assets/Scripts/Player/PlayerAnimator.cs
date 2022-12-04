@@ -13,7 +13,15 @@ namespace ThirdPersonController
         private int fallState;
         private int landState;
         private int attackState;
+        private int normalState;
+        private int fireballState;
+        private int shieldState;
         private Animator animator;
+
+        public GameObject shield;
+        private float startTime;
+        public GameObject fireball;
+        private GameObject fireball_clone;
 
         // Start is called before the first frame update
         void Start()
@@ -25,6 +33,9 @@ namespace ThirdPersonController
             fallState = Animator.StringToHash("Base Layer.Male Fall");
             landState = Animator.StringToHash("Base Layer.Male Land");
             attackState = Animator.StringToHash("Base Layer.Male Attack 3");
+            normalState = Animator.StringToHash("Base Layer.Male Attack 3");
+            fireballState = Animator.StringToHash("Base Layer.Standing_2H_Magic_Attack_01");
+            shieldState = Animator.StringToHash("Base Layer.Standing_2H_Magic_Area_Attack_01");
 
             animator = gameObject.GetComponent<Animator>();
         }
@@ -50,7 +61,39 @@ namespace ThirdPersonController
             }
             else if(PlayerController.isAttacking){
                 if(IsInState(attackState)){
-                    if(CurrentStateDone()) PlayerController.isAttacking = false;
+                    if(attackState == fireballState)
+                    {
+                        if (animator.GetCurrentAnimatorStateInfo(0).normalizedTime > 0.6f)
+                        {
+                            Vector3 pos = transform.position + new Vector3(transform.TransformDirection(Vector3.forward).x * 2, 1, transform.TransformDirection(Vector3.forward).z * 2);
+                            Quaternion rot = transform.rotation;
+                            fireball_clone = (GameObject)Instantiate(fireball, pos, rot);
+                            fireball_clone.SetActive(true);
+                            PlayerController.isAttacking = false;
+                        }
+                    }
+                    else if (CurrentStateDone())
+                    {
+                        if (attackState == shieldState)
+                        {
+                            shield.SetActive(true);
+                            startTime = Time.time;
+                        }
+                        PlayerController.isAttacking = false;
+                    }
+
+                }
+                if (gameObject.GetComponent<test>().current_skill == 0)
+                {
+                    attackState = normalState;
+                }
+                else if(gameObject.GetComponent<test>().current_skill == 1)
+                {
+                    attackState = fireballState;
+                }
+                else if(gameObject.GetComponent<test>().current_skill == 2)
+                {
+                    attackState = shieldState;
                 }
                 PlayStateIfNotInState(attackState);
                 
@@ -63,6 +106,10 @@ namespace ThirdPersonController
             }
             else{
                 PlayStateIfNotInState(idleState);
+            }
+            if(shield.activeSelf)
+            {
+                if (Time.time - startTime > 10.0f) shield.SetActive(false);
             }
         }
 
