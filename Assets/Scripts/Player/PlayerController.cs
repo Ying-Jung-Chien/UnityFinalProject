@@ -25,7 +25,7 @@ public class PlayerController : MonoBehaviour
     public bool LockCameraPosition = false;
     // cinemachine
     private float _cinemachineTargetYaw;
-    private float _cinemachineTargetPitch;
+    public float _cinemachineTargetPitch;
     private float OriginRotationSpeed;
     private const float _threshold = 0.01f;
     private StarterAssetsInputs _input;
