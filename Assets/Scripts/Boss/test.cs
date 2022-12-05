@@ -22,7 +22,8 @@ public class test : MonoBehaviour
         current_skill += (int)Mouse.current.scroll.ReadValue().normalized.y;
         current_skill = (current_skill < 0 ? 2 : current_skill) % 3;
         showCurrent_skill.text = "Current Skill:" + SkillList[current_skill];
-            
+        skillcomtrol.skill_choose = current_skill;
+
     }
 
 
