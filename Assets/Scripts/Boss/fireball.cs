@@ -10,6 +10,8 @@ public class fireball : MonoBehaviour
     private float max = 30;
     private float normalizedFloat;
 
+    public Object ExplosionEffect;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -29,6 +31,18 @@ public class fireball : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
+        if(collision.contacts.Length > 0){
+            if (ExplosionEffect != null)
+            {
+                GameObject exp = GameObject.Instantiate(ExplosionEffect, Vector3.zero, Quaternion.identity) as GameObject;
+               
+                exp.transform.position = collision.contacts[0].point + collision.contacts[0].normal * 0.2f;
+                // Destroy after 4 sec
+                GameObject.Destroy(exp, 4);
+                // Destroy Self
+                GameObject.Destroy(gameObject);                   
+            }                   
+        }  
         Destroy(gameObject);
     }
 }
