@@ -115,7 +115,7 @@ public class PlayerController : MonoBehaviour
 
     void CursorVisible()
     {
-        if (Input.GetKeyDown(KeyCode.Q)) {
+        if (Input.GetMouseButtonDown(1)) {
             // Cursor.visible = Cursor.visible ? false : true;
             Cursor.visible = true;
         } else if (Input.GetMouseButtonDown(0) && Cursor.visible) {
