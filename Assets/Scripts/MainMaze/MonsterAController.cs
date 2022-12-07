@@ -93,6 +93,11 @@ public class MonsterAController : MonoBehaviour
         PlayerController.isDamaging = true;
     }
 
+    void SetMonsterDamage()
+    {
+        PlayerController.isDamaging = true;
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         isTriggerPlayer = false;
@@ -100,10 +105,11 @@ public class MonsterAController : MonoBehaviour
             isTriggerPlayer = true;
         }
 
-        if (other.name == "Sword_2_Long" && PlayerController.isAttacking && !DontDestroyVariable.isMonsterADead) {
+        if (other.name == "Sword_2_Long" && PlayerController.isAttacking && !DontDestroyVariable.isMonsterADead && !GetComponent<Animation>().IsPlaying("damage")) {
             monsterAHealth -= 10.0f;
             if(monsterAHealth <= 0) {
                 DontDestroyVariable.isMonsterADead = true;
+                DontDestroyVariable.getPuzzle[4] = 1;
                 GetComponent<Animation>().CrossFade("dead",0.1f);
             } else {
                 GetComponent<Animation>().CrossFade("damage",0.2f);

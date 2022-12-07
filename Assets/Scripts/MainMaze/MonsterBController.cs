@@ -13,7 +13,6 @@ public class MonsterBController : MonoBehaviour
     private UnityEngine.AI.NavMeshAgent agent;
     private Transform player;
 	private bool hasAniComp = false;
-    private bool isTriggerPlayer = false;
 
     // Start is called before the first frame update
     void Start()
@@ -66,10 +65,7 @@ public class MonsterBController : MonoBehaviour
             transform.LookAt(player);
 			GetComponent<Animation>().CrossFade("attack03",0.2f);
 			GetComponent<Animation>().CrossFadeQueued("idle01");
-            if (isTriggerPlayer) {
-                DontDestroyVariable.PlayerHealth -= 5.0f;
-                if ( !IsInvoking(nameof(SetPlayerDamage)) ) Invoke(nameof(SetPlayerDamage), 0.5f);
-            }
+            if ( !IsInvoking(nameof(SetPlayerDamage)) ) Invoke(nameof(SetPlayerDamage), 0.5f);
 		}
     }
 
@@ -83,23 +79,28 @@ public class MonsterBController : MonoBehaviour
 			} else if (agent.remainingDistance <= 0.1) {
                 if ( GetComponent<Animation>().IsPlaying("run") && CheckAniClip( "idle01" ) )
                     GetComponent<Animation>().CrossFade("idle01",0.5f);
-                transform.rotation = Quaternion.Euler(0.0f, 180.0f, 0.0f);
+                transform.rotation = Quaternion.Euler(0.0f, 0.0f, 0.0f);
             }
         }
     }
 
     void SetPlayerDamage()
     {
-        PlayerController.isDamaging = true;
+        bool playerInAttackRange = Physics.CheckSphere(transform.position, attackDistance, playerLayer);
+        if (playerInAttackRange && GetComponent<Animation>().IsPlaying("attack03")) {
+            DontDestroyVariable.PlayerHealth -= 5.0f;
+            PlayerController.isDamaging = true;
+        }
     }
 
     private void OnTriggerEnter(Collider other)
     {
-         if (other.name == "Sword_2_Long" && PlayerController.isAttacking && !DontDestroyVariable.isMonsterBDead) {
+        if (other.name == "Sword_2_Long" && PlayerController.isAttacking && !DontDestroyVariable.isMonsterBDead && !GetComponent<Animation>().IsPlaying("damage")) {
             monsterBHealth -= 10.0f;
             Debug.Log(monsterBHealth);
             if(monsterBHealth <= 0) {
                 DontDestroyVariable.isMonsterBDead = true;
+                DontDestroyVariable.getPuzzle[5] = 1;
                 GetComponent<Animation>().CrossFade("dead",0.1f);
             } else {
                 GetComponent<Animation>().CrossFade("damage",0.2f);
