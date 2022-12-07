@@ -18,7 +18,7 @@ public class MouseOnDrag : MonoBehaviour
             RaycastHit hit;  
             if (Physics.Raycast(ray, out hit)) {
                 if (hit.transform.name == gameObject.name) {
-                    Debug.Log(hit.transform.name);
+                    // Debug.Log(hit.transform.name);
                     float distance_to_screen = Camera.main.WorldToScreenPoint(gameObject.transform.position).z;
                     Vector3 pos_move = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, distance_to_screen ));
                     // transform.position = new Vector3( pos_move.x, transform.position.y, pos_move.z );
@@ -31,15 +31,5 @@ public class MouseOnDrag : MonoBehaviour
         transform.rotation = Quaternion.Euler(0.0f, 0.0f, 0.0f);
         gameObject.GetComponent<Rigidbody>().velocity = new Vector3( 0, 0, 0);
         gameObject.GetComponent<Rigidbody>().AddForce(new Vector3( 0, 0, 0)); 
-    }
-
-    private void OnCollisionEnter(Collision other)
-    {
-        Debug.Log("OnCollisionEnter");
-        Debug.Log(other.gameObject.name);
-        // isTriggerPlayer = false;
-        // if (other.gameObject.tag == "Player") {
-        //     isTriggerPlayer = true;
-        // }
     }
 }

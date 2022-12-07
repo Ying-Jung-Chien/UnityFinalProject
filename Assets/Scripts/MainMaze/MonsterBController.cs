@@ -97,7 +97,7 @@ public class MonsterBController : MonoBehaviour
     {
         if (other.name == "Sword_2_Long" && PlayerController.isAttacking && !DontDestroyVariable.isMonsterBDead && !GetComponent<Animation>().IsPlaying("damage")) {
             monsterBHealth -= 10.0f;
-            Debug.Log(monsterBHealth);
+            // Debug.Log(monsterBHealth);
             if(monsterBHealth <= 0) {
                 DontDestroyVariable.isMonsterBDead = true;
                 DontDestroyVariable.getPuzzle[5] = 1;
