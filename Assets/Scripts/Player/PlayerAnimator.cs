@@ -23,6 +23,10 @@ namespace ThirdPersonController
         public GameObject fireball;
         private GameObject fireball_clone;
 
+        public AudioSource audioPlayer;
+        public AudioClip bgmshield;
+        public AudioClip attack;
+
         // Start is called before the first frame update
         void Start()
         {
@@ -77,7 +81,12 @@ namespace ThirdPersonController
                         if (attackState == shieldState)
                         {
                             shield.SetActive(true);
+                            audioPlayer.PlayOneShot(bgmshield);
                             startTime = Time.time;
+                        }
+                        if (attackState == normalState)
+                        {
+                            audioPlayer.PlayOneShot(attack);
                         }
                         PlayerController.isAttacking = false;
                     }
