@@ -4,7 +4,6 @@ using UnityEngine.InputSystem;
 using UnityEngine;
 using Cinemachine;
 
-
 public class PlayerController : MonoBehaviour
 {
     [Header("Player")]
@@ -46,6 +45,7 @@ public class PlayerController : MonoBehaviour
     public static bool isAttacking;
     public static bool isWalking;
     public static bool isRunning;
+    public static bool isDamaging;
 
     // camera
     private GameObject _mainCamera;
@@ -75,6 +75,7 @@ public class PlayerController : MonoBehaviour
         PlayerInput();
         JumpingProcess();
         CursorVisible();
+        SearchMode();
     }
 
     private void LateUpdate()
@@ -111,15 +112,27 @@ public class PlayerController : MonoBehaviour
         if (lfAngle > 360f) lfAngle -= 360f;
         return Mathf.Clamp(lfAngle, lfMin, lfMax);
     }
-    
+
     void CursorVisible()
     {
-        if (Input.GetKeyDown(KeyCode.Q)) {
-            Cursor.visible = Cursor.visible ? false : true;
-            CameraRotationSpeed = CameraRotationSpeed > 0 ? 0 : OriginRotationSpeed;
+        if (Input.GetMouseButtonDown(1)) {
+            // Cursor.visible = Cursor.visible ? false : true;
+            Cursor.visible = true;
+        } else if (Input.GetMouseButtonDown(0) && Cursor.visible) {
+            Cursor.visible = false;
         }
-            
+        
     }
+
+    void SearchMode()
+    {
+        if (Input.GetMouseButtonDown(1) && Cursor.visible) {
+            CameraRotationSpeed = 0;
+        } else if (Input.GetMouseButtonUp(1) && Cursor.visible) {
+            CameraRotationSpeed = OriginRotationSpeed;
+        }
+    }
+    
     void PlayerInput()
     {
         if (Grounded && _velocity.y < 0) _velocity.y = 0f;
@@ -129,7 +142,7 @@ public class PlayerController : MonoBehaviour
             isRising = true;
             _velocity.y = Mathf.Sqrt(JumpHeight * -2f * Gravity);
             _beforeJump = transform.position.y;
-        } else if (Input.GetMouseButtonDown(0)) {
+        } else if (Input.GetMouseButtonDown(0) && !Cursor.visible) {
             isAttacking = true;
             move = new Vector3(0, 0, 0);
         }
@@ -165,7 +178,7 @@ public class PlayerController : MonoBehaviour
                 targetDirection = Quaternion.Euler(0.0f, _targetRotation, 0.0f) * Vector3.forward;
             } else targetDirection = new Vector3(0, 0, 0);
         }
-            
+        
         _velocity.y += Gravity * Time.deltaTime;
         _controller.Move((targetDirection.normalized * Speed + _velocity) * Time.deltaTime);
     }
