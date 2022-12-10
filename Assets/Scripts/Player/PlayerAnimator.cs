@@ -74,7 +74,7 @@ public class PlayerAnimator : MonoBehaviour
             if(IsInState(attackState)){
                 if(attackState == fireballState)
                 {
-                    if (animator.GetCurrentAnimatorStateInfo(0).normalizedTime > 0.6f)
+                    if (animator.GetCurrentAnimatorStateInfo(0).normalizedTime > 0.45f)
                     {
                         Vector3 pos = transform.position + new Vector3(transform.TransformDirection(Vector3.forward).x * 2, 1, transform.TransformDirection(Vector3.forward).z * 2);
                         Quaternion rot = transform.rotation;
@@ -121,6 +121,10 @@ public class PlayerAnimator : MonoBehaviour
         }
         else{
             PlayStateIfNotInState(idleState);
+        }
+        if(Time.time - startTime > 10.0f)
+        {
+            shield.SetActive(false);
         }
     }
 
