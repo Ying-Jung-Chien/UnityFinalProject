@@ -26,7 +26,7 @@ public class BossAnimationController : MonoBehaviour
 
         if (Boss.goScream)
         {
-            Debug.Log("Black dragon scream.");
+            //Debug.Log("Black dragon scream.");
             animator.SetBool("goScream", true);
 
             if (CurrentStateDone())
@@ -39,7 +39,7 @@ public class BossAnimationController : MonoBehaviour
 
         if (Boss.goFly)
         {
-            Debug.Log("Black dragon go fly.");
+            //Debug.Log("Black dragon go fly.");
             animator.SetBool("goFly", true);
         }
 

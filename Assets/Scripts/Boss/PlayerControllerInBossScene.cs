@@ -19,6 +19,7 @@ public class PlayerControllerInBossScene : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        /*
         if(Boss.goScream)
         {
             oneSet = true;
@@ -36,6 +37,7 @@ public class PlayerControllerInBossScene : MonoBehaviour
                 gameObject.GetComponent<Rigidbody>().WakeUp();
             }
         }
+        */
     }
 
     /*

@@ -1,20 +1,26 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using StarterAssets;
+using Unity.IO.LowLevel.Unsafe;
 using UnityEngine;
 
 public class TimeController : MonoBehaviour
 {
     public GameObject player;
-    //public GameObject showPositionPrefeb;
+    public GameObject showPositionPrefeb;
+    public GameObject showRepPrefeb;
     public GameObject representativeObj;
+    public GameObject forceDirArrow;
     public float cdTime = 10.0f;
     public float lenOfRecord_s = 5.0f; // (s)
     public float frequence_s = 0.1f; // (s)
     public float forceStrength = 300;
+    public int ghostRelicNum = 10;
 
     public static bool pressT;
 
+    private Animator playerAnim;
     private bool isTurningBackTheClock;
     private float curTime;
     private float nextTime;
@@ -23,13 +29,22 @@ public class TimeController : MonoBehaviour
     private float nextTimeInTurningBack;
     private Vector3[] pastPosition;
     private Quaternion[] pastRotation;
+    private int[] pastAnimationIdx;
+    private int[] pastAnimationHash;
+    private GameObject[] showedPosPrefeb;
+    private GameObject[] showedRepPrefeb;
+    private int showedCurPosCounter;
     private int pastPosIndex;
     private int timePosIndex;
     private int totalNumOfPos;
+    private Vector3 velocity;
+    private Vector3 bias = new Vector3(0, 0.9f, 0);
+
 
     // Start is called before the first frame update
     void Start()
     {
+        playerAnim = player.GetComponent<Animator>();
         representativeObj.SetActive(false);
         curTime = Time.time;
         startTime = endTime = 0.0f;
@@ -39,11 +54,16 @@ public class TimeController : MonoBehaviour
         totalNumOfPos = (int)(lenOfRecord_s / frequence_s);
         pastPosition = new Vector3[totalNumOfPos];
         pastRotation = new Quaternion[totalNumOfPos];
+        pastAnimationIdx = new int[totalNumOfPos];
+        pastAnimationHash = new int[totalNumOfPos];
+        showedPosPrefeb = new GameObject[totalNumOfPos];
+        showedRepPrefeb = new GameObject[totalNumOfPos];
     }
 
     // Update is called once per frame
     void Update()
     {
+        
         curTime = Time.time;
         if (curTime >= nextTime)
         {
@@ -52,6 +72,43 @@ public class TimeController : MonoBehaviour
             {
                 pastPosition[pastPosIndex] = player.transform.position;
                 pastRotation[pastPosIndex] = player.transform.rotation;
+                pastAnimationHash[pastPosIndex] = playerAnim.GetCurrentAnimatorStateInfo(0).fullPathHash;
+                
+                if (PlayerController.isDamaging)
+                {
+                    pastAnimationIdx[pastPosIndex] = 1;
+                }
+                else if (PlayerController.isRising)
+                {
+                    pastAnimationIdx[pastPosIndex] = 2;
+                }
+                else if (PlayerController.isFalling)
+                {
+                    pastAnimationIdx[pastPosIndex] = 3;
+                }
+                else if (PlayerController.isLanding)
+                {
+                    pastAnimationIdx[pastPosIndex] = 4;
+                }
+                else if (PlayerController.isAttacking)
+                {
+                    pastAnimationIdx[pastPosIndex] = 5;
+                }
+                else if (PlayerController.isRunning)
+                {
+                    pastAnimationIdx[pastPosIndex] = 6;
+                }
+                else if (PlayerController.isWalking)
+                {
+                    pastAnimationIdx[pastPosIndex] = 7;
+                }
+                else // idleState
+                {
+                    pastAnimationIdx[pastPosIndex] = 0;
+                }
+                
+
+
                 pastPosIndex = (pastPosIndex + 1) % totalNumOfPos;
             }
         }
@@ -64,7 +121,8 @@ public class TimeController : MonoBehaviour
             {
                 //Debug.Log("turn off time controller");
                 isTurningBackTheClock = false;
-                representativeObj.SetActive(false);
+                //representativeObj.SetActive(false);
+                InactivePrefebs();
 
                 // 改變 player 的位置
                 player.transform.position = pastPosition[timePosIndex];
@@ -76,33 +134,38 @@ public class TimeController : MonoBehaviour
                 player.GetComponent<ImpactReceiver>().AddImpact((prePos - curPos), Vector3.Distance(curPos, prePos) * forceStrength);
                 Debug.Log("curPos = " + curPos + ", prePos = " + prePos + ", forceDir = " + (prePos - curPos));
 
+                // Delete all showPos prefeb
+                DestoryPosPrefeb();
+
                 // 改變面向
                 player.transform.rotation = pastRotation[timePosIndex];
 
                 // 開放操作
-                //Debug.Log("U can move! And back to the position that U choosed.");
-                player.GetComponent<CharacterController>().enabled = true;
-                player.GetComponent<Animator>().enabled = true;
-                player.GetComponent<Rigidbody>().WakeUp();
+                UCanMove();
             }
             else if (curTime > endTime + cdTime)
             {
+                isTurningBackTheClock = true;
                 //Debug.Log("turn on time controller");
-                representativeObj.transform.position = pastPosition[((pastPosIndex - 1) % totalNumOfPos)];
-                representativeObj.transform.rotation = pastRotation[((pastPosIndex - 1) % totalNumOfPos)];
-                representativeObj.SetActive(true);
+                //representativeObj.transform.position = pastPosition[((pastPosIndex - 1) % totalNumOfPos)];
+                //representativeObj.transform.rotation = pastRotation[((pastPosIndex - 1) % totalNumOfPos)];
+                //representativeObj.SetActive(true);
+                //forceDirArrow.transform.position = pastPosition[((pastPosIndex - 1) % totalNumOfPos)];
+                //forceDirArrow.transform.rotation = pastRotation[((pastPosIndex - 1) % totalNumOfPos)];
+                //forceDirArrow.SetActive(true);
+                ActivePrefebs();
 
                 // 停止操作
-                //Debug.Log("U can not move...");
-                player.GetComponent<CharacterController>().enabled = false;
-                player.GetComponent<Animator>().enabled = false;
-                player.GetComponent<Rigidbody>().Sleep();
+                UCanNOTMove();
 
-                isTurningBackTheClock = true;
+                // Show all prePos
+                ShowPosPrefeb();
+
                 startTime = curTime;
-                endTime = curTime + lenOfRecord_s;
+                endTime = curTime + cdTime + 0.01f;
                 nextTimeInTurningBack = curTime + frequence_s;
                 timePosIndex = (pastPosIndex - 1 < 0) ? (totalNumOfPos - 1) : (pastPosIndex - 1);
+                showedCurPosCounter = 0;
                 //Debug.Log("stratTime = " + startTime + ", endTime = " + endTime);
             }
 
@@ -116,24 +179,111 @@ public class TimeController : MonoBehaviour
                 //Debug.Log("next position");
                 nextTimeInTurningBack += frequence_s;
 
-                representativeObj.transform.position = pastPosition[timePosIndex];
+                // Show Player_rep
+                representativeObj.transform.position = Vector3.SmoothDamp(representativeObj.transform.position, pastPosition[timePosIndex], ref velocity, 0.01f);
                 representativeObj.transform.rotation = pastRotation[timePosIndex];
+                Player_repAnimation.curStateIdx = pastAnimationIdx[timePosIndex];
+                Player_repAnimation.PlayPlayer_repAnimation = true;
+
+                // Show force direction arrow
+                if (showedCurPosCounter < totalNumOfPos - 1)
+                {
+                    //forceDirArrow.transform.position = pastPosition[timePosIndex] + bias;
+                    forceDirArrow.transform.position = Vector3.SmoothDamp(forceDirArrow.transform.position, pastPosition[timePosIndex] + bias, ref velocity, 0.01f);
+                    int nextIdx = (timePosIndex - 1 < 0) ? (totalNumOfPos - 1) : (timePosIndex - 1);
+                    forceDirArrow.transform.rotation = Quaternion.LookRotation(pastPosition[nextIdx] - representativeObj.transform.position);
+                    Debug.Log("here");
+                    //forceDirArrow.transform.rotation = Quaternion.LookRotation(Vector3.RotateTowards(forceDirArrow.transform.forward, pastPosition[nextIdx] - representativeObj.transform.position, 0.05f, 0.0F));
+                }
+
+                // Show ghost relic
+                if (showedCurPosCounter > 0)
+                {
+                    int preIdx = ((timePosIndex + 1) % totalNumOfPos);
+                    showedRepPrefeb[showedCurPosCounter - 1] = Instantiate(showRepPrefeb, pastPosition[preIdx], Quaternion.identity);
+                    showedRepPrefeb[showedCurPosCounter - 1].transform.rotation = pastRotation[preIdx];
+                    showedRepPrefeb[showedCurPosCounter - 1].GetComponent<Animator>().enabled = true;
+                    showedRepPrefeb[showedCurPosCounter - 1].GetComponent<Animator>().Play(pastAnimationHash[preIdx]);
+                    if(showedCurPosCounter > 1)
+                        showedRepPrefeb[showedCurPosCounter - 2].GetComponent<Animator>().enabled = false;
+                    if (showedCurPosCounter >= ghostRelicNum)
+                        Destroy(showedRepPrefeb[showedCurPosCounter - ghostRelicNum]);
+                }
+                showedCurPosCounter++;
+
 
                 timePosIndex = (timePosIndex - 1 < 0) ? (totalNumOfPos - 1) : (timePosIndex - 1);
                 if (timePosIndex == pastPosIndex)
                 {
                     //Debug.Log("last position");
                     isTurningBackTheClock = false;
-                    representativeObj.SetActive(false);
+                    //representativeObj.SetActive(false);
+                    InactivePrefebs();
+
+                    // Delete all showPos prefeb
+                    DestoryPosPrefeb();
 
                     // 開放操作
-                    //Debug.Log("U can move! But U didn't use the ability of time-control.");
-                    player.GetComponent<CharacterController>().enabled = true;
-                    player.GetComponent<Animator>().enabled = true;
-                    player.GetComponent<Rigidbody>().WakeUp();
+                    UCanMove();
                 }
             }
         }
 
+    }
+
+    void UCanMove()
+    {
+        //Debug.Log("U can move! But U didn't use the ability of time-control.");
+        player.GetComponent<CharacterController>().enabled = true;
+        player.GetComponent<Animator>().enabled = true;
+        player.GetComponent<Rigidbody>().WakeUp();
+    }
+
+    void UCanNOTMove()
+    {
+        //Debug.Log("U can not move...");
+        player.GetComponent<CharacterController>().enabled = false;
+        player.GetComponent<Animator>().enabled = false;
+        player.GetComponent<Rigidbody>().Sleep();
+    }
+
+    void ShowPosPrefeb()
+    {
+        //Debug.Log("Show Pos.");
+        showedPosPrefeb[0] = Instantiate(showPositionPrefeb, pastPosition[0] + new Vector3(0, 0.5f, 0), Quaternion.identity);
+        for (int i = 1; i < totalNumOfPos; i++)
+        {
+            //Debug.Log("Put prefab on position " + pastPosition[i] + ". Hash Idx of animation is " + pastAnimationIdx[i]);
+            showedPosPrefeb[i] = Instantiate(showPositionPrefeb, pastPosition[i] + new Vector3(0, 0.5f, 0), Quaternion.identity);
+            //Gizmos.DrawLine(pastPosition[i], pastPosition[i - 1]);
+        }
+    }
+
+    void DestoryPosPrefeb()
+    {
+        for (int i = 0; i < totalNumOfPos; i++)
+        {
+            Destroy(showedPosPrefeb[i]);
+            if (showedRepPrefeb[i] != null)
+            {
+                Destroy(showedRepPrefeb[i]);
+            }
+        }
+    }
+
+    void ActivePrefebs()
+    {
+        representativeObj.transform.position = pastPosition[((pastPosIndex - 1) % totalNumOfPos)];
+        representativeObj.transform.rotation = pastRotation[((pastPosIndex - 1) % totalNumOfPos)];
+        representativeObj.SetActive(true);
+        forceDirArrow.transform.position = pastPosition[((pastPosIndex - 1) % totalNumOfPos)];
+        forceDirArrow.transform.rotation = pastRotation[((pastPosIndex - 1) % totalNumOfPos)];
+        forceDirArrow.SetActive(true);
+    }
+
+    void InactivePrefebs()
+    {
+        representativeObj.SetActive(false);
+        forceDirArrow.SetActive(false);
     }
 }

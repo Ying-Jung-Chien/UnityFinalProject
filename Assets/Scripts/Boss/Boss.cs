@@ -95,10 +95,10 @@ public class Boss : MonoBehaviour
 
         if (attackCounter == attackRandomNum)
         {
-            Debug.Log("attackCounter == attackRandomNum = " + attackCounter);
+            //Debug.Log("attackCounter == attackRandomNum = " + attackCounter);
             dashToPlayer = true;
             dampTime = 1;
-            targetPos = playerFront.transform.position;
+            targetPos = player.transform.position;
             attackRandomNum = Random.Range(10, 40);
             attackCounter = 0;
         }
@@ -122,14 +122,14 @@ public class Boss : MonoBehaviour
         {
             if (dashToPlayer)
             {
-                if (Vector3.Distance(transform.position, targetPos) <= 5 && Vector3.Distance(transform.position, targetPos) > 2)
+                if (Vector3.Distance(transform.position, targetPos) <= 8 && Vector3.Distance(transform.position, targetPos) > 2)
                 {
-                    Debug.Log("goAttack");
+                    //Debug.Log("goAttack");
                     goAttack = true;
                 }
                 if (Vector3.Distance(transform.position, targetPos) <= 2)
                 {
-                    Debug.Log("face to init pos");
+                    //Debug.Log("face to init pos");
                     goAttack = false;
                     Init();
                     transform.rotation = Quaternion.LookRotation(Vector3.RotateTowards(transform.forward, initPos - transform.position, Time.deltaTime * rotateSpeed, 0.0F));
@@ -143,7 +143,7 @@ public class Boss : MonoBehaviour
                 }
                 else
                 {
-                    Debug.Log("dashToplayer");
+                    //Debug.Log("dashToplayer");
                     transform.position = Vector3.SmoothDamp(transform.position, targetPos, ref velocity, dampTime);
                     transform.rotation = Quaternion.LookRotation(Vector3.RotateTowards(transform.forward, targetPos - transform.position, Time.deltaTime * 5, 0.0F));
                 }
@@ -151,10 +151,10 @@ public class Boss : MonoBehaviour
             }
             else if (backToInitPos)
             {
-                Debug.Log("backToInitPos");
+                //Debug.Log("backToInitPos");
                 if (Vector3.Distance(transform.position, targetPos) <= 5)
                 {
-                    Debug.Log("at init pos");
+                    //Debug.Log("at init pos");
                     transform.position = Vector3.SmoothDamp(transform.position, targetPos, ref velocity, dampTime);
                     transform.rotation = Quaternion.LookRotation(Vector3.RotateTowards(transform.forward, initDir, Time.deltaTime * rotateSpeed, 0.0F));
                     if (Vector3.Distance(transform.forward, initDir) <= 0.1)
