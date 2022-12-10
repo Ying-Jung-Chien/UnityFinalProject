@@ -29,7 +29,6 @@ public class TimeController : MonoBehaviour
     private float nextTimeInTurningBack;
     private Vector3[] pastPosition;
     private Quaternion[] pastRotation;
-    private int[] pastAnimationIdx;
     private int[] pastAnimationHash;
     private GameObject[] showedPosPrefeb;
     private GameObject[] showedRepPrefeb;
@@ -54,7 +53,7 @@ public class TimeController : MonoBehaviour
         totalNumOfPos = (int)(lenOfRecord_s / frequence_s);
         pastPosition = new Vector3[totalNumOfPos];
         pastRotation = new Quaternion[totalNumOfPos];
-        pastAnimationIdx = new int[totalNumOfPos];
+        //pastAnimationIdx = new int[totalNumOfPos];
         pastAnimationHash = new int[totalNumOfPos];
         showedPosPrefeb = new GameObject[totalNumOfPos];
         showedRepPrefeb = new GameObject[totalNumOfPos];
@@ -73,41 +72,6 @@ public class TimeController : MonoBehaviour
                 pastPosition[pastPosIndex] = player.transform.position;
                 pastRotation[pastPosIndex] = player.transform.rotation;
                 pastAnimationHash[pastPosIndex] = playerAnim.GetCurrentAnimatorStateInfo(0).fullPathHash;
-                
-                if (PlayerController.isDamaging)
-                {
-                    pastAnimationIdx[pastPosIndex] = 1;
-                }
-                else if (PlayerController.isRising)
-                {
-                    pastAnimationIdx[pastPosIndex] = 2;
-                }
-                else if (PlayerController.isFalling)
-                {
-                    pastAnimationIdx[pastPosIndex] = 3;
-                }
-                else if (PlayerController.isLanding)
-                {
-                    pastAnimationIdx[pastPosIndex] = 4;
-                }
-                else if (PlayerController.isAttacking)
-                {
-                    pastAnimationIdx[pastPosIndex] = 5;
-                }
-                else if (PlayerController.isRunning)
-                {
-                    pastAnimationIdx[pastPosIndex] = 6;
-                }
-                else if (PlayerController.isWalking)
-                {
-                    pastAnimationIdx[pastPosIndex] = 7;
-                }
-                else // idleState
-                {
-                    pastAnimationIdx[pastPosIndex] = 0;
-                }
-                
-
 
                 pastPosIndex = (pastPosIndex + 1) % totalNumOfPos;
             }
@@ -121,7 +85,6 @@ public class TimeController : MonoBehaviour
             {
                 //Debug.Log("turn off time controller");
                 isTurningBackTheClock = false;
-                //representativeObj.SetActive(false);
                 InactivePrefebs();
 
                 // 改變 player 的位置
@@ -146,13 +109,6 @@ public class TimeController : MonoBehaviour
             else if (curTime > endTime + cdTime)
             {
                 isTurningBackTheClock = true;
-                //Debug.Log("turn on time controller");
-                //representativeObj.transform.position = pastPosition[((pastPosIndex - 1) % totalNumOfPos)];
-                //representativeObj.transform.rotation = pastRotation[((pastPosIndex - 1) % totalNumOfPos)];
-                //representativeObj.SetActive(true);
-                //forceDirArrow.transform.position = pastPosition[((pastPosIndex - 1) % totalNumOfPos)];
-                //forceDirArrow.transform.rotation = pastRotation[((pastPosIndex - 1) % totalNumOfPos)];
-                //forceDirArrow.SetActive(true);
                 ActivePrefebs();
 
                 // 停止操作
@@ -182,18 +138,15 @@ public class TimeController : MonoBehaviour
                 // Show Player_rep
                 representativeObj.transform.position = Vector3.SmoothDamp(representativeObj.transform.position, pastPosition[timePosIndex], ref velocity, 0.01f);
                 representativeObj.transform.rotation = pastRotation[timePosIndex];
-                Player_repAnimation.curStateIdx = pastAnimationIdx[timePosIndex];
+                Player_repAnimation.curStateHash = pastAnimationHash[timePosIndex];
                 Player_repAnimation.PlayPlayer_repAnimation = true;
 
                 // Show force direction arrow
                 if (showedCurPosCounter < totalNumOfPos - 1)
                 {
-                    //forceDirArrow.transform.position = pastPosition[timePosIndex] + bias;
                     forceDirArrow.transform.position = Vector3.SmoothDamp(forceDirArrow.transform.position, pastPosition[timePosIndex] + bias, ref velocity, 0.01f);
                     int nextIdx = (timePosIndex - 1 < 0) ? (totalNumOfPos - 1) : (timePosIndex - 1);
                     forceDirArrow.transform.rotation = Quaternion.LookRotation(pastPosition[nextIdx] - representativeObj.transform.position);
-                    Debug.Log("here");
-                    //forceDirArrow.transform.rotation = Quaternion.LookRotation(Vector3.RotateTowards(forceDirArrow.transform.forward, pastPosition[nextIdx] - representativeObj.transform.position, 0.05f, 0.0F));
                 }
 
                 // Show ghost relic
@@ -217,7 +170,6 @@ public class TimeController : MonoBehaviour
                 {
                     //Debug.Log("last position");
                     isTurningBackTheClock = false;
-                    //representativeObj.SetActive(false);
                     InactivePrefebs();
 
                     // Delete all showPos prefeb
@@ -236,6 +188,7 @@ public class TimeController : MonoBehaviour
         //Debug.Log("U can move! But U didn't use the ability of time-control.");
         player.GetComponent<CharacterController>().enabled = true;
         player.GetComponent<Animator>().enabled = true;
+        player.GetComponent<Collider>().enabled = true;
         player.GetComponent<Rigidbody>().WakeUp();
     }
 
@@ -244,6 +197,7 @@ public class TimeController : MonoBehaviour
         //Debug.Log("U can not move...");
         player.GetComponent<CharacterController>().enabled = false;
         player.GetComponent<Animator>().enabled = false;
+        player.GetComponent<Collider>().enabled = false;
         player.GetComponent<Rigidbody>().Sleep();
     }
 
@@ -255,7 +209,6 @@ public class TimeController : MonoBehaviour
         {
             //Debug.Log("Put prefab on position " + pastPosition[i] + ". Hash Idx of animation is " + pastAnimationIdx[i]);
             showedPosPrefeb[i] = Instantiate(showPositionPrefeb, pastPosition[i] + new Vector3(0, 0.5f, 0), Quaternion.identity);
-            //Gizmos.DrawLine(pastPosition[i], pastPosition[i - 1]);
         }
     }
 
