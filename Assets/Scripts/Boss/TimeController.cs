@@ -17,6 +17,7 @@ public class TimeController : MonoBehaviour
     public float frequence_s = 0.1f; // (s)
     public float forceStrength = 300;
     public int ghostRelicNum = 10;
+    public float turnBackTimeWidth = 0.1f;
 
     public static bool pressT;
 
@@ -51,9 +52,9 @@ public class TimeController : MonoBehaviour
         pastPosIndex = 0;
         isTurningBackTheClock = false;
         totalNumOfPos = (int)(lenOfRecord_s / frequence_s);
+        Debug.Log("totalNumOfPos = " + totalNumOfPos);
         pastPosition = new Vector3[totalNumOfPos];
         pastRotation = new Quaternion[totalNumOfPos];
-        //pastAnimationIdx = new int[totalNumOfPos];
         pastAnimationHash = new int[totalNumOfPos];
         showedPosPrefeb = new GameObject[totalNumOfPos];
         showedRepPrefeb = new GameObject[totalNumOfPos];
@@ -66,7 +67,7 @@ public class TimeController : MonoBehaviour
         curTime = Time.time;
         if (curTime >= nextTime)
         {
-            nextTime += 0.1f;
+            nextTime += frequence_s;
             if (!isTurningBackTheClock)
             {
                 pastPosition[pastPosIndex] = player.transform.position;
@@ -132,11 +133,11 @@ public class TimeController : MonoBehaviour
             //Debug.Log("isTurningBackTheClock");
             if (curTime >= nextTimeInTurningBack)
             {
-                //Debug.Log("next position");
-                nextTimeInTurningBack += frequence_s;
+                Debug.Log("curPrePosIdx = " + timePosIndex + ", showedCurPosCounter = " + showedCurPosCounter);
+                nextTimeInTurningBack += turnBackTimeWidth;
 
                 // Show Player_rep
-                representativeObj.transform.position = Vector3.SmoothDamp(representativeObj.transform.position, pastPosition[timePosIndex], ref velocity, 0.01f);
+                representativeObj.transform.position = Vector3.SmoothDamp(representativeObj.transform.position, pastPosition[timePosIndex], ref velocity, turnBackTimeWidth/10);
                 representativeObj.transform.rotation = pastRotation[timePosIndex];
                 Player_repAnimation.curStateHash = pastAnimationHash[timePosIndex];
                 Player_repAnimation.PlayPlayer_repAnimation = true;
@@ -144,7 +145,7 @@ public class TimeController : MonoBehaviour
                 // Show force direction arrow
                 if (showedCurPosCounter < totalNumOfPos - 1)
                 {
-                    forceDirArrow.transform.position = Vector3.SmoothDamp(forceDirArrow.transform.position, pastPosition[timePosIndex] + bias, ref velocity, 0.01f);
+                    forceDirArrow.transform.position = Vector3.SmoothDamp(forceDirArrow.transform.position, pastPosition[timePosIndex] + bias, ref velocity, turnBackTimeWidth/10);
                     int nextIdx = (timePosIndex - 1 < 0) ? (totalNumOfPos - 1) : (timePosIndex - 1);
                     forceDirArrow.transform.rotation = Quaternion.LookRotation(pastPosition[nextIdx] - representativeObj.transform.position);
                 }

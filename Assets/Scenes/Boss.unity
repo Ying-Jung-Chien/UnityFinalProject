@@ -15563,11 +15563,12 @@ MonoBehaviour:
   showRepPrefeb: {fileID: 1014261630889233060, guid: 220bf4393ec5f4fd18d6d620c2097ee9, type: 3}
   representativeObj: {fileID: 287440766}
   forceDirArrow: {fileID: 263954988}
-  cdTime: 5
+  cdTime: 10
   lenOfRecord_s: 5
-  frequence_s: 0.1
+  frequence_s: 0.05
   forceStrength: 300
   ghostRelicNum: 5
+  turnBackTimeWidth: 0.1
 --- !u!1001 &374160342
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -34802,8 +34803,8 @@ MonoBehaviour:
   Health: 1000
   transitionSpead: 0.5
   dampTime: 2
-  attackFreq_UpperBound: 5
-  attackFreq_LowerBound: 5
+  attackFreq_UpperBound: 50
+  attackFreq_LowerBound: 50
   rotateSpeed: 1
   scream: 0
   fly: 0
