@@ -15563,10 +15563,10 @@ MonoBehaviour:
   showRepPrefeb: {fileID: 1014261630889233060, guid: 220bf4393ec5f4fd18d6d620c2097ee9, type: 3}
   representativeObj: {fileID: 287440766}
   forceDirArrow: {fileID: 263954988}
-  cdTime: 10
+  cdTime: 6
   lenOfRecord_s: 5
   frequence_s: 0.05
-  forceStrength: 300
+  forceStrength: 500
   ghostRelicNum: 5
   turnBackTimeWidth: 0.1
 --- !u!1001 &374160342
