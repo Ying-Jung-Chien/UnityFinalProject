@@ -49,7 +49,10 @@ public class PlayerController : MonoBehaviour
 
     // camera
     private GameObject _mainCamera;
-
+    
+    public AudioClip jump;
+    public AudioSource run;
+    public AudioSource audioPlayer;
     private void Awake()
     {
         // get a reference to our main camera
@@ -76,6 +79,15 @@ public class PlayerController : MonoBehaviour
         JumpingProcess();
         CursorVisible();
         SearchMode();
+
+        if (Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.D))
+        {
+            run.Play();
+        }
+        if (Input.GetKeyUp(KeyCode.A) || Input.GetKeyUp(KeyCode.W) || Input.GetKeyUp(KeyCode.S) || Input.GetKeyUp(KeyCode.D))
+        {
+            run.Stop();
+        }
     }
 
     private void LateUpdate()
@@ -188,7 +200,9 @@ public class PlayerController : MonoBehaviour
         if ((transform.position.y > (_beforeJump + JumpHeight - 0.1f)) && isRising) {
             isRising = false;
             isFalling = true;
-        } else if (Grounded && isFalling) {
+        } else if (Grounded && isFalling)
+        {
+            audioPlayer.PlayOneShot(jump);
             isFalling = false;
             isLanding = true;
         }

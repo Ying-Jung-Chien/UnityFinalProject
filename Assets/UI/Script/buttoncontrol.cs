@@ -46,10 +46,4 @@ public class buttoncontrol : MonoBehaviour
         leave1.gameObject.SetActive(false);
         audioPlayer.PlayOneShot(over);
     }
-
-    public void itemUsed()
-    {
-        audioPlayer.PlayOneShot(over);
-        manager.UpdateItemUse();
-    }
 }

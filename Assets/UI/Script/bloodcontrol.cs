@@ -6,7 +6,6 @@ using UnityEngine.UI;
 public class bloodcontrol : MonoBehaviour
 {
 	public Image blood;
-	public float HP;
     public GameObject lose;
     public AudioSource audioPlayer;
     public AudioClip fail;
@@ -37,9 +36,9 @@ public class bloodcontrol : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        blood.fillAmount = HP / 100.0f;
-        if(check == 0){
-        	if(HP <= 0)
+        blood.fillAmount = DontDestroyVariable.PlayerHealth / 100.0f;
+        /*if(check == 0){
+        	if(DontDestroyVariable.PlayerHealth <= 0)
 	        {
 	        	if(this.tag == "blood"){
 	        		check = 1;
@@ -50,17 +49,17 @@ public class bloodcontrol : MonoBehaviour
 		        	Destroy(gameObject);
 		        }
 	        }
-        }
+        }*/
     }
 
-    IEnumerator Wait()
+    /*IEnumerator Wait()
     {
         yield return new WaitForSeconds(2.0f);
         check = 0;
         UnityEngine.SceneManagement.SceneManager.LoadSceneAsync("Mainmaze");
-        HP = 100;
+        DontDestroyVariable.PlayerHealth = 100;
 		lose.gameObject.SetActive(false);
-    }
+    }*/
 
 
 }
