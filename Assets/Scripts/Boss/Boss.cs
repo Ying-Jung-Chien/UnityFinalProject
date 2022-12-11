@@ -26,13 +26,13 @@ public class Boss : MonoBehaviour
     public static bool goScream { get; set; } = false;
     public static bool goFly { get; set; } = false;
     public static bool isIdle { get; set; } = false;
-
     public static bool goAttack { get; set; } = false;
-    //public static bool isGetHit { get; set; } = false;
-    //public static bool isDead { get; set; } = false;
+    public static bool timeStop { get; set; } = false;
+    public static bool turnOffTimeStop { get; set; } = false;
 
     private Vector3 initPos;
     private Vector3 initDir;
+    private Vector3 curPos;
     private Vector3 targetPos;
     private Vector3 velocity;
     private bool smoothToTarget;
@@ -47,7 +47,6 @@ public class Boss : MonoBehaviour
     private int spiralCounter;
     private int attackCounter;
     private int attackRandomNum;
-
 
     private void Init()
     {
@@ -78,8 +77,21 @@ public class Boss : MonoBehaviour
     {
         scream = goScream;
         fly = goFly;
-
         curTime = Time.time;
+        curPos = transform.position;
+
+        if(timeStop)
+        {
+            transform.position = curPos;
+            gameObject.GetComponent<Animator>().enabled = false;
+            return;
+        }
+        if(turnOffTimeStop)
+        {
+            turnOffTimeStop = false;
+            gameObject.GetComponent<Animator>().enabled = true;
+        }
+        
 
         if (goFly)
         {
