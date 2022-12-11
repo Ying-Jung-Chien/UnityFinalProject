@@ -17,7 +17,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &6480480669495767107
 RectTransform:
   m_ObjectHideFlags: 0
@@ -258,19 +258,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 7446041290707030258}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 4140188507357662239}
-        m_TargetAssemblyTypeName: slot, Assembly-CSharp
-        m_MethodName: itemOnClicked
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &4140188507357662239
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -288,6 +276,9 @@ MonoBehaviour:
   slotNumber: {fileID: 2347698225501211105}
   over: {fileID: 8300000, guid: 38c05e1a722bb7242a31f4cb3e85f806, type: 3}
   audioPlayer: {fileID: 286855093405338691}
+  rightClick:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &7484364755573759554
 GameObject:
   m_ObjectHideFlags: 0

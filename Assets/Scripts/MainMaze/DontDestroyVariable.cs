@@ -9,12 +9,18 @@ public class DontDestroyVariable : MonoBehaviour
     public static bool isMonsterADead = false;
     public static bool isMonsterBDead = false;
     public static bool getKey = false;
+    public static bool useKey = false;
     public static bool getHorseEye = false;
-
+    public static bool useHorseEye = false;
+    public static bool usePassword = false;
+    public static bool useDoor1 = false;
+    public static bool useDoor2 = false;
+    public static bool useDoor3 = false;
+    
     // Start is called before the first frame update
     void Start()
     {
-        
+        manager.resetbag();
     }
 
     // Update is called once per frame

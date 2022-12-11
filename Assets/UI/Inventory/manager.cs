@@ -6,7 +6,7 @@ using TMPro;
 
 public class manager : MonoBehaviour
 {
-    static manager instance;
+    public static manager instance;
     public static int status = 0;
 
     public inventory mybag;
@@ -14,7 +14,7 @@ public class manager : MonoBehaviour
     public slot slotPrefab;
     public TextMeshProUGUI itemInfo;
     public inventory playerInventory;
-
+    
     private int check = 0;
 
     void Awake()
@@ -37,26 +37,72 @@ public class manager : MonoBehaviour
         }
     }
 
-    public static void UpdateItemUse()
+    public static void UpdateItemUse(int k)
     {
         for (int i = 0; i < instance.mybag.itemList.Count; i++)
         {
             if (instance.mybag.itemList[i].itemactive == 1)
             {
-                if (instance.mybag.itemList[i].itemType == 0)
+                if (instance.mybag.itemList[i].name == "eye" && k == 1)
                 {
                     instance.mybag.itemList[i].itemHeld -= 1;
-                }else if (instance.mybag.itemList[i].name == "key" && status == 1)
-                {
-                    instance.mybag.itemList[i].itemHeld -= 1;
-                    status = 0;
+                    DontDestroyVariable.useHorseEye = true;
                 }
-                else
+                else if (instance.mybag.itemList[i].name == "key" && k == 2)
                 {
-                    UpdateItemInfo("使用無效", instance.mybag.itemList[i]);
+                    instance.mybag.itemList[i].itemHeld -= 1;
+                    DontDestroyVariable.useKey = true;
+                }
+                else if (k == 3 && eight.eight2 == 0)
+                {
+                    if (instance.mybag.itemList[i].name == "2" || instance.mybag.itemList[i].name == "3" || instance.mybag.itemList[i].name == "4" || instance.mybag.itemList[i].name == "5" || instance.mybag.itemList[i].name == "6" || instance.mybag.itemList[i].name == "8")
+                    {
+                        instance.mybag.itemList[i].itemHeld -= 1;
+                        eight.eight2 = instance.mybag.itemList[i].itemType;
+                    }
+                }
+                else if (k == 4 && eight.eight3 == 0)
+                {
+                    if (instance.mybag.itemList[i].name == "2" || instance.mybag.itemList[i].name == "3" || instance.mybag.itemList[i].name == "4" || instance.mybag.itemList[i].name == "5" || instance.mybag.itemList[i].name == "6" || instance.mybag.itemList[i].name == "8")
+                    {
+                        instance.mybag.itemList[i].itemHeld -= 1;
+                        eight.eight3 = instance.mybag.itemList[i].itemType;
+                    }
+                }
+                else if (k == 5 && eight.eight4 == 0)
+                {
+                    if (instance.mybag.itemList[i].name == "2" || instance.mybag.itemList[i].name == "3" || instance.mybag.itemList[i].name == "4" || instance.mybag.itemList[i].name == "5" || instance.mybag.itemList[i].name == "6" || instance.mybag.itemList[i].name == "8")
+                    {
+                        instance.mybag.itemList[i].itemHeld -= 1;
+                        eight.eight4 = instance.mybag.itemList[i].itemType;
+                    }
+                }
+                else if (k == 6 && eight.eight5 == 0)
+                {
+                    if (instance.mybag.itemList[i].name == "2" || instance.mybag.itemList[i].name == "3" || instance.mybag.itemList[i].name == "4" || instance.mybag.itemList[i].name == "5" || instance.mybag.itemList[i].name == "6" || instance.mybag.itemList[i].name == "8")
+                    {
+                        instance.mybag.itemList[i].itemHeld -= 1;
+                        eight.eight5 = instance.mybag.itemList[i].itemType;
+                    }
+                }
+                else if (k == 7 && eight.eight6 == 0)
+                {
+                    if (instance.mybag.itemList[i].name == "2" || instance.mybag.itemList[i].name == "3" || instance.mybag.itemList[i].name == "4" || instance.mybag.itemList[i].name == "5" || instance.mybag.itemList[i].name == "6" || instance.mybag.itemList[i].name == "8")
+                    {
+                        instance.mybag.itemList[i].itemHeld -= 1;
+                        eight.eight6 = instance.mybag.itemList[i].itemType;
+                    }
+                }
+                else if (k == 8 && eight.eight8 == 0)
+                {
+                    if (instance.mybag.itemList[i].name == "2" || instance.mybag.itemList[i].name == "3" || instance.mybag.itemList[i].name == "4" || instance.mybag.itemList[i].name == "5" || instance.mybag.itemList[i].name == "6" || instance.mybag.itemList[i].name == "8")
+                    {
+                        instance.mybag.itemList[i].itemHeld -= 1;
+                        eight.eight8 = instance.mybag.itemList[i].itemType;
+                    }
                 }
 
-                if(instance.mybag.itemList[i].itemHeld == 0)
+                if (instance.mybag.itemList[i].itemHeld == 0)
                 {
                     UpdateItemInfo("", instance.mybag.itemList[i]);
                 }
@@ -68,10 +114,22 @@ public class manager : MonoBehaviour
     public static void UpdateItemInfo(string IntoDescription, item item)
     {
         instance.itemInfo.text = IntoDescription;
+        if (item.itemactive == 1)
+        {
+            if (item.name == "eight")
+            {
+                passwordshow.eightshow = true;
+            }
+            else if (item.name == "password")
+            {
+                passwordshow.passwordshow1 = true;
+            }
+        }
         for (int i = 0; i < instance.mybag.itemList.Count; i++)
         {
             instance.mybag.itemList[i].itemactive = 0;
         }
+        
         if (IntoDescription != "") item.itemactive = 1;
         ReflashItem();
     }
@@ -108,5 +166,22 @@ public class manager : MonoBehaviour
                 CreateNewItem(instance.mybag.itemList[i]);
             }
         }
+    }
+
+    public static void resetbag()
+    {
+        for (int i = 0; i < instance.slotGrid.transform.childCount; i++)
+        {
+            if (instance.slotGrid.transform.childCount == 0) break;
+            Destroy(instance.slotGrid.transform.GetChild(i).gameObject);
+        }
+
+        for (int i = 0; i < instance.mybag.itemList.Count; i++)
+        {
+            instance.mybag.itemList[i].itemHeld = 1;
+            instance.mybag.itemList[i].itemactive = 0;
+        }
+
+        instance.mybag.itemList.Clear();
     }
 }
