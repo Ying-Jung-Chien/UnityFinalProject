@@ -37,6 +37,10 @@ public class MouseOnClick : MonoBehaviour
                         Destroy(gameObject);
                         AddNewItem(thisitem);
                         alertui.SetActive(true);
+                    } else if (gameObject.name == "Key2") {
+                        // TODO
+                        DontDestroyVariable.getKey2 = true;
+                        Destroy(gameObject);
                     } else if (gameObject.name == "chest_close") {
                         audioPlayer.PlayOneShot(getevent);
                         alertui.SetActive(true);
@@ -72,6 +76,15 @@ public class MouseOnClick : MonoBehaviour
                                 Destroy(gameObject);
                                 AddNewItem(thisitem);
                                 alertui.SetActive(true);
+                            }
+                        }
+
+                        for (int i = 0; i < 5; i++) {
+                            if (gameObject.name == $"NinePuzzle{i}")
+                            {
+                                // TODO
+                                DontDestroyVariable.getNinePuzzle[i] = 1;
+                                Destroy(gameObject);
                             }
                         }
                     }
