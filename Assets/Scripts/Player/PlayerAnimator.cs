@@ -122,6 +122,10 @@ public class PlayerAnimator : MonoBehaviour
         else{
             PlayStateIfNotInState(idleState);
         }
+        if(Time.time - startTime > 10.0f)
+        {
+            shield.SetActive(false);
+        }
     }
 
     bool IsInState(int stateHash){
