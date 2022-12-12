@@ -3998,7 +3998,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5607158863348812231, guid: 962f089ef7943b842bcf3596618ba99f, type: 3}
       propertyPath: m_RootOrder
-      value: 12
+      value: 13
       objectReference: {fileID: 0}
     - target: {fileID: 5607158863348812231, guid: 962f089ef7943b842bcf3596618ba99f, type: 3}
       propertyPath: m_AnchorMax.x
@@ -11573,7 +11573,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4026438842296518, guid: 636ccd8f63d0e41409085009cc43870c, type: 3}
       propertyPath: m_RootOrder
-      value: 11
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 4026438842296518, guid: 636ccd8f63d0e41409085009cc43870c, type: 3}
       propertyPath: m_LocalPosition.x
@@ -15568,7 +15568,7 @@ MonoBehaviour:
   player: {fileID: 36150911}
   blackDragon: {fileID: 884669196}
   showPositionPrefab: {fileID: 5206789273205313668, guid: 3dfa0fb3d4f0446cda79d785ebb73336, type: 3}
-  showLinPrefab: {fileID: 0}
+  showLinPrefab: {fileID: 7914819139218052223, guid: 119921135fe68434bb5943e25739a1fa, type: 3}
   showRepPrefab: {fileID: 1014261630889233060, guid: 220bf4393ec5f4fd18d6d620c2097ee9, type: 3}
   representativeObj: {fileID: 287440766}
   forceDirArrow: {fileID: 263954988}
@@ -15577,7 +15577,7 @@ MonoBehaviour:
   frequence_s: 0.05
   forceStrength: 500
   ghostRelicNum: 5
-  turnBackTimeWidth: 0.1
+  turnBackTimeWidth: 0.08
 --- !u!1001 &374160342
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -16764,7 +16764,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8677171800958360623, guid: 28e52d97c23d24d4eba11fd708269de0, type: 3}
       propertyPath: m_RootOrder
-      value: 9
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 8677171800958360623, guid: 28e52d97c23d24d4eba11fd708269de0, type: 3}
       propertyPath: m_LocalPosition.x
@@ -64618,7 +64618,7 @@ RectTransform:
   m_Children:
   - {fileID: 733101860}
   m_Father: {fileID: 0}
-  m_RootOrder: 10
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -77221,7 +77221,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &2011038449
 PrefabInstance:
@@ -82722,7 +82722,7 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: 0dbddf8e70c5142b4bacff8a9da3d443, type: 2}
     - target: {fileID: 1014261630888941188, guid: 220bf4393ec5f4fd18d6d620c2097ee9, type: 3}
       propertyPath: m_RootOrder
-      value: 7
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 1014261630888941188, guid: 220bf4393ec5f4fd18d6d620c2097ee9, type: 3}
       propertyPath: m_LocalPosition.x
@@ -82799,7 +82799,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5788432313735769983, guid: 5724c7ce0f29447dc8f6f504ca169707, type: 3}
       propertyPath: m_RootOrder
-      value: 13
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 5788432313735769983, guid: 5724c7ce0f29447dc8f6f504ca169707, type: 3}
       propertyPath: m_LocalScale.x
