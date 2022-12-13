@@ -9,38 +9,37 @@ public class Coffin : MonoBehaviour
     public Camera camera;
     private GameObject coffin;
     private CoffinAnimation coffinanimation;
+    private bool MouseIn;
     void Start()
     {
         renderer = GetComponent<Renderer>();
         click_coffin = false;
+        MouseIn = false;
         coffin = this.gameObject.transform.parent.gameObject;
         coffinanimation = coffin.GetComponent<CoffinAnimation>();
     }
 
     private void OnMouseEnter()
     {
-        Debug.Log("Enter");
 	    renderer.material.color = Color.red;
+        MouseIn = true;
     }
 
     private void OnMouseExit()
     {
         renderer.material.color = Color.white;
+        MouseIn = false;
     }
     void Update()
     {
         if(click_coffin)click_coffin = false;
         if (Input.GetMouseButtonDown(0))
         {
-            Ray ray = camera.ScreenPointToRay(Input.mousePosition);
 
-            if (Physics.Raycast(ray, out RaycastHit hitInfo))
+            if (MouseIn)
             {
-                if (hitInfo.collider.gameObject == gameObject)
-                {
-                    click_coffin = true;
-                    coffinanimation.OpenCoffin();
-                }
+                click_coffin = true;
+                coffinanimation.OpenCoffin();
             }
         }
     }
