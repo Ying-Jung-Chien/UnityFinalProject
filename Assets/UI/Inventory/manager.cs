@@ -101,6 +101,62 @@ public class manager : MonoBehaviour
                         eight.eight8 = instance.mybag.itemList[i].itemType;
                     }
                 }
+                else if (k == 9 && nine.nineA == 0)
+                {
+                    if (instance.mybag.itemList[i].name == "nine1" || instance.mybag.itemList[i].name == "nine2" || instance.mybag.itemList[i].name == "nine4" || instance.mybag.itemList[i].name == "nine7" || instance.mybag.itemList[i].name == "nine8")
+                    {
+                        instance.mybag.itemList[i].itemHeld -= 1;
+                        nine.nineA = instance.mybag.itemList[i].itemType;
+                    }
+                }
+                else if (k == 10 && nine.nineB == 0)
+                {
+                    if (instance.mybag.itemList[i].name == "nine1" || instance.mybag.itemList[i].name == "nine2" || instance.mybag.itemList[i].name == "nine4" || instance.mybag.itemList[i].name == "nine7" || instance.mybag.itemList[i].name == "nine8")
+                    {
+                        instance.mybag.itemList[i].itemHeld -= 1;
+                        nine.nineB = instance.mybag.itemList[i].itemType;
+                    }
+                }
+                else if (k == 11 && nine.nineC == 0)
+                {
+                    if (instance.mybag.itemList[i].name == "nine1" || instance.mybag.itemList[i].name == "nine2" || instance.mybag.itemList[i].name == "nine4" || instance.mybag.itemList[i].name == "nine7" || instance.mybag.itemList[i].name == "nine8")
+                    {
+                        instance.mybag.itemList[i].itemHeld -= 1;
+                        nine.nineC = instance.mybag.itemList[i].itemType;
+                    }
+                }
+                else if (k == 12 && nine.nineD == 0)
+                {
+                    if (instance.mybag.itemList[i].name == "nine1" || instance.mybag.itemList[i].name == "nine2" || instance.mybag.itemList[i].name == "nine4" || instance.mybag.itemList[i].name == "nine7" || instance.mybag.itemList[i].name == "nine8")
+                    {
+                        instance.mybag.itemList[i].itemHeld -= 1;
+                        nine.nineD = instance.mybag.itemList[i].itemType;
+                    }
+                }
+                else if (k == 13 && nine.nineE == 0)
+                {
+                    if (instance.mybag.itemList[i].name == "nine1" || instance.mybag.itemList[i].name == "nine2" || instance.mybag.itemList[i].name == "nine4" || instance.mybag.itemList[i].name == "nine7" || instance.mybag.itemList[i].name == "nine8")
+                    {
+                        instance.mybag.itemList[i].itemHeld -= 1;
+                        nine.nineE = instance.mybag.itemList[i].itemType;
+                    }
+                }
+                else if (k == 14)
+                {
+                    if (instance.mybag.itemList[i].name == "paper")
+                    {
+                        DontDestroyVariable.useBrazier = true;
+                        instance.mybag.itemList[i].itemHeld -= 1;
+                    }
+                }
+                else if (k == 15)
+                {
+                    if (instance.mybag.itemList[i].name == "key1")
+                    {
+                        DontDestroyVariable.useKey2 = true;
+                        instance.mybag.itemList[i].itemHeld -= 1;
+                    }
+                }
 
                 if (instance.mybag.itemList[i].itemHeld == 0)
                 {
@@ -123,6 +179,14 @@ public class manager : MonoBehaviour
             else if (item.name == "password")
             {
                 passwordshow.passwordshow1 = true;
+            }
+            else if (item.name == "paper1")
+            {
+                passwordshow.problemshow = true;
+            }
+            else if (item.name == "nine")
+            {
+                passwordshow.stoneshow = true;
             }
         }
         for (int i = 0; i < instance.mybag.itemList.Count; i++)
@@ -184,4 +248,5 @@ public class manager : MonoBehaviour
 
         instance.mybag.itemList.Clear();
     }
+    
 }

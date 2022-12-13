@@ -38,9 +38,11 @@ public class MouseOnClick : MonoBehaviour
                         AddNewItem(thisitem);
                         alertui.SetActive(true);
                     } else if (gameObject.name == "Key2") {
-                        // TODO
                         DontDestroyVariable.getKey2 = true;
                         Destroy(gameObject);
+                        AddNewItem(thisitem);
+                        alertui.SetActive(true);
+                        audioPlayer.PlayOneShot(getevent);
                     } else if (gameObject.name == "chest_close") {
                         audioPlayer.PlayOneShot(getevent);
                         alertui.SetActive(true);
@@ -53,16 +55,34 @@ public class MouseOnClick : MonoBehaviour
                         Destroy(gameObject);
                         AddNewItem(thisitem);
                         alertui.SetActive(true);
-                    } else if ((gameObject.name == "ChestLid02_LOD0" || gameObject.name == "Chest02_LOD0") && DontDestroyVariable.usePassword == false)
-                    {
+                    } else if ((gameObject.name == "ChestLid02_LOD0" || gameObject.name == "Chest02_LOD0") && DontDestroyVariable.usePassword == false) {
                         audioPlayer.PlayOneShot(getevent);
                         alertui.SetActive(true);
-                    } else if (gameObject.name == "Horse" && DontDestroyVariable.useHorseEye == false)
-                    {
+                    } else if (gameObject.name == "Horse" && DontDestroyVariable.useHorseEye == false) {
                         audioPlayer.PlayOneShot(getevent);
                         alertui.SetActive(true);
-                    } else if (gameObject.name == "Door1" && DontDestroyVariable.useDoor1 == false)
-                    {
+                    } else if (gameObject.name == "Door1" && DontDestroyVariable.useDoor1 == false) {
+                        audioPlayer.PlayOneShot(getevent);
+                        alertui.SetActive(true);
+                    } else if (gameObject.name == "Door2" && DontDestroyVariable.useDoor2 == false) {
+                        audioPlayer.PlayOneShot(getevent);
+                        alertui.SetActive(true);
+                    } else if (gameObject.name == "brazier" && DontDestroyVariable.useBrazier == false) {
+                        manager.UpdateItemUse(14);
+                        if(DontDestroyVariable.useBrazier == true)
+                        {
+                            audioPlayer.PlayOneShot(getevent);
+                            alertui.SetActive(true);
+                            AddNewItem(thisitem);
+                        }
+                    }
+                    else if (gameObject.name == "Box2" && DontDestroyVariable.useBox2 == false) {
+                        audioPlayer.PlayOneShot(getevent);
+                        alertui.SetActive(true);
+                    } else if (gameObject.name == "Box3" && DontDestroyVariable.useKey2 == false) {
+                        audioPlayer.PlayOneShot(getevent);
+                        alertui.SetActive(true);
+                    } else if (gameObject.name == "Box1" && DontDestroyVariable.useBox1 == false) {
                         audioPlayer.PlayOneShot(getevent);
                         alertui.SetActive(true);
                     }
@@ -82,9 +102,11 @@ public class MouseOnClick : MonoBehaviour
                         for (int i = 0; i < 5; i++) {
                             if (gameObject.name == $"NinePuzzle{i}")
                             {
-                                // TODO
                                 DontDestroyVariable.getNinePuzzle[i] = 1;
                                 Destroy(gameObject);
+                                AddNewItem(thisitem);
+                                alertui.SetActive(true);
+                                audioPlayer.PlayOneShot(getevent);
                             }
                         }
                     }

@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9227dd9d88d7663408911e6fce50f7fa, type: 3}
+  m_Name: nine4
+  m_EditorClassIdentifier: 
+  itemName: nine4
+  itemimage: {fileID: 21300000, guid: 89c26254ddeacbd47918a41f22875f14, type: 3}
+  itemimage1: {fileID: 21300000, guid: 4e0e02b92ac67984483e53c2e816277b, type: 3}
+  itemHeld: 1
+  itemType: 4
+  itemactive: 0
+  itemInfo: "\u77F3\u677F\u788E\u7247"

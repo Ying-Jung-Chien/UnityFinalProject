@@ -15,7 +15,7 @@ MonoBehaviour:
   itemName: eye
   itemimage: {fileID: 21300000, guid: c9a3f40efb729494f9059b85b54be7ac, type: 3}
   itemimage1: {fileID: 21300000, guid: b952b648e7dd90f418289405fb228952, type: 3}
-  itemHeld: 2
+  itemHeld: 1
   itemType: 0
   itemactive: 0
   itemInfo: "\u99AC\u7684\u5DE6\u773C"
