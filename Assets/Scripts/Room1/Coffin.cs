@@ -14,6 +14,7 @@ public class Coffin : MonoBehaviour
     {
         renderer = GetComponent<Renderer>();
         click_coffin = false;
+        MouseIn = false;
         coffin = this.gameObject.transform.parent.gameObject;
         coffinanimation = coffin.GetComponent<CoffinAnimation>();
     }
