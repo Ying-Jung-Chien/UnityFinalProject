@@ -118,13 +118,15 @@ public class TimeController : MonoBehaviour
 
         if(playerRepLightScale)
         {
-            forceDirArrow.transform.position = Vector3.SmoothDamp(forceDirArrow.transform.position, pastPosition[timePosIndex] + bias, ref velocity, turnBackTimeWidth / 20);
+            //forceDirArrow.transform.position = Vector3.SmoothDamp(forceDirArrow.transform.position, pastPosition[timePosIndex] + bias, ref velocity, turnBackTimeWidth / 20);
+            forceDirArrow.transform.position = pastPosition[timePosIndex] + bias;
             int nextIdx = (timePosIndex - 1 < 0) ? (totalNumOfPos - 1) : (timePosIndex - 1);
             forceDirArrow.transform.rotation = Quaternion.LookRotation(pastPosition[nextIdx] - pastPosition[timePosIndex]);
 
             if (curTime >= tmp)
                 showedPreLightPrefab.GetComponent<Animator>().enabled = false;
-            //showedPreLightPrefab.transform.localScale = Vector3.Lerp(showedPreLightPrefab.transform.localScale, new Vector3(1, 1, 1), Time.deltaTime * 10.0f);
+            showedPreLightPrefab.transform.position = pastPosition[timePosIndex];
+            showedPreLightPrefab.transform.localScale = Vector3.Lerp(showedPreLightPrefab.transform.localScale, new Vector3(1, 1, 1), Time.deltaTime * 10.0f);
 
         }
     }
@@ -220,14 +222,15 @@ public class TimeController : MonoBehaviour
             showedPreLightPrefab.SetActive(true);
             showedPreLightPrefab.transform.position = pastPosition[timePosIndex];
             showedPreLightPrefab.transform.rotation = pastRotation[timePosIndex];
+            showedPreLightPrefab.transform.localScale = new Vector3(0.01f, 0.01f, 0.01f);
             showedPreLightPrefab.GetComponent<Animator>().enabled = true;
             showedPreLightPrefab.GetComponent<Animator>().Play(pastAnimationHash[timePosIndex]);
             playerRepLightScale = true;
             tmp = Time.time + 0.1f;
 
             endTime = Time.time + 1000f;
-            Invoke("Ejection", 1.0f);
-            Invoke("ShowPlayer", 1.5f);
+            Invoke("Ejection", 0.5f);
+            Invoke("ShowPlayer", 1.0f);
             //Invoke("Ejection", 1.5f);
         }
         else if (curTime > endTime + cdTime)
