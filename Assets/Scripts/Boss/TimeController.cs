@@ -90,7 +90,21 @@ public class TimeController : MonoBehaviour
             {
                 pastPosition[pastPosIndex] = player.transform.position;
                 pastRotation[pastPosIndex] = player.transform.rotation;
-                pastAnimationHash[pastPosIndex] = playerAnim.GetCurrentAnimatorStateInfo(0).fullPathHash;
+                if(playerAnim.GetCurrentAnimatorStateInfo(0).IsName("Base Layer.Idle Walk Run Blend"))
+                {
+                    if(playerAnim.GetFloat("Speed") < 2)
+                    {
+                        pastAnimationHash[pastPosIndex] = Animator.StringToHash("Base Layer.Male Idle");
+                    }
+                    else
+                    {
+                        pastAnimationHash[pastPosIndex] = Animator.StringToHash("Base Layer.Male Sprint");
+                    }
+                }
+                else
+                {
+                    pastAnimationHash[pastPosIndex] = playerAnim.GetCurrentAnimatorStateInfo(0).fullPathHash;
+                }
 
                 pastPosIndex = (pastPosIndex + 1) % totalNumOfPos;
             }
