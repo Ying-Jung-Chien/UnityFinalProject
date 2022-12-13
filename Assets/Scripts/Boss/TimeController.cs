@@ -28,6 +28,7 @@ public class TimeController : MonoBehaviour
     public static bool pressT;
 
     private static Animator playerAnim;
+    private static bool goStorePos;
     private static bool isTurningBackTheClock;
     private static float curTime;
     private static float nextTime;
@@ -65,6 +66,7 @@ public class TimeController : MonoBehaviour
         startTime = endTime = 0.0f;
         nextTime = curTime + frequence_s;
         pastPosIndex = 0;
+        goStorePos = true;
         isTurningBackTheClock = false;
         totalNumOfPos = (int)(lenOfRecord_s / frequence_s);
         Debug.Log("totalNumOfPos = " + totalNumOfPos);
@@ -84,7 +86,7 @@ public class TimeController : MonoBehaviour
         {
             nextTime += frequence_s;
             //Debug.Log(curTime);
-            if (!isTurningBackTheClock)
+            if (goStorePos)
             {
                 pastPosition[pastPosIndex] = player.transform.position;
                 pastRotation[pastPosIndex] = player.transform.rotation;
@@ -117,6 +119,10 @@ public class TimeController : MonoBehaviour
     {
         if (pressT)
         {
+            //string str = pastPosition[0].ToString();
+            //for (int i = 0; i < 10; i++)
+            //    str += (", " + pastPosition[i]);
+            //Debug.Log("past position is " + str);
             //Debug.Log("keydown T, " + (curTime > startTime + 0.1f));
             pressT = false;
             PressT();
@@ -179,6 +185,7 @@ public class TimeController : MonoBehaviour
                 UCanMove();
 
                 endTime = Time.time;
+                goStorePos = true;
                 isTurningBackTheClock = false;
             }
         }
@@ -211,6 +218,7 @@ public class TimeController : MonoBehaviour
         }
         else if (curTime > endTime + cdTime)
         {
+            goStorePos = false;
             isTurningBackTheClock = true;
             ActivePrefabs();
 
@@ -263,44 +271,8 @@ public class TimeController : MonoBehaviour
         mainCamera.transform.position = lightRepCamera.transform.position;
         player.SetActive(true);
         endTime = Time.time;
+        goStorePos = true;
     }
-
-    //void ShowPlayer()
-    //{
-    //    InactivePrefabs();
-    //    Destroy(showedPreLightPrefab);
-    //    playerRepLightScale = false;
-
-    //    // 改變 player 狀態
-    //    player.transform.position = pastPosition[timePosIndex];
-    //    player.transform.rotation = pastRotation[timePosIndex];
-    //    player.GetComponent<Animator>().enabled = true;
-    //}
-
-    //void Ejection()
-    //{
-    //    player.GetComponent<Animator>().enabled = false;
-    //    // Change main camera position
-    //    //mainCamera.transform.position = timeCamera.transform.position;
-
-    //    // 增加作用力
-    //    Vector3 curPos = pastPosition[timePosIndex];
-    //    int preIndex = (timePosIndex - 1 < 0) ? (totalNumOfPos - 1) : (timePosIndex - 1);
-    //    Vector3 prePos = pastPosition[preIndex];
-    //    player.GetComponent<ImpactReceiver>().AddImpact((prePos - curPos), Vector3.Distance(curPos, prePos) * forceStrength);
-    //    Debug.Log("curPos = " + curPos + ", prePos = " + prePos + ", forceDir = " + (prePos - curPos));
-
-    //    // Delete all showPos Prefab
-    //    DestoryPosPrefab();
-
-    //    //InitArrays();
-
-    //    // 開放操作
-    //    UCanMove();
-
-    //    pastPosIndex = 0;
-    //    endTime = Time.time;
-    //}
 
     void UCanMove()
     {

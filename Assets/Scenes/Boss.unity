@@ -15240,7 +15240,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c1447352bc9a424aa6737b80f64e2be, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 0}
+  player: {fileID: 730115690}
   blackDragon: {fileID: 1228766476}
 --- !u!114 &374025625
 MonoBehaviour:
@@ -15254,10 +15254,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 45aec043c5a294bb6ab96dd4004217b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mainCamera: {fileID: 0}
+  mainCamera: {fileID: 729815555}
   timeRepCamera: {fileID: 1236348917}
   lightRepCamera: {fileID: 1640044818}
-  player: {fileID: 0}
+  player: {fileID: 730115690}
   blackDragon: {fileID: 884669196}
   showPositionPrefab: {fileID: 5206789273205313668, guid: 3dfa0fb3d4f0446cda79d785ebb73336, type: 3}
   showLinPrefab: {fileID: 7914819139218052223, guid: 119921135fe68434bb5943e25739a1fa, type: 3}
@@ -28392,6 +28392,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 2145881592692093089, guid: 6d31ad97b79b0f04585b609d86665bb8, type: 3}
   m_PrefabInstance: {fileID: 728781596}
   m_PrefabAsset: {fileID: 0}
+--- !u!20 &729815555 stripped
+Camera:
+  m_CorrespondingSourceObject: {fileID: 342255457425275185, guid: 95e54750ae2e4e348a202e6314c1ae25, type: 3}
+  m_PrefabInstance: {fileID: 808520532}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &730027975
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -28454,6 +28459,41 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 872954663666569469, guid: b2e45dd6af1b1874582506c085ff8e5c, type: 3}
   m_PrefabInstance: {fileID: 730027975}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &730115690 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5031461502958012439, guid: 95e54750ae2e4e348a202e6314c1ae25, type: 3}
+  m_PrefabInstance: {fileID: 808520532}
+  m_PrefabAsset: {fileID: 0}
+--- !u!136 &730115700
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 730115690}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.24
+  m_Height: 1.8
+  m_Direction: 1
+  m_Center: {x: 0, y: 0.97, z: 0}
+--- !u!54 &730115701
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 730115690}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 116
+  m_CollisionDetection: 0
 --- !u!1001 &730770359
 PrefabInstance:
   m_ObjectHideFlags: 0
