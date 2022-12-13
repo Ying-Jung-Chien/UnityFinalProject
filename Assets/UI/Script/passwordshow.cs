@@ -6,9 +6,13 @@ public class passwordshow : MonoBehaviour
 {
     public static bool passwordshow1 = false;
     public static bool eightshow = false;
+    public static bool problemshow = false;
+    public static bool stoneshow = false;
 
     public GameObject password;
     public GameObject eight;
+    public GameObject problem;
+    public GameObject stone;
     //public static bool passwordshow1 = false;
     // Start is called before the first frame update
     void Start()
@@ -27,6 +31,16 @@ public class passwordshow : MonoBehaviour
         if (eightshow == true)
         {
             eight.SetActive(true);
+        }
+
+        if (problemshow == true)
+        {
+            problem.SetActive(true);
+        }
+
+        if (stoneshow == true)
+        {
+            stone.SetActive(true);
         }
     }
 }

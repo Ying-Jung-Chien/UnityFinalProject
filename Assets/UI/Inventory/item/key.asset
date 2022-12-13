@@ -15,7 +15,7 @@ MonoBehaviour:
   itemName: key
   itemimage: {fileID: 21300000, guid: d174cb5d1851a834eabef6d62b084306, type: 3}
   itemimage1: {fileID: 21300000, guid: f8b29afe29e7ec44ca1cb8cca4dc2d55, type: 3}
-  itemHeld: 4
+  itemHeld: 1
   itemType: 1
-  itemactive: 1
+  itemactive: 0
   itemInfo: "\u9470\u5319"
