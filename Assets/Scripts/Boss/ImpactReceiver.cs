@@ -22,7 +22,7 @@ public class ImpactReceiver : MonoBehaviour
     {
         // apply the impact force:
         if (impact.magnitude > 2F) character.Move(impact * Time.deltaTime);
-        else GetComponent<PlayerController>().enabled = true;
+        else GetComponent<ThirdPersonController>().enabled = true;
         // consumes the impact energy each cycle:
         impact = Vector3.Lerp(impact, Vector3.zero, 5 * Time.deltaTime);
     }
