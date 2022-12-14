@@ -13,6 +13,7 @@ public class DontDestroyVariable : MonoBehaviour
     public static bool getKey2 = false;
     public static bool useKey = false;
     public static bool useKey2 = false;
+    public static bool getPiece = false;
     public static bool getHorseEye = false;
     public static bool useHorseEye = false;
     public static bool usePassword = false;

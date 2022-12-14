@@ -85,6 +85,17 @@ public class MouseOnClick : MonoBehaviour
                     } else if (gameObject.name == "Box1" && DontDestroyVariable.useBox1 == false) {
                         audioPlayer.PlayOneShot(getevent);
                         alertui.SetActive(true);
+                    } else if (gameObject.name == "HiddenPiece") {
+                        // TODO
+                        DontDestroyVariable.getPiece = true;
+                        Destroy(gameObject);
+                    } else if (gameObject.name == "LP_Up_Stand") {
+                        // TODO
+                        Destroy(GameObject.Find("LP_Brush"));
+                        Destroy(GameObject.Find("LP_Handle"));
+                        Destroy(GameObject.Find("LP_Head"));
+                        Destroy(GameObject.Find("LP_Ring"));
+                        Destroy(GameObject.Find("LP_Threat"));
                     }
                     else
                     {
