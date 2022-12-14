@@ -24,9 +24,12 @@ public class TimeController : MonoBehaviour
     public float forceStrength = 300;
     public int ghostRelicNum = 10;
     public float turnBackTimeWidth = 0.1f;
+    public float ejectDelay_s = 0.5f;
+    public float switchDelay_s = 1.0f;
 
     public static bool pressT;
 
+    private static Vector3 _initPlayerPos;
     private static Animator playerAnim;
     private static bool goStorePos;
     private static bool isTurningBackTheClock;
@@ -42,6 +45,7 @@ public class TimeController : MonoBehaviour
     private static GameObject[] showedPosPrefab;
     private static GameObject[] showedLinePrefab;
     private static GameObject[] showedRepPrefab;
+    private static GameObject[] _prePrefab;
     private static GameObject showedPreLightPrefab;
     private static int showedCurPosCounter;
     private static int pastPosIndex;
@@ -60,6 +64,7 @@ public class TimeController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        _initPlayerPos = player.transform.position;
         playerAnim = player.GetComponent<Animator>();
         representativeObj.SetActive(false);
         curTime = Time.time;
@@ -76,6 +81,8 @@ public class TimeController : MonoBehaviour
         showedPosPrefab = new GameObject[totalNumOfPos];
         showedLinePrefab = new GameObject[totalNumOfPos];
         showedRepPrefab = new GameObject[totalNumOfPos];
+        _prePrefab = new GameObject[totalNumOfPos];
+        switchDelay_s = switchDelay_s > ejectDelay_s ? switchDelay_s : ejectDelay_s;
     }
 
     // Update is called once per frame
@@ -106,6 +113,11 @@ public class TimeController : MonoBehaviour
                     pastAnimationHash[pastPosIndex] = playerAnim.GetCurrentAnimatorStateInfo(0).fullPathHash;
                 }
 
+                /* Debug */
+                //if (_prePrefab[pastPosIndex] != null)
+                //    Destroy(_prePrefab[pastPosIndex]);
+                //_prePrefab[pastPosIndex] = Instantiate(showPositionPrefab, player.transform.position, Quaternion.identity);
+
                 pastPosIndex = (pastPosIndex + 1) % totalNumOfPos;
             }
         }
@@ -118,15 +130,14 @@ public class TimeController : MonoBehaviour
 
         if(playerRepLightScale)
         {
-            //forceDirArrow.transform.position = Vector3.SmoothDamp(forceDirArrow.transform.position, pastPosition[timePosIndex] + bias, ref velocity, turnBackTimeWidth / 20);
-            forceDirArrow.transform.position = pastPosition[timePosIndex] + bias;
+            forceDirArrow.transform.position = showedPreLightPrefab.transform.position + bias;
             int nextIdx = (timePosIndex - 1 < 0) ? (totalNumOfPos - 1) : (timePosIndex - 1);
-            forceDirArrow.transform.rotation = Quaternion.LookRotation(pastPosition[nextIdx] - pastPosition[timePosIndex]);
+            forceDirArrow.transform.rotation = Quaternion.LookRotation(pastPosition[nextIdx] - showedPreLightPrefab.transform.position);
 
             if (curTime >= tmp)
                 showedPreLightPrefab.GetComponent<Animator>().enabled = false;
-            showedPreLightPrefab.transform.position = pastPosition[timePosIndex];
-            showedPreLightPrefab.transform.localScale = Vector3.Lerp(showedPreLightPrefab.transform.localScale, new Vector3(1, 1, 1), Time.deltaTime * 10.0f);
+            //showedPreLightPrefab.transform.position = representativeObj.transform.position;
+            //showedPreLightPrefab.transform.localScale = Vector3.Lerp(showedPreLightPrefab.transform.localScale, new Vector3(1, 1, 1), Time.deltaTime * 10.0f);
 
         }
     }
@@ -141,6 +152,7 @@ public class TimeController : MonoBehaviour
             //Debug.Log("past position is " + str);
             //Debug.Log("keydown T, " + (curTime > startTime + 0.1f));
             pressT = false;
+
             PressT();
         }
     }
@@ -163,9 +175,9 @@ public class TimeController : MonoBehaviour
             // Show force direction arrow
             if (showedCurPosCounter < totalNumOfPos - 1)
             {
-                forceDirArrow.transform.position = Vector3.SmoothDamp(forceDirArrow.transform.position, pastPosition[timePosIndex] + bias, ref velocity, turnBackTimeWidth / 20);
+                forceDirArrow.transform.position = Vector3.SmoothDamp(forceDirArrow.transform.position, representativeObj.transform.position + bias, ref velocity, turnBackTimeWidth / 20);
                 int nextIdx = (timePosIndex - 1 < 0) ? (totalNumOfPos - 1) : (timePosIndex - 1);
-                forceDirArrow.transform.rotation = Quaternion.LookRotation(pastPosition[nextIdx] - pastPosition[timePosIndex]);
+                forceDirArrow.transform.rotation = Quaternion.LookRotation(pastPosition[nextIdx] - representativeObj.transform.position);
             }
 
             // Show ghost relic
@@ -181,10 +193,12 @@ public class TimeController : MonoBehaviour
                     showedRepPrefab[showedCurPosCounter - 2].GetComponent<Animator>().enabled = false;
                 if (showedCurPosCounter >= ghostRelicNum)
                     Destroy(showedRepPrefab[showedCurPosCounter - ghostRelicNum]);
+
+                Destroy(showedPosPrefab[showedCurPosCounter - 1]);
             }
             showedCurPosCounter++;
 
-
+            //player.transform.position = pastPosition[timePosIndex];
             timePosIndex = (timePosIndex - 1 < 0) ? (totalNumOfPos - 1) : (timePosIndex - 1);
             if (timePosIndex == pastPosIndex)
             {
@@ -211,27 +225,23 @@ public class TimeController : MonoBehaviour
     {
         if ((curTime > startTime + 0.1f) && (isTurningBackTheClock && !playerRepLightScale))
         {
-            //Debug.Log("turn off time controller");
+            Debug.Log("turn off time controller");
             isTurningBackTheClock = false;
-            //showedPreLightPrefab = Instantiate(repLightObj, pastPosition[timePosIndex], Quaternion.identity);
-            lightRepCamera.enabled = true;
-            timeRepCamera.enabled = false;
-            player.SetActive(false);
-            representativeObj.SetActive(false);
+            //player.SetActive(false);
             showedPreLightPrefab = repLightObj;
             showedPreLightPrefab.SetActive(true);
-            showedPreLightPrefab.transform.position = pastPosition[timePosIndex];
-            showedPreLightPrefab.transform.rotation = pastRotation[timePosIndex];
-            showedPreLightPrefab.transform.localScale = new Vector3(0.01f, 0.01f, 0.01f);
             showedPreLightPrefab.GetComponent<Animator>().enabled = true;
-            showedPreLightPrefab.GetComponent<Animator>().Play(pastAnimationHash[timePosIndex]);
+            showedPreLightPrefab.GetComponent<Animator>().Play(representativeObj.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).fullPathHash);
+            showedPreLightPrefab.transform.rotation = pastRotation[timePosIndex];
+            showedPreLightPrefab.transform.position = pastPosition[timePosIndex];
+
+            //showedPreLightPrefab.transform.localScale = new Vector3(0.01f, 0.01f, 0.01f);
             playerRepLightScale = true;
-            tmp = Time.time + 0.1f;
+            tmp = Time.time + 0.05f;
 
             endTime = Time.time + 1000f;
-            Invoke("Ejection", 0.5f);
-            Invoke("ShowPlayer", 1.0f);
-            //Invoke("Ejection", 1.5f);
+            Invoke("Ejection", ejectDelay_s);
+            Invoke("ShowPlayer", switchDelay_s);
         }
         else if (curTime > endTime + cdTime)
         {
@@ -246,7 +256,6 @@ public class TimeController : MonoBehaviour
             ShowPosPrefab();
 
             startTime = curTime;
-            //endTime = curTime + cdTime + 0.01f;
             nextTimeInTurningBack = curTime + frequence_s;
             timePosIndex = (pastPosIndex - 1 < 0) ? (totalNumOfPos - 1) : (pastPosIndex - 1);
             showedCurPosCounter = 0;
@@ -256,37 +265,42 @@ public class TimeController : MonoBehaviour
 
     void Ejection()
     {
+        //showedPreLightPrefab.transform.position = pastPosition[timePosIndex];
+        Debug.Log("1. curPos = " + showedPreLightPrefab.transform.position + "originPos = " + pastPosition[timePosIndex]);
+        playerRepLightScale = false;
+        lightRepCamera.enabled = true;
+        timeRepCamera.enabled = false;
+
+        // Delete all showPos Prefab
+        InactivePrefabs();
+        DestoryPosPrefab();
+
         // 增加作用力
+        showedPreLightPrefab.transform.position = pastPosition[timePosIndex];
+        Debug.Log("2. curPos = " + showedPreLightPrefab.transform.position + "originPos = " + pastPosition[timePosIndex]);
         Vector3 curPos = pastPosition[timePosIndex];
         int preIndex = (timePosIndex - 1 < 0) ? (totalNumOfPos - 1) : (timePosIndex - 1);
         Vector3 prePos = pastPosition[preIndex];
+        Debug.Log("curPos = " + curPos + ", prePos = " + prePos + ", forceDir = " + (prePos - curPos) + "distance = " + Vector3.Distance(curPos, prePos));
         showedPreLightPrefab.GetComponent<ImpactReceiver_RepLight>().AddImpact((prePos - curPos), Vector3.Distance(curPos, prePos) * forceStrength);
-        Debug.Log("curPos = " + curPos + ", prePos = " + prePos + ", forceDir = " + (prePos - curPos));
 
-        // Delete all showPos Prefab
-        DestoryPosPrefab();
-
-        //InitArrays();
-
-        // 開放操作
-        UCanMove();
+        InitArrays();
 
         pastPosIndex = 0;
     }
 
     void ShowPlayer()
     {
-        InactivePrefabs();
-        playerRepLightScale = false;
-
         // 改變 player 狀態
+        player.SetActive(true);
         player.transform.position = showedPreLightPrefab.transform.position;
         player.transform.rotation = showedPreLightPrefab.transform.rotation;
-        //Destroy(showedPreLightPrefab);
         mainCamera.enabled = true;
         showedPreLightPrefab.SetActive(false);
-        mainCamera.transform.position = lightRepCamera.transform.position;
-        player.SetActive(true);
+
+        // 開放操作
+        UCanMove();
+
         endTime = Time.time;
         goStorePos = true;
     }
@@ -350,11 +364,11 @@ public class TimeController : MonoBehaviour
 
     void ActivePrefabs()
     {
-        representativeObj.transform.position = pastPosition[((pastPosIndex - 1) % totalNumOfPos)];
-        representativeObj.transform.rotation = pastRotation[((pastPosIndex - 1) % totalNumOfPos)];
+        representativeObj.transform.position = pastPosition[(pastPosIndex - 1 < 0) ? (totalNumOfPos - 1) : (pastPosIndex - 1)];
+        representativeObj.transform.rotation = pastRotation[(pastPosIndex - 1 < 0) ? (totalNumOfPos - 1) : (pastPosIndex - 1)];
         representativeObj.SetActive(true);
-        forceDirArrow.transform.position = pastPosition[((pastPosIndex - 1) % totalNumOfPos)];
-        forceDirArrow.transform.rotation = pastRotation[((pastPosIndex - 1) % totalNumOfPos)];
+        forceDirArrow.transform.position = pastPosition[(pastPosIndex - 1 < 0) ? (totalNumOfPos - 1) : (pastPosIndex - 1)];
+        forceDirArrow.transform.rotation = pastRotation[(pastPosIndex - 1 < 0) ? (totalNumOfPos - 1) : (pastPosIndex - 1)];
         forceDirArrow.SetActive(true);
     }
 

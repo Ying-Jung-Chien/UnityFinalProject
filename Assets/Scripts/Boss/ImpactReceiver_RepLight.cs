@@ -18,7 +18,7 @@ public class ImpactReceiver_RepLight : MonoBehaviour
     void Update()
     {
         // apply the impact force:
-        if (impact.magnitude > 2F) character.Move(impact * Time.deltaTime);
+        if (impact.magnitude > 0.1F) character.Move(impact * Time.deltaTime);
         // consumes the impact energy each cycle:
         impact = Vector3.Lerp(impact, Vector3.zero, 5 * Time.deltaTime);
     }
@@ -26,7 +26,9 @@ public class ImpactReceiver_RepLight : MonoBehaviour
     public void AddImpact(Vector3 dir, float force)
     {
         dir.Normalize();
-        if (dir.y < 0) dir.y = -dir.y; // reflect down force on the ground
+        //if (dir.y < 0) dir.y = -dir.y; // reflect down force on the ground
+        impact = Vector3.zero;
         impact += dir.normalized * force / mass;
+        Debug.Log("impact dir = " + dir + ", dir.normalized = " + dir.normalized + ", force = " + force + ", mass = " + mass + ", impact = " + impact);
     }
 }
