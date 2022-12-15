@@ -19,6 +19,8 @@ public class Puzzle : MonoBehaviour
         
         square_size = 1.22f;
         
+        square_size = 1.22f;
+        print(emptyspace.localPosition.x);
     }
 
     public void ButtonUp(){
