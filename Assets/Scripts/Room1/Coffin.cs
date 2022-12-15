@@ -32,7 +32,7 @@ public class Coffin : MonoBehaviour
     }
     void Update()
     {
-        if(click_coffin)click_coffin = false;
+        if (click_coffin)click_coffin = false;
         if (Input.GetMouseButtonDown(0))
         {
 

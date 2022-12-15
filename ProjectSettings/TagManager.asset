@@ -4,6 +4,12 @@
 TagManager:
   serializedVersion: 2
   tags: []
+  tags:
+  - CinemachineTarget
+  - square
+  - LargeSquare
+  - rect
+  - board
   layers:
   - Default
   - TransparentFX
