@@ -4,11 +4,12 @@ using UnityEngine;
 
 public class DoorAOpen : MonoBehaviour
 {
+    public bool CanOpen;
 
     // Use this for initialization
     void Start()
     {
-
+        CanOpen = false;
     }
 
     // Update is called once per frame
@@ -17,6 +18,9 @@ public class DoorAOpen : MonoBehaviour
     }
     void OnTriggerEnter(Collider other)
     {
-        GetComponent<Animator>().SetTrigger("DoorATrigger");
+        if(CanOpen){
+            GetComponent<Animator>().SetTrigger("DoorATrigger");
+        }
+        
     }
 }

@@ -8,6 +8,7 @@ TagManager:
   - square
   - LargeSquare
   - rect
+  - board
   layers:
   - Default
   - TransparentFX
