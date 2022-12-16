@@ -23,4 +23,7 @@ public class DoorAOpen : MonoBehaviour
         }
         
     }
+    public void SetCanOpen(){
+        CanOpen = true;
+    }
 }
