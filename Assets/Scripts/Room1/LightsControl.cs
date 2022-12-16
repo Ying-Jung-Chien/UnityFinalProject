@@ -39,7 +39,7 @@ public class LightsControl : MonoBehaviour
         em.enabled = false;
 
         for(int i=0;i<4;i++){
-            yield return new WaitForSeconds(0.1f);
+            yield return new WaitForSeconds(10f);
             GameObject candle_child = candle.transform.GetChild(i).GetChild(0).gameObject;
             
             Light lightComp = candle_child.transform.GetChild(0).GetComponent<Light>();
