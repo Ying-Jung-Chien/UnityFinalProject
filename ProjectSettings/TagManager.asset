@@ -10,6 +10,10 @@ TagManager:
   - LargeSquare
   - rect
   - board
+  - square
+  - LargeSquare
+  - rect
+  - board
   layers:
   - Default
   - TransparentFX
