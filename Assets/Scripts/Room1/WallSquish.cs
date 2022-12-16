@@ -7,6 +7,8 @@ public class WallSquish : MonoBehaviour
     private bool solved;
     public GameObject WallLeft;
     public GameObject WallRight;
+    
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -17,9 +19,13 @@ public class WallSquish : MonoBehaviour
     void Update()
     {
         if(!solved && WallRight.transform.position.z < 2){
-            WallRight.transform.position =  WallRight.transform.position + new Vector3( 0, 0, 0.0002f);
+            WallRight.transform.position =  WallRight.transform.position + new Vector3( 0, 0, 0.00002f);
         }
         
+    }
+
+    public void SetSolved(){
+        solved = true;
     }
 
    

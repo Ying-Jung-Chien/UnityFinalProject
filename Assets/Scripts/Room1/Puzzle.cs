@@ -10,17 +10,20 @@ public class Puzzle : MonoBehaviour
     private Transform currentTile = null;
     public GameObject button;
     private float square_size; 
+    public GameObject master;
+    public GameObject wallsquish;
+    public GameObject Door;
     // Start is called before the first frame update
     void Start()
     {
         
         square_size = 1.22f;
-        print(emptyspace.localPosition.x);
+        
     }
 
     public void ButtonUp(){
         Transform empty;
-        print("button");
+       
         if(emptyspace.localPosition.y > emptyspace1.localPosition.y)empty = emptyspace;
         else empty = emptyspace1;
         Vector3 lastemptyspace = empty.localPosition;
@@ -30,7 +33,7 @@ public class Puzzle : MonoBehaviour
     }
 
     public void ButtonDown(){
-        print("button");
+        
         Transform empty;
         if(emptyspace.localPosition.y < emptyspace1.localPosition.y) empty = emptyspace;
         else empty = emptyspace1;
@@ -41,7 +44,7 @@ public class Puzzle : MonoBehaviour
     }
 
     public void ButtonLeft(){
-        print("button");
+       
         Transform empty;
         if(emptyspace.localPosition.x < emptyspace1.localPosition.x) empty = emptyspace;
         else empty = emptyspace1;
@@ -52,7 +55,7 @@ public class Puzzle : MonoBehaviour
     }
 
     public void ButtonRight(){
-        print("button");
+       
         Transform empty;
         if(emptyspace.localPosition.x > emptyspace1.localPosition.x) empty = emptyspace;
         else empty = emptyspace1;
@@ -113,6 +116,11 @@ public class Puzzle : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(master.transform.localPosition.y < 0.78f && master.transform.localPosition.x > -0.61f && master.transform.localPosition.x < 0.61f){
+            wallsquish.GetComponent<WallSquish>().SetSolved();
+            Door.GetComponent<DoorAOpen>().SetCanOpen();
+            this.gameObject.SetActive(false);
+        }
         if(Input.GetMouseButtonDown(0)){
             Ray ray = camera_m.ScreenPointToRay(Input.mousePosition);
             RaycastHit2D hit = Physics2D.Raycast(ray.origin, ray.direction);
