@@ -3,7 +3,14 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Boss
+  - CinemachineTarget
+  - remark
+  - blue
+  - blood
+  - button
+  - enemy
   layers:
   - Default
   - TransparentFX
