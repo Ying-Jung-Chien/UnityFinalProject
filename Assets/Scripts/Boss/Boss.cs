@@ -4,7 +4,9 @@ using UnityEngine;
 
 public class Boss : MonoBehaviour
 {
-    public GameObject attackTrigger;
+    public GameObject blackDragonHead;
+    public GameObject blackDragonHeadFront;
+    public GameObject bossFireBall;
     public GameObject direction;
     public GameObject player;
     public GameObject playerFront;
@@ -15,6 +17,7 @@ public class Boss : MonoBehaviour
     public float dampTime = 3f;
     public int attackFreq_UpperBound = 10;
     public int attackFreq_LowerBound = 40;
+    public float fireBallAttackFrequence = 1.0f;
     public float rotateSpeed = 1f;
 
     public bool scream;
@@ -40,22 +43,26 @@ public class Boss : MonoBehaviour
     private bool dashToPlayer;
     private bool backToInitPos;
     private bool justStartFlying;
+    private bool canFireBall;
     private float _dampTime;
     private float curTime;
     private float nextTime;
+    private float nextFireBallTime;
     private float counter;
     private int spiralCounter;
     private int attackCounter;
     private int attackRandomNum;
+    private int fireBallRandomNum;
 
     private void Init()
     {
         nextTime = 0;
+        nextFireBallTime = 0;
         counter = 0;
         spiralCounter = -1;
-        spiralTrigger = false;
         attackCounter = 0;
         attackRandomNum = -1;
+        spiralTrigger = false;
         justStartFlying = false;
     }
 
@@ -64,11 +71,12 @@ public class Boss : MonoBehaviour
     {
         initPos = transform.position;
         initDir = transform.forward;
-        smoothToTarget = false;
         _dampTime = dampTime;
         spiralSize = spiral.Length;
+        smoothToTarget = false;
         dashToPlayer = false;
         backToInitPos = false;
+        canFireBall = false;
         Init();
     }
 
@@ -82,7 +90,7 @@ public class Boss : MonoBehaviour
 
         if(timeStop)
         {
-            Debug.Log("Boss.cs Update timeStop");
+            //Debug.Log("Boss.cs Update timeStop");
             transform.position = curPos;
             gameObject.GetComponent<Animator>().enabled = false;
             return;
@@ -90,38 +98,49 @@ public class Boss : MonoBehaviour
 
         if(turnOffTimeStop)
         {
-            Debug.Log("Boss.cs Update turnOffTimeStop");
+            //Debug.Log("Boss.cs Update turnOffTimeStop");
             turnOffTimeStop = false;
             gameObject.GetComponent<Animator>().enabled = true;
         }
 
         if (goFly)
         {
-            Debug.Log("Boss.cs Update goFly");
+            //Debug.Log("Boss.cs Update goFly");
             goFly = false;
             justStartFlying = true;
-            float steps = Time.deltaTime * transitionSpead;
+            smoothToTarget = true;
+            canFireBall = true;
+            attackRandomNum = Random.Range(attackFreq_LowerBound, attackFreq_UpperBound);
             targetPos = new Vector3(transform.position.x, 12, transform.position.z - 15);
             dampTime = 10;
-            smoothToTarget = true;
-            attackRandomNum = Random.Range(attackFreq_LowerBound, attackFreq_UpperBound);
             attackCounter = 0;
         }
 
         if (attackCounter == attackRandomNum)
         {
-            Debug.Log("Boss.cs Update attackCounter == attackRandonNum");
+            //Debug.Log("Boss.cs Update attackCounter == attackRandonNum");
             //Debug.Log("attackCounter == attackRandomNum = " + attackCounter);
             dashToPlayer = true;
+            canFireBall = false;
             dampTime = 1;
             targetPos = player.transform.position;// + new Vector3(0, 0.9f, 0);
-            attackRandomNum = Random.Range(10, 40);
+            attackRandomNum = Random.Range(attackFreq_LowerBound, attackFreq_UpperBound);
             attackCounter = 0;
+        }
+
+        if(canFireBall)
+        {
+            if(curTime >= nextFireBallTime)
+            {
+                nextFireBallTime = Time.time + fireBallAttackFrequence;
+                GameObject fireball = Instantiate(bossFireBall, blackDragonHeadFront.transform.position, Quaternion.LookRotation(blackDragonHeadFront.transform.position - blackDragonHead.transform.position));
+                fireball.GetComponent<BossFireBallController>().Init(blackDragonHead.transform.position, blackDragonHeadFront.transform.position, player.transform.position);
+            }
         }
 
         if (spiralTrigger && spiralCounter > -1)
         {
-            Debug.Log("Boss.cs Update 'spiralTrigger && spiralCounter > -1'");
+            //Debug.Log("Boss.cs Update 'spiralTrigger && spiralCounter > -1'");
             targetPos = spiral[spiralCounter].transform.position;
             if (justStartFlying)
             {
@@ -137,7 +156,7 @@ public class Boss : MonoBehaviour
 
         if (smoothToTarget)
         {
-            Debug.Log("Boss.cs Update smoothToTarget");
+            //Debug.Log("Boss.cs Update smoothToTarget");
             if (dashToPlayer)
             {
                 if (Vector3.Distance(transform.position, targetPos) <= 5 && Vector3.Distance(transform.position, targetPos) > 2)
@@ -215,7 +234,6 @@ public class Boss : MonoBehaviour
 
     void GoFly()
     {
-        //Debug.Log("gofly");
         goFly = true;
     }
 }

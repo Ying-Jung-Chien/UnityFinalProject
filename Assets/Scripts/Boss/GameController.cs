@@ -50,8 +50,7 @@ public class GameController : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.F))
         {
-            GameObject fireball = Instantiate(bossFireBall, blackDragonHeadFront.transform.position, Quaternion.Euler(180, 0, 0));
-            //GameObject fireball = Instantiate(bossFireBall, blackDragonHeadFront.transform.position, Quaternion.identity);
+            GameObject fireball = Instantiate(bossFireBall, blackDragonHeadFront.transform.position, Quaternion.LookRotation(blackDragonHeadFront.transform.position - blackDragonHead.transform.position));
             fireball.GetComponent<BossFireBallController>().Init(blackDragonHead.transform.position, blackDragonHeadFront.transform.position, player.transform.position);
         }
     }
