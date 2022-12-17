@@ -9,6 +9,7 @@ public class BossAnimationController : MonoBehaviour
     private float curDir;
     private float curTime;
     private float nextTime;
+    private bool flag;
 
     // Start is called before the first frame update
     void Start()
@@ -16,6 +17,7 @@ public class BossAnimationController : MonoBehaviour
         animator = gameObject.GetComponent<Animator>();
         preDir = curDir = transform.rotation.eulerAngles.y;
         nextTime = 0;
+        flag = true;
     }
 
     // Update is called once per frame
@@ -26,10 +28,16 @@ public class BossAnimationController : MonoBehaviour
 
         if (Boss.goScream)
         {
-            //Debug.Log("Black dragon scream.");
+            Debug.Log("Black dragon scream.");
             animator.SetBool("goScream", true);
 
-            if (CurrentStateDone())
+            if(flag)
+            {
+                flag = false;
+                nextTime = curTime + 2f;
+            }
+
+            if (CurrentStateDone() && curTime >= nextTime)
             {
                 animator.SetBool("goScream", false);
                 Boss.goScream = false;
@@ -39,14 +47,9 @@ public class BossAnimationController : MonoBehaviour
 
         if (Boss.goFly)
         {
-            //Debug.Log("Black dragon go fly.");
+            Debug.Log("Black dragon go fly.");
             animator.SetBool("goFly", true);
-        }
-
-        if (curTime > nextTime)
-        {
-            nextTime += 0.1f;
-            preDir = curDir;
+            flag = true;
         }
 
         if (Boss.goAttack)

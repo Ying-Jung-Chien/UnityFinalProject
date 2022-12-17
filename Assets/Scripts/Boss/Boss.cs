@@ -82,19 +82,22 @@ public class Boss : MonoBehaviour
 
         if(timeStop)
         {
+            Debug.Log("Boss.cs Update timeStop");
             transform.position = curPos;
             gameObject.GetComponent<Animator>().enabled = false;
             return;
         }
+
         if(turnOffTimeStop)
         {
+            Debug.Log("Boss.cs Update turnOffTimeStop");
             turnOffTimeStop = false;
             gameObject.GetComponent<Animator>().enabled = true;
         }
-        
 
         if (goFly)
         {
+            Debug.Log("Boss.cs Update goFly");
             goFly = false;
             justStartFlying = true;
             float steps = Time.deltaTime * transitionSpead;
@@ -107,6 +110,7 @@ public class Boss : MonoBehaviour
 
         if (attackCounter == attackRandomNum)
         {
+            Debug.Log("Boss.cs Update attackCounter == attackRandonNum");
             //Debug.Log("attackCounter == attackRandomNum = " + attackCounter);
             dashToPlayer = true;
             dampTime = 1;
@@ -117,6 +121,7 @@ public class Boss : MonoBehaviour
 
         if (spiralTrigger && spiralCounter > -1)
         {
+            Debug.Log("Boss.cs Update 'spiralTrigger && spiralCounter > -1'");
             targetPos = spiral[spiralCounter].transform.position;
             if (justStartFlying)
             {
@@ -132,6 +137,7 @@ public class Boss : MonoBehaviour
 
         if (smoothToTarget)
         {
+            Debug.Log("Boss.cs Update smoothToTarget");
             if (dashToPlayer)
             {
                 if (Vector3.Distance(transform.position, targetPos) <= 5 && Vector3.Distance(transform.position, targetPos) > 2)
@@ -144,13 +150,18 @@ public class Boss : MonoBehaviour
                     //Debug.Log("face to init pos");
                     goAttack = false;
                     Init();
-                    transform.rotation = Quaternion.LookRotation(Vector3.RotateTowards(transform.forward, initPos - transform.position, Time.deltaTime * rotateSpeed, 0.0F));
-                    if (Vector3.Distance(transform.forward, (initPos - transform.position) / Vector3.Distance(initPos, transform.position)) <= 1)
+                    Vector3 horizon = new Vector3(transform.forward.x, 0, transform.forward.z);
+                    transform.rotation = Quaternion.LookRotation(Vector3.RotateTowards(transform.forward, horizon, Time.deltaTime * rotateSpeed, 0.0F));
+                    if (Vector3.Distance(transform.forward, horizon / Vector3.Distance(horizon, Vector3.zero)) <= 1)
                     {
-                        dampTime = 3;
-                        targetPos = initPos;
-                        dashToPlayer = false;
-                        backToInitPos = true;
+                        transform.rotation = Quaternion.LookRotation(Vector3.RotateTowards(transform.forward, initPos - transform.position, Time.deltaTime * rotateSpeed, 0.0F));
+                        if (Vector3.Distance(transform.forward, (initPos - transform.position) / Vector3.Distance(initPos, transform.position)) <= 1)
+                        {
+                            dampTime = 3;
+                            targetPos = initPos;
+                            dashToPlayer = false;
+                            backToInitPos = true;
+                        }
                     }
                 }
                 else
@@ -172,7 +183,8 @@ public class Boss : MonoBehaviour
                     if (Vector3.Distance(transform.forward, initDir) <= 0.1)
                     {
                         backToInitPos = false;
-                        goFly = true;
+                        smoothToTarget = false;
+                        Invoke("GoFly", 5);
                     }
                 }
                 else
@@ -199,5 +211,11 @@ public class Boss : MonoBehaviour
                 spiralTrigger = true;
             }
         }
+    }
+
+    void GoFly()
+    {
+        //Debug.Log("gofly");
+        goFly = true;
     }
 }
