@@ -11,11 +11,14 @@ public class LightsControl : MonoBehaviour
     public AudioClip scream;
     public float volume=0.5f;
     public Canvas DarkCanvas;
+
+    public bool StopLight;
     // Start is called before the first frame update
     void Start()
     {
         StartCoroutine(ExampleCoroutine());
         DarkCanvas.enabled = false;
+        StopLight = false;
     }
 
     // Update is called once per frame
@@ -23,6 +26,10 @@ public class LightsControl : MonoBehaviour
     {
         
         
+    }
+
+    public void SetStopLight(){
+        StopLight = true;
     }
     
      IEnumerator ExampleCoroutine()
@@ -40,17 +47,23 @@ public class LightsControl : MonoBehaviour
 
         for(int i=0;i<4;i++){
             yield return new WaitForSeconds(10f);
-            GameObject candle_child = candle.transform.GetChild(i).GetChild(0).gameObject;
+            if(!StopLight){
+                GameObject candle_child = candle.transform.GetChild(i).GetChild(0).gameObject;
             
-            Light lightComp = candle_child.transform.GetChild(0).GetComponent<Light>();
-            lightComp.enabled = false;
-            Renderer rend = candle_child.GetComponent<Renderer> ();
-            candle_child.GetComponent<MeshRenderer>().material.DisableKeyword("_EMISSION");
+                Light lightComp = candle_child.transform.GetChild(0).GetComponent<Light>();
+                lightComp.enabled = false;
+                Renderer rend = candle_child.GetComponent<Renderer> ();
+                candle_child.GetComponent<MeshRenderer>().material.DisableKeyword("_EMISSION");
+            }
+            
             
         }
-        DarkCanvas.enabled = true;
-        yield return new WaitForSeconds(2);
-        audioSource.PlayOneShot(scream, volume);
+        if(!StopLight){
+             DarkCanvas.enabled = true;
+            yield return new WaitForSeconds(2);
+            audioSource.PlayOneShot(scream, volume);
+        }
+       
        
     }
 }

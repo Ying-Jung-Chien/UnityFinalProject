@@ -119,7 +119,7 @@ public class Puzzle : MonoBehaviour
         if(master.transform.localPosition.y < 0.78f && master.transform.localPosition.x > -0.61f && master.transform.localPosition.x < 0.61f){
             wallsquish.GetComponent<WallSquish>().SetSolved();
             Door.GetComponent<DoorAOpen>().SetCanOpen();
-            this.gameObject.SetActive(false);
+            this.gameObject.transform.parent.gameObject.SetActive(false);
         }
         if(Input.GetMouseButtonDown(0)){
             Ray ray = camera_m.ScreenPointToRay(Input.mousePosition);
