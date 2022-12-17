@@ -23,7 +23,7 @@ public class break_door : MonoBehaviour
     {
         if (door_open == true)
         {
-            if (R_door.transform.eulerAngles.y > -113.1f) { R_door.transform.Rotate(0, -1, 0); }
+            if (R_door.transform.eulerAngles.y > 246.9f || R_door.transform.eulerAngles.y == 0) { R_door.transform.Rotate(0, -1, 0);  Debug.Log(R_door.transform.eulerAngles.y); }
             if (L_door.transform.eulerAngles.y < 98.9f) { L_door.transform.Rotate(0, 1, 0); }
 
         }

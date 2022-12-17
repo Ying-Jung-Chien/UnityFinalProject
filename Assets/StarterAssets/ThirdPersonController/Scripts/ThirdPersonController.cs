@@ -174,17 +174,17 @@ public class ThirdPersonController : MonoBehaviour
         GroundedCheck();
         Move();
         Attack();
-
+        CameraRotation();
         if (Time.time - startTime > 10.0f)
         {
             shield.SetActive(false);
         }
     }
 
-    private void LateUpdate()
-    {
-        CameraRotation();
-    }
+    //private void LateUpdate()
+    //{
+    //    CameraRotation();
+    //}
 
     private void AssignAnimationIDs()
     {
