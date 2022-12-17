@@ -22,7 +22,7 @@ public class ImpactReceiver : MonoBehaviour
     {
         // apply the impact force:
         if (impact.magnitude > 2F) character.Move(impact * Time.deltaTime);
-        else GetComponent<ThirdPersonController>().enabled = true;
+        //else GetComponent<ThirdPersonController>().enabled = true;
         // consumes the impact energy each cycle:
         impact = Vector3.Lerp(impact, Vector3.zero, 5 * Time.deltaTime);
     }
@@ -32,7 +32,7 @@ public class ImpactReceiver : MonoBehaviour
         dir.Normalize();
         //if (dir.y < 0) dir.y = -dir.y; // reflect down force on the ground
         impact += dir.normalized * force / mass;
-        GetComponent<ThirdPersonController>().enabled = false;
+        //GetComponent<ThirdPersonController>().enabled = false;
     }
 
 }

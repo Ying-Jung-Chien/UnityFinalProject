@@ -150,7 +150,7 @@ public class Boss : MonoBehaviour
                         fireBallRandomNum = 0;
                     }
                     else
-                        nextFireBallTime = Time.time + 0.05f;
+                        nextFireBallTime = Time.time + 0.1f;
                     GameObject fireball = Instantiate(bossFireBall, blackDragonHeadFront.transform.position, Quaternion.LookRotation(blackDragonHeadFront.transform.position - blackDragonHead.transform.position));
                     fireball.GetComponent<BossFireBallController>().Init(blackDragonHead.transform.position, blackDragonHeadFront.transform.position, player.transform.position);
                     curFireBallNum++;
@@ -172,8 +172,7 @@ public class Boss : MonoBehaviour
                 dampTime = _dampTime;
             spiralTrigger = false;
             attackCounter++;
-            if (spiralCounter > 0)
-                canFireBall = true;
+            canFireBall = true;
         }
 
         if (smoothToTarget)
