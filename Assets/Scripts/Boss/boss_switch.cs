@@ -9,6 +9,7 @@ public class boss_switch : MonoBehaviour
     public GameObject black;
     public GameObject close;
     public AudioClip sound;
+    public AudioClip dragon;
     public AudioSource audioPlayer;
     // Start is called before the first frame update
     void Start()
@@ -39,6 +40,7 @@ public class boss_switch : MonoBehaviour
     IEnumerator ExampleCoroutine()
     {
         yield return new WaitForSeconds(2);
+        audioPlayer.PlayOneShot(dragon);
         Destroy(black);
     }
 }
