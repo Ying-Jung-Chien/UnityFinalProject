@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class boss_switch : MonoBehaviour
 {
+    public GameObject Boss;
     // Start is called before the first frame update
     void Start()
     {
@@ -20,6 +21,7 @@ public class boss_switch : MonoBehaviour
     {
         if(other.tag == "Player")
         {
+            Boss.SetActive(true);
             Debug.Log("switch open");
         }
     }
