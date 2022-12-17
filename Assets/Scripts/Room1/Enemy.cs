@@ -50,8 +50,9 @@ public class Enemy : MonoBehaviour
     private Vector3 previous;
     private float velocity;
 
-    public PlayerController player_control;
+   
     public LayerMask playerLayer;
+    public GameObject Door;
     void Awake()
     {
         player_trans = GameObject.Find("Player").transform;
@@ -150,9 +151,10 @@ public class Enemy : MonoBehaviour
 			// }
             ///End of attack code
             anim.SetTrigger("Attack");
-			Invoke(nameof(AttackingStart), timeAttacking);
-			Invoke(nameof(AttackingStop), 1+timeAttacking);
+            AttackingStart();
             alreadyAttacked = true;
+			Invoke(nameof(AttackingStop), timeAttacking);
+            
             Invoke(nameof(ResetAttack), timeBetweenAttacks);
         }
         
@@ -165,17 +167,16 @@ public class Enemy : MonoBehaviour
 	 private void AttackingStart()
     {
         Attacking = true;
-        
-        bool playerInAttackRange = Physics.CheckSphere(transform.position, attackRange, playerLayer);
-        if (playerInAttackRange ) {
-            DontDestroyVariable.PlayerHealth -= 5.0f;
-            PlayerController.isDamaging = true;
-        }
 
     }
 	 private void AttackingStop()
     {
         Attacking = false;
+        bool playerInAttackRange = Physics.CheckSphere(transform.position, attackRange, playerLayer);
+        if (playerInAttackRange ) {
+            DontDestroyVariable.PlayerHealth -= 5.0f;
+            PlayerController.isDamaging = true;
+        }
     }
 
 	 private void ResetAttack()
@@ -192,6 +193,7 @@ public class Enemy : MonoBehaviour
         if (health <= 0){
 			enemydead = true;
 			anim.SetTrigger("Dead");
+            Door.GetComponent<OpenDoor>().SetDefeat();
 			Invoke(nameof(DestroyEnemy), 2f);
 		}
     }
