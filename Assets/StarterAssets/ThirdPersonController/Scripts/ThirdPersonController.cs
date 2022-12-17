@@ -124,6 +124,8 @@ public class ThirdPersonController : MonoBehaviour
     public AudioClip bgmshield;
     public AudioClip attack;
 
+    private bool CameraRotation_status = true;
+
     private bool IsCurrentDeviceMouse
     {
         get
@@ -174,17 +176,46 @@ public class ThirdPersonController : MonoBehaviour
         GroundedCheck();
         Move();
         Attack();
-        CameraRotation();
+        CursorVisible();
+        SearchMode();
         if (Time.time - startTime > 10.0f)
         {
             shield.SetActive(false);
         }
     }
 
-    //private void LateUpdate()
-    //{
-    //    CameraRotation();
-    //}
+    void CursorVisible()
+    {
+        if (Input.GetMouseButtonDown(1))
+        {
+            // Cursor.visible = Cursor.visible ? false : true;
+            Cursor.visible = true;
+        }
+        else if (Input.GetMouseButtonDown(0) && Cursor.visible)
+        {
+            Cursor.visible = false;
+        }
+
+    }
+    void SearchMode()
+    {
+        if (Input.GetMouseButtonDown(1) && Cursor.visible)
+        {
+            CameraRotation_status = false;
+        }
+        else if (Input.GetMouseButtonUp(1) && Cursor.visible)
+        {
+            CameraRotation_status = true;
+        }
+    }
+
+    private void LateUpdate()
+    {
+        if (CameraRotation_status)
+        {
+            CameraRotation();
+        }
+    }
 
     private void AssignAnimationIDs()
     {
