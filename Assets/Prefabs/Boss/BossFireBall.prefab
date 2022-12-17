@@ -4968,8 +4968,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4269ab89392ab4dae856a3d6f6c7e687, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  traceDelay: 1
-  speed: 15
+  traceDelay: 0.5
+  speed: 10
 --- !u!1 &7160276841228878941
 GameObject:
   m_ObjectHideFlags: 0

@@ -8,7 +8,7 @@ public class BossFireBallController : MonoBehaviour
     //public GameObject blackDragonHead;
     //public GameObject blackDragonHead_front;
     //public GameObject player;
-    public float traceDelay = 5.0f;
+    public float traceDelay = 0.5f;
     public float speed = 5.0f;
 
     public static Vector3 _blackDragonHead_pos;
@@ -47,11 +47,11 @@ public class BossFireBallController : MonoBehaviour
 
         if(curTime >= nextTime)
         {
-            nextTime = curTime + 0.2f;
+            nextTime = curTime + 0.1f;
 
             if(curTime >= changeDirTime)
             {
-                transform.rotation = Quaternion.LookRotation(Vector3.RotateTowards(transform.forward, _player_pos - transform.position, Time.deltaTime * 5, 0.0F));
+                transform.rotation = Quaternion.LookRotation(Vector3.RotateTowards(transform.forward, _player_pos - transform.position, Time.deltaTime * 10, 0.0F));
             }
         }
         transform.Translate(Vector3.forward * speed * Time.deltaTime, Space.Self);
