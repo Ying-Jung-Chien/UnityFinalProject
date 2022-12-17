@@ -13,8 +13,9 @@ public class manager : MonoBehaviour
     public GameObject slotGrid;
     public slot slotPrefab;
     public TextMeshProUGUI itemInfo;
-    public inventory playerInventory;
-    
+    public item item1;
+    public item item2;
+
     private int check = 0;
 
     void Awake()
@@ -27,6 +28,32 @@ public class manager : MonoBehaviour
     {
         //ReflashItem();
     }*/
+
+    void Start()
+    {
+        StartCoroutine(ExampleCoroutine());
+    }
+
+    IEnumerator ExampleCoroutine()
+    {
+        yield return new WaitForSeconds(0.5f);
+        AddNewItem(item1);
+        AddNewItem(item2);
+    }
+
+    public void AddNewItem(item item)
+    {
+        if (!mybag.itemList.Contains(item))
+        {
+            mybag.itemList.Add(item);
+        }
+        else
+        {
+            item.itemHeld += 1;
+        }
+        manager.ReflashItem();
+    }
+
     void Update()
     {
         if(check == 0)
@@ -157,6 +184,45 @@ public class manager : MonoBehaviour
                         instance.mybag.itemList[i].itemHeld -= 1;
                     }
                 }
+                else if (k == 16)
+                {
+                    if (instance.mybag.itemList[i].name == "water")
+                    {
+                        DontDestroyVariable.useWater = true;
+                    }
+                }
+                else if (k == 17)
+                {
+                    if (instance.mybag.itemList[i].name == "brush")
+                    {
+                        DontDestroyVariable.useInk = true;
+                        instance.mybag.itemList[i].itemHeld -= 1;
+                    }
+                }
+                else if (k == 18)
+                {
+                    if (instance.mybag.itemList[i].name == "brush1")
+                    {
+                        DontDestroyVariable.useBrush = true;
+                        instance.mybag.itemList[i].itemHeld -= 1;
+                    }
+                }
+                else if (k == 19)
+                {
+                    if (instance.mybag.itemList[i].name == "chess1")
+                    {
+                        DontDestroyVariable.useChess = true;
+                        instance.mybag.itemList[i].itemHeld -= 1;
+                    }
+                }
+                else if (k == 20)
+                {
+                    if (instance.mybag.itemList[i].name == "key2")
+                    {
+                        DontDestroyVariable.useDoor3 = true;
+                        instance.mybag.itemList[i].itemHeld -= 1;
+                    }
+                }
 
                 if (instance.mybag.itemList[i].itemHeld == 0)
                 {
@@ -187,6 +253,10 @@ public class manager : MonoBehaviour
             else if (item.name == "nine")
             {
                 passwordshow.stoneshow = true;
+            }
+            else if (item.name == "chess")
+            {
+                passwordshow.chessshow = true;
             }
         }
         for (int i = 0; i < instance.mybag.itemList.Count; i++)

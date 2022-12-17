@@ -40,6 +40,7 @@ public class mouse1 : MonoBehaviour, IPointerClickHandler
         passwordshow.eightshow = false;
         passwordshow.problemshow = false;
         passwordshow.stoneshow = false;
+        passwordshow.chessshow = false;
         if (show1 != null) show1.SetActive(true);
         if (show2 != null) show2.SetActive(true);
         if (close1 != null) close1.SetActive(false);

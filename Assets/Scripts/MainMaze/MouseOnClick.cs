@@ -11,7 +11,8 @@ public class MouseOnClick : MonoBehaviour
     public inventory playerInventory;
 
     public GameObject alertui;
-    
+    public GameObject alertui1;
+
     public AudioClip getevent;
     public AudioSource audioPlayer;
 
@@ -67,7 +68,11 @@ public class MouseOnClick : MonoBehaviour
                     } else if (gameObject.name == "Door2" && DontDestroyVariable.useDoor2 == false) {
                         audioPlayer.PlayOneShot(getevent);
                         alertui.SetActive(true);
-                    } else if (gameObject.name == "brazier" && DontDestroyVariable.useBrazier == false) {
+                    } else if (gameObject.name == "Door3" && DontDestroyVariable.useDoor3 == false) {
+                        audioPlayer.PlayOneShot(getevent);
+                        alertui.SetActive(true);
+                    }
+                    else if (gameObject.name == "brazier" && DontDestroyVariable.useBrazier == false) {
                         manager.UpdateItemUse(14);
                         if(DontDestroyVariable.useBrazier == true)
                         {
@@ -86,16 +91,33 @@ public class MouseOnClick : MonoBehaviour
                         audioPlayer.PlayOneShot(getevent);
                         alertui.SetActive(true);
                     } else if (gameObject.name == "HiddenPiece") {
-                        // TODO
+                        audioPlayer.PlayOneShot(getevent);
+                        alertui.SetActive(true);
+                        AddNewItem(thisitem);
                         DontDestroyVariable.getPiece = true;
                         Destroy(gameObject);
                     } else if (gameObject.name == "LP_Up_Stand") {
-                        // TODO
+                        audioPlayer.PlayOneShot(getevent);
+                        alertui.SetActive(true);
+                        AddNewItem(thisitem);
                         Destroy(GameObject.Find("LP_Brush"));
                         Destroy(GameObject.Find("LP_Handle"));
                         Destroy(GameObject.Find("LP_Head"));
                         Destroy(GameObject.Find("LP_Ring"));
                         Destroy(GameObject.Find("LP_Threat"));
+                    } else if (gameObject.name == "Cube_2" && DontDestroyVariable.useInk == false) {
+                        audioPlayer.PlayOneShot(getevent);
+                        if (DontDestroyVariable.useWater == true)
+                        {
+                            alertui1.SetActive(true);
+                        }
+                        else
+                        {
+                            alertui.SetActive(true);
+                        }
+                    } else if (gameObject.name == "GoBoard" && DontDestroyVariable.useBoard == false) {
+                        audioPlayer.PlayOneShot(getevent);
+                        alertui.SetActive(true);
                     }
                     else
                     {
