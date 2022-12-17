@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.UI;
-using ThirdPersonController;
+
 public class Enemy : MonoBehaviour
 {
     public AudioClip attack;
@@ -50,6 +50,8 @@ public class Enemy : MonoBehaviour
     private Vector3 previous;
     private float velocity;
 
+    public PlayerController player_control;
+    public LayerMask playerLayer;
     void Awake()
     {
         player_trans = GameObject.Find("Player").transform;
@@ -163,6 +165,13 @@ public class Enemy : MonoBehaviour
 	 private void AttackingStart()
     {
         Attacking = true;
+        
+        bool playerInAttackRange = Physics.CheckSphere(transform.position, attackRange, playerLayer);
+        if (playerInAttackRange ) {
+            DontDestroyVariable.PlayerHealth -= 5.0f;
+            PlayerController.isDamaging = true;
+        }
+
     }
 	 private void AttackingStop()
     {
@@ -193,10 +202,7 @@ public class Enemy : MonoBehaviour
     }
 
     private void OnTriggerEnter(Collider other){
-        print("enter trigger");
-        print(other.name);
-        if(other.name == "Sword_2_Long" && ThirdPersonController.PlayerController.isAttacking){
-            print("takedamage");
+        if(other.name == "Sword_2_Long" && PlayerController.isAttacking){
             TakeDamage(1);
         }
     }
