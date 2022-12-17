@@ -6,6 +6,9 @@ public class break_door : MonoBehaviour
 {
     public GameObject R_door;
     public GameObject L_door;
+    public AudioClip sound;
+    public AudioSource audioPlayer;
+
 
     private bool door_open = false;
     // Start is called before the first frame update
@@ -29,6 +32,7 @@ public class break_door : MonoBehaviour
     {
         if(other.tag == "door")
         {
+            audioPlayer.PlayOneShot(sound);
             door_open = true;
         }
     }

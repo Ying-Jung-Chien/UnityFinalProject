@@ -10,6 +10,9 @@ public class trap_ball : MonoBehaviour
     public GameObject target_obj;    //目標物件
     private float start_time;
 
+    public AudioClip sound;
+    public AudioSource audioPlayer;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -35,6 +38,7 @@ public class trap_ball : MonoBehaviour
     {
         if(other.tag == "Player")
         {
+            audioPlayer.PlayOneShot(sound);
             agent.enabled = false;
             Destroy(gameObject);
         }

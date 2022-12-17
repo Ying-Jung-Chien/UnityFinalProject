@@ -5,6 +5,11 @@ using UnityEngine;
 public class boss_switch : MonoBehaviour
 {
     public GameObject Boss;
+    public GameObject Bossblood;
+    public GameObject black;
+    public GameObject close;
+    public AudioClip sound;
+    public AudioSource audioPlayer;
     // Start is called before the first frame update
     void Start()
     {
@@ -22,7 +27,18 @@ public class boss_switch : MonoBehaviour
         if(other.tag == "Player")
         {
             Boss.SetActive(true);
+            Bossblood.SetActive(true);
+            black.SetActive(true);
+            close.SetActive(false);
             Debug.Log("switch open");
+            audioPlayer.PlayOneShot(sound);
+            StartCoroutine(ExampleCoroutine());
         }
+    }
+
+    IEnumerator ExampleCoroutine()
+    {
+        yield return new WaitForSeconds(2);
+        Destroy(black);
     }
 }
