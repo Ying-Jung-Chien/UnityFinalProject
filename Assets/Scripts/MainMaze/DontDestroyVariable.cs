@@ -23,6 +23,11 @@ public class DontDestroyVariable : MonoBehaviour
     public static bool useDoor3 = false;
     public static bool useBox1 = false;
     public static bool useBox2 = false;
+    public static bool useWater = false;
+    public static bool useInk = false;
+    public static bool useBrush = false;
+    public static bool useChess = false;
+    public static bool useBoard = false;
 
     // Start is called before the first frame update
     void Start()

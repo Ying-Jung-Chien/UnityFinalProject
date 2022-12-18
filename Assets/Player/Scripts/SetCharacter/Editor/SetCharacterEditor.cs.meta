@@ -1,4 +1,3 @@
-<<<<<<< HEAD:Assets/Player/Scripts/SetCharacter/Editor/SetCharacterEditor.cs.meta
 fileFormatVersion: 2
 guid: fd027a1f114b03f468aea62fef4cf034
 timeCreated: 1573240657
@@ -12,16 +11,3 @@ MonoImporter:
   userData: 
   assetBundleName: 
   assetBundleVariant: 
-=======
-fileFormatVersion: 2
-guid: a672678b43d60c542ad9d861eba67c99
-MonoImporter:
-  externalObjects: {}
-  serializedVersion: 2
-  defaultReferences: []
-  executionOrder: 0
-  icon: {instanceID: 0}
-  userData: 
-  assetBundleName: 
-  assetBundleVariant: 
->>>>>>> c7fa3ea4 (boss 場景 ＆ Time control v0):Library/PackageCache/com.unity.editorcoroutines@1.0.0/Editor/EditorCoroutineUtility.cs.meta

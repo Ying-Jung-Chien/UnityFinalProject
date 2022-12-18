@@ -14,6 +14,8 @@ public class PlayerController : MonoBehaviour
     [Header("Player Grounded")]
     public bool Grounded = true;
     public float GroundedOffset = 0.1f;
+    [Tooltip("The radius of the grounded check. Should match the radius of the CharacterController")]
+    public float GroundedRadius = 0.3f;
     public LayerMask GroundLayers;
     [Header("Cinemachine")]
     public GameObject CinemachineCameraTarget;
@@ -97,7 +99,12 @@ public class PlayerController : MonoBehaviour
 
     private void GroundedCheck()
     {
-        Grounded = Physics.Raycast(transform.position, -Vector3.up,  GroundedOffset);  
+        // Grounded = Physics.Raycast(transform.position, -Vector3.up,  GroundedOffset);
+        // set sphere position, with offset
+        Vector3 spherePosition = new Vector3(transform.position.x, transform.position.y - GroundedOffset,
+            transform.position.z);
+        Grounded = Physics.CheckSphere(spherePosition, GroundedRadius, GroundLayers,
+            QueryTriggerInteraction.Ignore);
     }
 
     private void CameraRotation()

@@ -28,7 +28,7 @@ public class mousepass2 : MonoBehaviour, IPointerClickHandler
 
     private void ButtonRightClick()
     {
-        if (north.northA == 0 && north.northB == 1 && north.northC == 3 && north.northD == 4 && north.northE == 2)
+        if (north.northA == 3 && north.northB == 0 && north.northC == 2 && north.northD == 4 && north.northE == 1)
         {
             audioPlayer.PlayOneShot(good);
             north.wrong3 = 2;
