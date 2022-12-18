@@ -3,19 +3,32 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Boss
+  - CinemachineTarget
+  - remark
+  - blue
+  - blood
+  - button
+  - enemy
+  - door
+  - square
+  - LargeSquare
+  - rect
+  - board
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Ground
   - Water
   - UI
-  - 
-  - 
-  - 
   - Player
-  - ground
+  - 
+  - 
+  - 
+  - 
+  - 
   - 
   - 
   - 

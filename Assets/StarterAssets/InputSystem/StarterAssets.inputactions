@@ -42,10 +42,10 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Test1",
-                    "type": "Button",
+                    "name": "Attack",
+                    "type": "PassThrough",
                     "id": "c02a012e-25c7-41b2-8da1-dc9584dbafe4",
-                    "expectedControlType": "Button",
+                    "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
@@ -258,11 +258,11 @@
                 {
                     "name": "",
                     "id": "970c3a45-0984-4432-a965-84ca66f508e6",
-                    "path": "<Keyboard>/q",
+                    "path": "<Mouse>/leftButton",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
-                    "action": "Test1",
+                    "groups": "KeyboardMouse",
+                    "action": "Attack",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
