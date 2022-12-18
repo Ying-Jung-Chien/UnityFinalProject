@@ -74,29 +74,42 @@ public class Enemy : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(begining){
-            if(coffin.GetComponent<CoffinAnimation>().IsOpen){
-                anim.SetTrigger("SitUp");
+        if(!enemydead){
+            if(begining){
+                if(coffin.GetComponent<CoffinAnimation>().IsOpen){
+                    anim.SetTrigger("SitUp");
+                }
+                if(anim.GetCurrentAnimatorStateInfo(0).IsName("Stand")){
+                    anim.applyRootMotion = true;
+                    begining = false;
+                }
             }
-             if(anim.GetCurrentAnimatorStateInfo(0).IsName("Stand")){
-                anim.applyRootMotion = true;
-                begining = false;
-             }
-        }
-        else{
-            velocity = ((transform.position - previous).magnitude) / Time.deltaTime;
-            previous = transform.position;
- 
-            anim.SetFloat("Velocity",velocity);
+            else{
+                velocity = ((transform.position - previous).magnitude) / Time.deltaTime;
+                previous = transform.position;
+    
+                anim.SetFloat("Velocity",velocity);
+                
+                playerInSightRange = Physics.CheckSphere(transform.position, sightRange, Player);
+                playerInAttackRange = Physics.CheckSphere(transform.position, attackRange, Player);
             
-            playerInSightRange = Physics.CheckSphere(transform.position, sightRange, Player);
-            playerInAttackRange = Physics.CheckSphere(transform.position, attackRange, Player);
-           
-            if (playerInSightRange && !playerInAttackRange) ChasePlayer();
-            if (playerInAttackRange && playerInSightRange) AttackPlayer();
+                if (playerInSightRange && !playerInAttackRange) ChasePlayer();
+                if (playerInAttackRange && playerInSightRange) AttackPlayer();
+            }
         }
-
         
+
+        if (Input.GetMouseButtonDown(1) && enemydead){
+            Ray ray = Camera.main.ScreenPointToRay (Input.mousePosition);
+            foreach(RaycastHit hit in Physics.RaycastAll (ray))
+            {
+                if (hit.collider == this.transform.GetChild(2).GetComponent<Collider>())
+                {
+                    print("hitdead");
+                    break;
+                }
+            }
+        }
     }
 
     void ChasePlayer()
@@ -194,7 +207,7 @@ public class Enemy : MonoBehaviour
 			enemydead = true;
 			anim.SetTrigger("Dead");
             Door.GetComponent<OpenDoor>().SetDefeat();
-			Invoke(nameof(DestroyEnemy), 2f);
+			// Invoke(nameof(DestroyEnemy), 2f);
 		}
     }
     private void DestroyEnemy()
