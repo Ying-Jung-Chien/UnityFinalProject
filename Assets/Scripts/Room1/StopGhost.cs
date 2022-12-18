@@ -5,6 +5,10 @@ using UnityEngine;
 public class StopGhost : MonoBehaviour
 {
     public GameObject lightcontrol;
+    public GameObject alertui;
+
+    public AudioClip click;
+    public AudioSource audioPlayer;
     // Start is called before the first frame update
     void Start()
     {
@@ -21,6 +25,8 @@ public class StopGhost : MonoBehaviour
             {
                 if (hit.collider == GetComponent<Collider>())
                 {
+                    alertui.SetActive(true);
+                    audioPlayer.PlayOneShot(click);
                     lightcontrol.GetComponent<LightsControl>().SetStopLight();
                 }
             }
