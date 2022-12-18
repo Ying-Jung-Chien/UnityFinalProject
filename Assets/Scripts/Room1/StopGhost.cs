@@ -5,7 +5,6 @@ using UnityEngine;
 public class StopGhost : MonoBehaviour
 {
     public GameObject lightcontrol;
-    public GameObject Door;
     // Start is called before the first frame update
     void Start()
     {
@@ -23,7 +22,6 @@ public class StopGhost : MonoBehaviour
                 if (hit.collider == GetComponent<Collider>())
                 {
                     lightcontrol.GetComponent<LightsControl>().SetStopLight();
-                    Door.GetComponent<DoorAOpen>().SetCanOpen();
                 }
             }
         }

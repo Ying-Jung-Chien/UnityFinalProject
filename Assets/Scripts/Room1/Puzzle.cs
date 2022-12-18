@@ -18,6 +18,7 @@ public class Puzzle : MonoBehaviour
     {
         
         square_size = 1.22f;
+        
     }
 
     public void ButtonUp(){

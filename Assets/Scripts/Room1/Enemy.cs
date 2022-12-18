@@ -53,7 +53,6 @@ public class Enemy : MonoBehaviour
    
     public LayerMask playerLayer;
     public GameObject Door;
-    public float attackDistance = 0.5f;
     void Awake()
     {
         player_trans = GameObject.Find("Player").transform;
@@ -97,11 +96,6 @@ public class Enemy : MonoBehaviour
                 if (playerInSightRange && !playerInAttackRange) ChasePlayer();
                 if (playerInAttackRange && playerInSightRange) AttackPlayer();
             }
-            
-             if(PlayerController.isAttacking && Physics.CheckSphere(transform.position, 3, playerLayer)){
-           
-            TakeDamage(1);
-            }
         }
         
 
@@ -116,7 +110,6 @@ public class Enemy : MonoBehaviour
                 }
             }
         }
-
     }
 
     void ChasePlayer()
@@ -224,9 +217,7 @@ public class Enemy : MonoBehaviour
     }
 
     private void OnTriggerEnter(Collider other){
-        // if(other.name == "Sword_2_Long" && PlayerController.isAttacking){
-        if(PlayerController.isAttacking && Physics.CheckSphere(transform.position, attackDistance, playerLayer)){
-            print("damage");
+        if(other.name == "Sword_2_Long" && PlayerController.isAttacking){
             TakeDamage(1);
         }
     }
