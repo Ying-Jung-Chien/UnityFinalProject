@@ -121,7 +121,7 @@ public class Puzzle : MonoBehaviour
             Door.GetComponent<DoorAOpen>().SetCanOpen();
             this.gameObject.transform.parent.gameObject.SetActive(false);
         }
-        if(Input.GetMouseButtonDown(0)){
+        if(Input.GetMouseButtonDown(1)){
             Ray ray = camera_m.ScreenPointToRay(Input.mousePosition);
             RaycastHit2D hit = Physics2D.Raycast(ray.origin, ray.direction);
             if(hit){

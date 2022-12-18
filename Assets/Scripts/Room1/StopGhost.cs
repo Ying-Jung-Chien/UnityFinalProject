@@ -14,7 +14,7 @@ public class StopGhost : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(1))
         {
             Ray ray = Camera.main.ScreenPointToRay (Input.mousePosition);
             foreach(RaycastHit hit in Physics.RaycastAll (ray))

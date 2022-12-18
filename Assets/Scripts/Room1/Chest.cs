@@ -24,7 +24,7 @@ public class Chest : MonoBehaviour
     {
        
         bool hovered = false;
-        if (Input.GetMouseButtonDown(0) && !IsOpen){
+        if (Input.GetMouseButtonDown(1) && !IsOpen){
             Ray ray = Camera.main.ScreenPointToRay (Input.mousePosition);
             foreach(RaycastHit hit in Physics.RaycastAll (ray))
             {
