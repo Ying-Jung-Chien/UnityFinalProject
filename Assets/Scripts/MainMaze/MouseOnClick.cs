@@ -30,7 +30,7 @@ public class MouseOnClick : MonoBehaviour
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);  
             RaycastHit hit;  
             if (Physics.Raycast(ray, out hit)) {
-                Debug.Log(hit.transform.name);
+                // Debug.Log(hit.transform.name);
                 if (hit.transform.name == gameObject.name) {
                     if (gameObject.name == "OldGoldKey") {
                         audioPlayer.PlayOneShot(getevent);
