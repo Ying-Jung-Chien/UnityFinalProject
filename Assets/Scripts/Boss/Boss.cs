@@ -13,6 +13,8 @@ public class Boss : MonoBehaviour
     public GameObject[] spiral;
     private int spiralSize;
     public static float Health = 1000;
+    public static float biteAttack = 50f;
+    public static float touchBossAttack = 20f;
     public float transitionSpead = 0.5f;
     public float dampTime = 3f;
     public int attackFreq_UpperBound = 10;
