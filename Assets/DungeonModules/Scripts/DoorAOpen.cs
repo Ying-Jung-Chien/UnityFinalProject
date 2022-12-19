@@ -19,6 +19,7 @@ public class DoorAOpen : MonoBehaviour
     void OnTriggerEnter(Collider other)
     {
         if(CanOpen){
+            if (SceneManager.GetActiveScene().name == "Room2") DontDestroyVariable.passRoom2 = true;
             GetComponent<Animator>().SetTrigger("DoorATrigger");
         }
         

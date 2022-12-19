@@ -30,6 +30,9 @@ public class DontDestroyVariable : MonoBehaviour
     public static bool useChess = false;
     public static bool useBoard = false;
     public static bool firstComingIn = true;
+    public static bool passRoom1 = false;
+    public static bool passRoom2 = false;
+    public static bool passRoom3 = false;
 
     void Awake()
     {
