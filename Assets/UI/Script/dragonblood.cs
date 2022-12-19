@@ -47,7 +47,7 @@ public class dragonblood : MonoBehaviour
 		        }
 	        }
         }*/
-        if (Boss.Health == 0)
+        if (Boss.Health <= 0)
         {
             Boss.Health = 1000.0f;
             win.SetActive(true);
