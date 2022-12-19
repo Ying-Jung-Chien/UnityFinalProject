@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.37311918, g: 0.3807398, b: 0.35872716, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657826, g: 0.49641263, b: 0.57481676, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1023,6 +1023,7 @@ GameObject:
   - component: {fileID: 1005411391}
   - component: {fileID: 1005411390}
   - component: {fileID: 1005411389}
+  - component: {fileID: 1005411392}
   m_Layer: 0
   m_Name: Button
   m_TagString: Untagged
@@ -1071,7 +1072,7 @@ MonoBehaviour:
     m_SelectOnRight: {fileID: 0}
   m_Transition: 1
   m_Colors:
-    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
+    m_NormalColor: {r: 0.3019608, g: 0.3019608, b: 0.3019608, a: 1}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
@@ -1119,7 +1120,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.047169805, g: 0.043906484, b: 0.043906484, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -1144,6 +1145,35 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1005411387}
   m_CullTransparentMesh: 1
+--- !u!114 &1005411392
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1005411387}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 14d6e41c02ce56a41b0489a4560cddf8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rightClick:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1152979415007361125}
+        m_TargetAssemblyTypeName: Puzzle, Assembly-CSharp
+        m_MethodName: ButtonDown
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  click: {fileID: 0}
+  audioPlayer: {fileID: 0}
 --- !u!4 &1030574823 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: 600bd9ed8b5184f4a8233b6472bc387e, type: 3}
@@ -2297,7 +2327,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!223 &1152979413714485608
 Canvas:
   m_ObjectHideFlags: 0
@@ -2544,6 +2574,7 @@ GameObject:
   - component: {fileID: 1152979413804984961}
   - component: {fileID: 1152979413804984974}
   - component: {fileID: 1152979413804984975}
+  - component: {fileID: 1152979413804984976}
   m_Layer: 0
   m_Name: Button (1)
   m_TagString: Untagged
@@ -2564,7 +2595,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.0754717, g: 0.07523437, b: 0.07523437, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -2627,7 +2658,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1152979415007361125}
         m_TargetAssemblyTypeName: Puzzle, Assembly-CSharp
-        m_MethodName: ButtonRight
+        m_MethodName: RectLeft
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2637,6 +2668,35 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &1152979413804984976
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1152979413804984973}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 14d6e41c02ce56a41b0489a4560cddf8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rightClick:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1152979415007361125}
+        m_TargetAssemblyTypeName: Puzzle, Assembly-CSharp
+        m_MethodName: RectRight
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  click: {fileID: 0}
+  audioPlayer: {fileID: 0}
 --- !u!212 &1152979413838972938
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -2741,7 +2801,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1152979413838972939}
   m_LocalRotation: {x: -0, y: -0, z: 0.7071068, w: 0.7071068}
-  m_LocalPosition: {x: -0, y: 4.39, z: -0.1}
+  m_LocalPosition: {x: -0, y: 0.78, z: -0.1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children:
@@ -2770,7 +2830,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.066037714, g: 0.060223073, b: 0.060223073, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -2799,6 +2859,8 @@ GameObject:
   - component: {fileID: 1152979413901960864}
   - component: {fileID: 1152979413901960865}
   - component: {fileID: 1152979413901960878}
+  - component: {fileID: 1152979413901960880}
+  - component: {fileID: 1152979413901960881}
   m_Layer: 0
   m_Name: Button (1)
   m_TagString: Untagged
@@ -2882,6 +2944,64 @@ RectTransform:
   m_AnchoredPosition: {x: 39.9, y: 1.2}
   m_SizeDelta: {x: 23.34, y: 19.99}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1152979413901960880
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1152979413901960876}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 14d6e41c02ce56a41b0489a4560cddf8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rightClick:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1152979415007361121}
+        m_TargetAssemblyTypeName: 
+        m_MethodName: 
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  click: {fileID: 0}
+  audioPlayer: {fileID: 0}
+--- !u!114 &1152979413901960881
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1152979413901960876}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 14d6e41c02ce56a41b0489a4560cddf8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rightClick:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1152979415007361125}
+        m_TargetAssemblyTypeName: Puzzle, Assembly-CSharp
+        m_MethodName: RectUp
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  click: {fileID: 0}
+  audioPlayer: {fileID: 0}
 --- !u!1 &1152979413950280966
 GameObject:
   m_ObjectHideFlags: 0
@@ -2894,6 +3014,7 @@ GameObject:
   - component: {fileID: 1152979413950281018}
   - component: {fileID: 1152979413950281019}
   - component: {fileID: 1152979413950281016}
+  - component: {fileID: 1152979413950281020}
   m_Layer: 0
   m_Name: Button (3)
   m_TagString: Untagged
@@ -2998,7 +3119,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.084905684, g: 0.076628715, b: 0.076628715, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -3015,6 +3136,35 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &1152979413950281020
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1152979413950280966}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 14d6e41c02ce56a41b0489a4560cddf8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rightClick:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1152979415007361125}
+        m_TargetAssemblyTypeName: Puzzle, Assembly-CSharp
+        m_MethodName: RectDown
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  click: {fileID: 0}
+  audioPlayer: {fileID: 0}
 --- !u!114 &1152979414011322256
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3028,7 +3178,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.084905684, g: 0.079031706, b: 0.079031706, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -3141,6 +3291,7 @@ GameObject:
   - component: {fileID: 1152979414011322259}
   - component: {fileID: 1152979414011322256}
   - component: {fileID: 1152979414011322257}
+  - component: {fileID: 1152979414011322272}
   m_Layer: 0
   m_Name: Button (3)
   m_TagString: Untagged
@@ -3148,6 +3299,35 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 0
+--- !u!114 &1152979414011322272
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1152979414011322271}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 14d6e41c02ce56a41b0489a4560cddf8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rightClick:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1152979415007361125}
+        m_TargetAssemblyTypeName: Puzzle, Assembly-CSharp
+        m_MethodName: ButtonLeft
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  click: {fileID: 0}
+  audioPlayer: {fileID: 0}
 --- !u!114 &1152979414069153048
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3245,7 +3425,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.09433961, g: 0.08781297, b: 0.08781297, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -3274,6 +3454,7 @@ GameObject:
   - component: {fileID: 1152979414069153050}
   - component: {fileID: 1152979414069153051}
   - component: {fileID: 1152979414069153048}
+  - component: {fileID: 1152979414069153127}
   m_Layer: 0
   m_Name: Button (1)
   m_TagString: Untagged
@@ -3281,6 +3462,35 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 0
+--- !u!114 &1152979414069153127
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1152979414069153126}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 14d6e41c02ce56a41b0489a4560cddf8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rightClick:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1152979415007361125}
+        m_TargetAssemblyTypeName: Puzzle, Assembly-CSharp
+        m_MethodName: ButtonRight
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  click: {fileID: 0}
+  audioPlayer: {fileID: 0}
 --- !u!1 &1152979414069271946
 GameObject:
   m_ObjectHideFlags: 0
@@ -3397,6 +3607,7 @@ GameObject:
   - component: {fileID: 1152979414122770389}
   - component: {fileID: 1152979414122770386}
   - component: {fileID: 1152979414122770387}
+  - component: {fileID: 1152979414122770390}
   m_Layer: 0
   m_Name: Button (1)
   m_TagString: Untagged
@@ -3417,7 +3628,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.122641504, g: 0.1072149, b: 0.1072149, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -3498,6 +3709,35 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1152979414122770385}
   m_CullTransparentMesh: 1
+--- !u!114 &1152979414122770390
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1152979414122770385}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 14d6e41c02ce56a41b0489a4560cddf8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rightClick:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1152979415007361125}
+        m_TargetAssemblyTypeName: Puzzle, Assembly-CSharp
+        m_MethodName: RectUp
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  click: {fileID: 0}
+  audioPlayer: {fileID: 0}
 --- !u!1 &1152979414194991248
 GameObject:
   m_ObjectHideFlags: 0
@@ -3642,6 +3882,7 @@ GameObject:
   - component: {fileID: 1152979414240423053}
   - component: {fileID: 1152979414240423050}
   - component: {fileID: 1152979414240423051}
+  - component: {fileID: 1152979414240423054}
   m_Layer: 0
   m_Name: Button (1)
   m_TagString: Untagged
@@ -3662,7 +3903,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.047169805, g: 0.043906484, b: 0.043906484, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -3743,6 +3984,35 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1152979414240423049}
   m_CullTransparentMesh: 1
+--- !u!114 &1152979414240423054
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1152979414240423049}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 14d6e41c02ce56a41b0489a4560cddf8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rightClick:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1152979415007361125}
+        m_TargetAssemblyTypeName: Puzzle, Assembly-CSharp
+        m_MethodName: ButtonRight
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  click: {fileID: 0}
+  audioPlayer: {fileID: 0}
 --- !u!61 &1152979414261501032
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -3887,6 +4157,7 @@ GameObject:
   - component: {fileID: 1152979414295677527}
   - component: {fileID: 1152979414295677524}
   - component: {fileID: 1152979414295677525}
+  - component: {fileID: 1152979414295677528}
   m_Layer: 0
   m_Name: Button (3)
   m_TagString: Untagged
@@ -3907,7 +4178,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.066037714, g: 0.06396105, b: 0.06396105, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -3988,6 +4259,35 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1152979414295677523}
   m_CullTransparentMesh: 1
+--- !u!114 &1152979414295677528
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1152979414295677523}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 14d6e41c02ce56a41b0489a4560cddf8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rightClick:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1152979415007361125}
+        m_TargetAssemblyTypeName: Puzzle, Assembly-CSharp
+        m_MethodName: ButtonLeft
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  click: {fileID: 0}
+  audioPlayer: {fileID: 0}
 --- !u!1 &1152979414298649016
 GameObject:
   m_ObjectHideFlags: 0
@@ -4506,6 +4806,7 @@ GameObject:
   - component: {fileID: 1152979414496522072}
   - component: {fileID: 1152979414496522073}
   - component: {fileID: 1152979414496521894}
+  - component: {fileID: 1152979414496522074}
   m_Layer: 0
   m_Name: Button (1)
   m_TagString: Untagged
@@ -4610,7 +4911,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.084905684, g: 0.076628715, b: 0.076628715, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -4627,6 +4928,35 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &1152979414496522074
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1152979414496521892}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 14d6e41c02ce56a41b0489a4560cddf8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rightClick:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1152979415007361125}
+        m_TargetAssemblyTypeName: Puzzle, Assembly-CSharp
+        m_MethodName: RectUp
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  click: {fileID: 0}
+  audioPlayer: {fileID: 0}
 --- !u!1 &1152979414555119434
 GameObject:
   m_ObjectHideFlags: 0
@@ -4969,7 +5299,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1152979414711517410}
   m_LocalRotation: {x: 0, y: -0.0038396239, z: 0, w: 0.99999267}
-  m_LocalPosition: {x: 0.61, y: -0.44, z: -0.1}
+  m_LocalPosition: {x: 0.61, y: 2, z: -0.1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -5009,6 +5339,7 @@ GameObject:
   - component: {fileID: 1152979414763010535}
   - component: {fileID: 1152979414763010532}
   - component: {fileID: 1152979414763010533}
+  - component: {fileID: 1152979414763010536}
   m_Layer: 0
   m_Name: Button (2)
   m_TagString: Untagged
@@ -5029,7 +5360,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.066037714, g: 0.06396105, b: 0.06396105, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -5110,6 +5441,35 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1152979414763010531}
   m_CullTransparentMesh: 1
+--- !u!114 &1152979414763010536
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1152979414763010531}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 14d6e41c02ce56a41b0489a4560cddf8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rightClick:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1152979415007361125}
+        m_TargetAssemblyTypeName: Puzzle, Assembly-CSharp
+        m_MethodName: ButtonUp
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  click: {fileID: 0}
+  audioPlayer: {fileID: 0}
 --- !u!1 &1152979414814641269
 GameObject:
   m_ObjectHideFlags: 0
@@ -5184,7 +5544,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1152979414860257336}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.4, z: -0.1}
+  m_LocalPosition: {x: 0, y: 3.83, z: -0.1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -5309,6 +5669,7 @@ GameObject:
   - component: {fileID: 1152979414875379777}
   - component: {fileID: 1152979414875379790}
   - component: {fileID: 1152979414875379791}
+  - component: {fileID: 1152979414875379792}
   m_Layer: 0
   m_Name: Button
   m_TagString: Untagged
@@ -5329,7 +5690,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.084905684, g: 0.079031706, b: 0.079031706, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -5402,6 +5763,35 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &1152979414875379792
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1152979414875379789}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 14d6e41c02ce56a41b0489a4560cddf8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rightClick:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1152979415007361125}
+        m_TargetAssemblyTypeName: Puzzle, Assembly-CSharp
+        m_MethodName: ButtonDown
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  click: {fileID: 0}
+  audioPlayer: {fileID: 0}
 --- !u!224 &1152979414917012506
 RectTransform:
   m_ObjectHideFlags: 0
@@ -5434,6 +5824,7 @@ GameObject:
   - component: {fileID: 1152979414917012511}
   - component: {fileID: 1152979414917012508}
   - component: {fileID: 1152979414917012509}
+  - component: {fileID: 1152979414917012512}
   m_Layer: 0
   m_Name: Button (3)
   m_TagString: Untagged
@@ -5454,7 +5845,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.047169805, g: 0.043461487, b: 0.043461487, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -5535,6 +5926,35 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1152979414917012507}
   m_CullTransparentMesh: 1
+--- !u!114 &1152979414917012512
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1152979414917012507}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 14d6e41c02ce56a41b0489a4560cddf8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rightClick:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1152979415007361125}
+        m_TargetAssemblyTypeName: Puzzle, Assembly-CSharp
+        m_MethodName: RectDown
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  click: {fileID: 0}
+  audioPlayer: {fileID: 0}
 --- !u!224 &1152979414973164326
 RectTransform:
   m_ObjectHideFlags: 0
@@ -5567,6 +5987,7 @@ GameObject:
   - component: {fileID: 1152979414973164507}
   - component: {fileID: 1152979414973164504}
   - component: {fileID: 1152979414973164505}
+  - component: {fileID: 1152979414973164508}
   m_Layer: 0
   m_Name: Button (3)
   m_TagString: Untagged
@@ -5587,7 +6008,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.0754717, g: 0.07523437, b: 0.07523437, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -5648,9 +6069,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1152979415007361121}
+      - m_Target: {fileID: 1152979415007361125}
         m_TargetAssemblyTypeName: Puzzle, Assembly-CSharp
-        m_MethodName: 
+        m_MethodName: RectRight
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -5668,6 +6089,35 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1152979414973164327}
   m_CullTransparentMesh: 1
+--- !u!114 &1152979414973164508
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1152979414973164327}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 14d6e41c02ce56a41b0489a4560cddf8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rightClick:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1152979415007361125}
+        m_TargetAssemblyTypeName: Puzzle, Assembly-CSharp
+        m_MethodName: RectLeft
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  click: {fileID: 0}
+  audioPlayer: {fileID: 0}
 --- !u!1 &1152979415007361121
 GameObject:
   m_ObjectHideFlags: 0
@@ -5777,6 +6227,7 @@ GameObject:
   - component: {fileID: 1152979415020211980}
   - component: {fileID: 1152979415020211981}
   - component: {fileID: 1152979415020211978}
+  - component: {fileID: 1152979415020211982}
   m_Layer: 0
   m_Name: Button (3)
   m_TagString: Untagged
@@ -5881,7 +6332,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.122641504, g: 0.1072149, b: 0.1072149, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -5898,6 +6349,35 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &1152979415020211982
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1152979415020211976}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 14d6e41c02ce56a41b0489a4560cddf8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rightClick:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1152979415007361125}
+        m_TargetAssemblyTypeName: Puzzle, Assembly-CSharp
+        m_MethodName: RectDown
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  click: {fileID: 0}
+  audioPlayer: {fileID: 0}
 --- !u!114 &1152979415037688400
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5911,7 +6391,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.09433961, g: 0.08781297, b: 0.08781297, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -6024,6 +6504,7 @@ GameObject:
   - component: {fileID: 1152979415037688403}
   - component: {fileID: 1152979415037688400}
   - component: {fileID: 1152979415037688401}
+  - component: {fileID: 1152979415037688416}
   m_Layer: 0
   m_Name: Button (2)
   m_TagString: Untagged
@@ -6031,6 +6512,35 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 0
+--- !u!114 &1152979415037688416
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1152979415037688415}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 14d6e41c02ce56a41b0489a4560cddf8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rightClick:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1152979415007361125}
+        m_TargetAssemblyTypeName: Puzzle, Assembly-CSharp
+        m_MethodName: ButtonUp
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  click: {fileID: 0}
+  audioPlayer: {fileID: 0}
 --- !u!212 &1152979415057440226
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -6135,7 +6645,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1152979415057440227}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.61, y: 3.23, z: -0.1}
+  m_LocalPosition: {x: -0.61, y: -0.44, z: -0.1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -6276,7 +6786,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.066037714, g: 0.060223073, b: 0.060223073, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -6305,6 +6815,8 @@ GameObject:
   - component: {fileID: 1152979415205820568}
   - component: {fileID: 1152979415205820569}
   - component: {fileID: 1152979415205820646}
+  - component: {fileID: 1152979415205820648}
+  - component: {fileID: 1152979415205820649}
   m_Layer: 0
   m_Name: Button (3)
   m_TagString: Untagged
@@ -6388,6 +6900,64 @@ RectTransform:
   m_AnchoredPosition: {x: -38.1, y: 1.2}
   m_SizeDelta: {x: 23.34, y: 19.99}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1152979415205820648
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1152979415205820644}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 14d6e41c02ce56a41b0489a4560cddf8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rightClick:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1152979415007361121}
+        m_TargetAssemblyTypeName: 
+        m_MethodName: 
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  click: {fileID: 0}
+  audioPlayer: {fileID: 0}
+--- !u!114 &1152979415205820649
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1152979415205820644}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 14d6e41c02ce56a41b0489a4560cddf8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rightClick:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1152979415007361125}
+        m_TargetAssemblyTypeName: Puzzle, Assembly-CSharp
+        m_MethodName: RectDown
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  click: {fileID: 0}
+  audioPlayer: {fileID: 0}
 --- !u!61 &1152979415221727728
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -6422,7 +6992,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1152979415221727742}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.61, y: 3.23, z: -0.1}
+  m_LocalPosition: {x: 0.61, y: -0.44, z: -0.1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -6512,6 +7082,7 @@ GameObject:
   - component: {fileID: 1152979415223811532}
   - component: {fileID: 1152979415223811533}
   - component: {fileID: 1152979415223811530}
+  - component: {fileID: 1152979415223811534}
   m_Layer: 0
   m_Name: Button (1)
   m_TagString: Untagged
@@ -6616,7 +7187,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.066037714, g: 0.06396105, b: 0.06396105, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -6633,6 +7204,35 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &1152979415223811534
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1152979415223811528}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 14d6e41c02ce56a41b0489a4560cddf8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rightClick:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1152979415007361125}
+        m_TargetAssemblyTypeName: Puzzle, Assembly-CSharp
+        m_MethodName: ButtonRight
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  click: {fileID: 0}
+  audioPlayer: {fileID: 0}
 --- !u!1 &1152979415249546538
 GameObject:
   m_ObjectHideFlags: 0
@@ -6756,7 +7356,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.09433961, g: 0.08781297, b: 0.08781297, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -6785,6 +7385,7 @@ GameObject:
   - component: {fileID: 1152979415319779632}
   - component: {fileID: 1152979415319779633}
   - component: {fileID: 1152979415319779646}
+  - component: {fileID: 1152979415319779648}
   m_Layer: 0
   m_Name: Button
   m_TagString: Untagged
@@ -6868,6 +7469,35 @@ RectTransform:
   m_AnchoredPosition: {x: -0.4, y: -40.01}
   m_SizeDelta: {x: 23.34, y: 19.99}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1152979415319779648
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1152979415319779644}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 14d6e41c02ce56a41b0489a4560cddf8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rightClick:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1152979415007361125}
+        m_TargetAssemblyTypeName: Puzzle, Assembly-CSharp
+        m_MethodName: ButtonDown
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  click: {fileID: 0}
+  audioPlayer: {fileID: 0}
 --- !u!114 &1152979415333569608
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6881,7 +7511,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.047169805, g: 0.043461487, b: 0.043461487, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -6994,6 +7624,7 @@ GameObject:
   - component: {fileID: 1152979415333569611}
   - component: {fileID: 1152979415333569608}
   - component: {fileID: 1152979415333569609}
+  - component: {fileID: 1152979415333569624}
   m_Layer: 0
   m_Name: Button (1)
   m_TagString: Untagged
@@ -7001,6 +7632,35 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 0
+--- !u!114 &1152979415333569624
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1152979415333569623}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 14d6e41c02ce56a41b0489a4560cddf8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rightClick:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1152979415007361125}
+        m_TargetAssemblyTypeName: Puzzle, Assembly-CSharp
+        m_MethodName: RectUp
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  click: {fileID: 0}
+  audioPlayer: {fileID: 0}
 --- !u!1 &1152979415334502660
 GameObject:
   m_ObjectHideFlags: 0
@@ -7137,6 +7797,7 @@ GameObject:
   - component: {fileID: 1152979415408999965}
   - component: {fileID: 1152979415408999962}
   - component: {fileID: 1152979415408999963}
+  - component: {fileID: 1152979415408999966}
   m_Layer: 0
   m_Name: Button (2)
   m_TagString: Untagged
@@ -7157,7 +7818,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.047169805, g: 0.043906484, b: 0.043906484, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -7238,6 +7899,35 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1152979415408999961}
   m_CullTransparentMesh: 1
+--- !u!114 &1152979415408999966
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1152979415408999961}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 14d6e41c02ce56a41b0489a4560cddf8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rightClick:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1152979415007361125}
+        m_TargetAssemblyTypeName: Puzzle, Assembly-CSharp
+        m_MethodName: ButtonUp
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  click: {fileID: 0}
+  audioPlayer: {fileID: 0}
 --- !u!224 &1152979415447495634
 RectTransform:
   m_ObjectHideFlags: 0
@@ -7270,6 +7960,7 @@ GameObject:
   - component: {fileID: 1152979415447495639}
   - component: {fileID: 1152979415447495636}
   - component: {fileID: 1152979415447495637}
+  - component: {fileID: 1152979415447495640}
   m_Layer: 0
   m_Name: Button (1)
   m_TagString: Untagged
@@ -7290,7 +7981,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.084905684, g: 0.079031706, b: 0.079031706, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -7371,6 +8062,35 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1152979415447495635}
   m_CullTransparentMesh: 1
+--- !u!114 &1152979415447495640
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1152979415447495635}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 14d6e41c02ce56a41b0489a4560cddf8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rightClick:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1152979415007361125}
+        m_TargetAssemblyTypeName: Puzzle, Assembly-CSharp
+        m_MethodName: ButtonRight
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  click: {fileID: 0}
+  audioPlayer: {fileID: 0}
 --- !u!1 &1152979415501874500
 GameObject:
   m_ObjectHideFlags: 0
@@ -7505,6 +8225,7 @@ GameObject:
   - component: {fileID: 1152979415532831815}
   - component: {fileID: 1152979415532831812}
   - component: {fileID: 1152979415532831813}
+  - component: {fileID: 1152979415532831816}
   m_Layer: 0
   m_Name: Button (3)
   m_TagString: Untagged
@@ -7525,7 +8246,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.047169805, g: 0.043906484, b: 0.043906484, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -7606,6 +8327,35 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1152979415532831811}
   m_CullTransparentMesh: 1
+--- !u!114 &1152979415532831816
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1152979415532831811}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 14d6e41c02ce56a41b0489a4560cddf8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rightClick:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1152979415007361125}
+        m_TargetAssemblyTypeName: Puzzle, Assembly-CSharp
+        m_MethodName: ButtonLeft
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  click: {fileID: 0}
+  audioPlayer: {fileID: 0}
 --- !u!222 &1152979415580654161
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -7646,6 +8396,7 @@ GameObject:
   - component: {fileID: 1152979415580654161}
   - component: {fileID: 1152979415580654174}
   - component: {fileID: 1152979415580654175}
+  - component: {fileID: 1152979415580654176}
   m_Layer: 0
   m_Name: Button (2)
   m_TagString: Untagged
@@ -7666,7 +8417,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.084905684, g: 0.079031706, b: 0.079031706, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -7739,6 +8490,35 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &1152979415580654176
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1152979415580654173}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 14d6e41c02ce56a41b0489a4560cddf8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rightClick:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1152979415007361125}
+        m_TargetAssemblyTypeName: Puzzle, Assembly-CSharp
+        m_MethodName: ButtonUp
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  click: {fileID: 0}
+  audioPlayer: {fileID: 0}
 --- !u!212 &1152979415587588610
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -7937,6 +8717,7 @@ GameObject:
   - component: {fileID: 1152979415741073028}
   - component: {fileID: 1152979415741073029}
   - component: {fileID: 1152979415741073026}
+  - component: {fileID: 1152979415741073030}
   m_Layer: 0
   m_Name: Button (3)
   m_TagString: Untagged
@@ -8041,7 +8822,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.09433961, g: 0.08781297, b: 0.08781297, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -8058,6 +8839,35 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &1152979415741073030
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1152979415741073024}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 14d6e41c02ce56a41b0489a4560cddf8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rightClick:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1152979415007361125}
+        m_TargetAssemblyTypeName: Puzzle, Assembly-CSharp
+        m_MethodName: ButtonLeft
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  click: {fileID: 0}
+  audioPlayer: {fileID: 0}
 --- !u!1 &1152979415755702490
 GameObject:
   m_ObjectHideFlags: 0
@@ -8133,6 +8943,7 @@ GameObject:
   - component: {fileID: 1152979415756055165}
   - component: {fileID: 1152979415756055162}
   - component: {fileID: 1152979415756055163}
+  - component: {fileID: 1152979415756055166}
   m_Layer: 0
   m_Name: Button
   m_TagString: Untagged
@@ -8153,7 +8964,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.066037714, g: 0.06396105, b: 0.06396105, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -8234,6 +9045,35 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1152979415756055161}
   m_CullTransparentMesh: 1
+--- !u!114 &1152979415756055166
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1152979415756055161}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 14d6e41c02ce56a41b0489a4560cddf8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rightClick:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1152979415007361125}
+        m_TargetAssemblyTypeName: Puzzle, Assembly-CSharp
+        m_MethodName: ButtonDown
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  click: {fileID: 0}
+  audioPlayer: {fileID: 0}
 --- !u!4 &1152979415789353025
 Transform:
   m_ObjectHideFlags: 0
@@ -8242,7 +9082,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1152979415789353038}
   m_LocalRotation: {x: 0, y: -0.0038396239, z: 0, w: 0.99999267}
-  m_LocalPosition: {x: -0.61, y: -0.44, z: -0.1}
+  m_LocalPosition: {x: -0.61, y: 2, z: -0.1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:

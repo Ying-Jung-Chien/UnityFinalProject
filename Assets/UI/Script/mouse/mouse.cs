@@ -28,6 +28,7 @@ public class mouse : MonoBehaviour
                 {
                     audioPlayer.PlayOneShot(click);
                     alertui.gameObject.SetActive(true);
+                    Destroy(obj);
                 }
             }
         }

@@ -6,6 +6,7 @@ public class StopGhost : MonoBehaviour
 {
     public GameObject lightcontrol;
     public GameObject alertui;
+    public GameObject Door;
 
     public AudioClip click;
     public AudioSource audioPlayer;
@@ -28,6 +29,7 @@ public class StopGhost : MonoBehaviour
                     alertui.SetActive(true);
                     audioPlayer.PlayOneShot(click);
                     lightcontrol.GetComponent<LightsControl>().SetStopLight();
+                    Door.GetComponent<DoorAOpen>().SetCanOpen();
                 }
             }
         }
