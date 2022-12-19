@@ -8,6 +8,9 @@ public class OpenPuzzle : MonoBehaviour
     public Camera camera;
     private bool MouseIn;
     public GameObject boardgame;
+
+    public AudioClip click;
+    public AudioSource audioPlayer;
     void Start()
     {
         renderer = GetComponent<Renderer>();
@@ -27,6 +30,7 @@ public class OpenPuzzle : MonoBehaviour
             {
                 if (hit.collider == GetComponent<Collider>())
                 {
+                    audioPlayer.PlayOneShot(click);
                     boardgame.SetActive(true);
                     break;
                 }

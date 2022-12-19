@@ -4,11 +4,10 @@ using UnityEngine;
 
 public class mouse : MonoBehaviour
 {
-    public GameObject testui;
-    public GameObject testui1;
-    public item key;
-    public inventory playerInventory;
+    public GameObject alertui;
 
+    public AudioClip click;
+    public AudioSource audioPlayer;
     // Start is called before the first frame update
     void Start()
     {
@@ -18,47 +17,19 @@ public class mouse : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(1))
         {
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             RaycastHit hit;
             if (Physics.Raycast(ray, out hit))
             {
                 GameObject obj = hit.collider.gameObject;
-                if (obj.tag == "test")
+                if (obj.name == "Sphere")
                 {
-                    if(closeui.check == 1)
-                    {
-                        testui.gameObject.SetActive(true);
-                        closeui.check = 0;
-                    }
-                    else
-                    {
-                        testui.gameObject.SetActive(true);
-                        testui1.gameObject.SetActive(true);
-                        manager.status = 1;
-                    }
-                    
-                }else if (obj.tag == "key")
-                {
-                    obj.gameObject.SetActive(false);
-                    AddNewItem(key);
+                    audioPlayer.PlayOneShot(click);
+                    alertui.gameObject.SetActive(true);
                 }
-
             }
         }
-    }
-
-    public void AddNewItem(item thisItem)
-    {
-        if (!playerInventory.itemList.Contains(thisItem))
-        {
-            playerInventory.itemList.Add(thisItem);
-        }
-        else
-        {
-            thisItem.itemHeld += 1;
-        }
-        manager.ReflashItem();
     }
 }

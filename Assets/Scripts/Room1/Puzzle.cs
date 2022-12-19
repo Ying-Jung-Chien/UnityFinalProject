@@ -13,6 +13,9 @@ public class Puzzle : MonoBehaviour
     public GameObject master;
     public GameObject wallsquish;
     public GameObject Door;
+
+    public AudioClip click;
+    public AudioSource audioPlayer;
     // Start is called before the first frame update
     void Start()
     {
@@ -23,8 +26,9 @@ public class Puzzle : MonoBehaviour
 
     public void ButtonUp(){
         Transform empty;
-       
-        if(emptyspace.localPosition.y > emptyspace1.localPosition.y)empty = emptyspace;
+
+        audioPlayer.PlayOneShot(click);
+        if (emptyspace.localPosition.y > emptyspace1.localPosition.y)empty = emptyspace;
         else empty = emptyspace1;
         Vector3 lastemptyspace = empty.localPosition;
         empty.localPosition = currentTile.localPosition;
@@ -33,7 +37,8 @@ public class Puzzle : MonoBehaviour
     }
 
     public void ButtonDown(){
-        
+
+        audioPlayer.PlayOneShot(click);
         Transform empty;
         if(emptyspace.localPosition.y < emptyspace1.localPosition.y) empty = emptyspace;
         else empty = emptyspace1;
@@ -44,7 +49,8 @@ public class Puzzle : MonoBehaviour
     }
 
     public void ButtonLeft(){
-       
+
+        audioPlayer.PlayOneShot(click);
         Transform empty;
         if(emptyspace.localPosition.x < emptyspace1.localPosition.x) empty = emptyspace;
         else empty = emptyspace1;
@@ -55,7 +61,8 @@ public class Puzzle : MonoBehaviour
     }
 
     public void ButtonRight(){
-       
+
+        audioPlayer.PlayOneShot(click);
         Transform empty;
         if(emptyspace.localPosition.x > emptyspace1.localPosition.x) empty = emptyspace;
         else empty = emptyspace1;
@@ -65,7 +72,9 @@ public class Puzzle : MonoBehaviour
         ClearButton();
     }
 
-     public void RectUp(){
+     public void RectUp()
+    {
+        audioPlayer.PlayOneShot(click);
         Transform avil = null;
         if(Vector2.Distance(emptyspace.localPosition, currentTile.localPosition) < 2 && Mathf.Abs(emptyspace.localPosition.y - currentTile.localPosition.y )> 1.5f) avil = emptyspace;
         else if(Vector2.Distance(emptyspace1.localPosition, currentTile.localPosition) < 2 && Mathf.Abs(emptyspace1.localPosition.y - currentTile.localPosition.y )> 1.5f)avil = emptyspace1;
@@ -75,7 +84,9 @@ public class Puzzle : MonoBehaviour
         ClearButton();
     }
 
-    public void RectDown(){
+    public void RectDown()
+    {
+        audioPlayer.PlayOneShot(click);
         Transform avil = null;
         if(Vector2.Distance(emptyspace.localPosition, currentTile.localPosition) < 2 && Mathf.Abs(emptyspace.localPosition.y - currentTile.localPosition.y )> 1.5f) avil = emptyspace;
         else if(Vector2.Distance(emptyspace1.localPosition, currentTile.localPosition) < 2 && Mathf.Abs(emptyspace1.localPosition.y - currentTile.localPosition.y )> 1.5f)avil = emptyspace1;
@@ -85,7 +96,9 @@ public class Puzzle : MonoBehaviour
         ClearButton();
     }
 
-    public void RectLeft(){
+    public void RectLeft()
+    {
+        audioPlayer.PlayOneShot(click);
         Transform avil = null;
         if(Vector2.Distance(emptyspace.localPosition, currentTile.localPosition) < 2 && Mathf.Abs(emptyspace.localPosition.x - currentTile.localPosition.x )> 1.5f) avil = emptyspace;
         else if(Vector2.Distance(emptyspace1.localPosition, currentTile.localPosition) < 2 && Mathf.Abs(emptyspace1.localPosition.x - currentTile.localPosition.x )> 1.5f)avil = emptyspace1;
@@ -96,7 +109,9 @@ public class Puzzle : MonoBehaviour
     }
 
 
-    public void RectRight(){
+    public void RectRight()
+    {
+        audioPlayer.PlayOneShot(click);
         Transform avil = null;
         if(Vector2.Distance(emptyspace.localPosition, currentTile.localPosition) < 2 && Mathf.Abs(emptyspace.localPosition.x - currentTile.localPosition.x )> 1.5f) avil = emptyspace;
         else if(Vector2.Distance(emptyspace1.localPosition, currentTile.localPosition) < 2 && Mathf.Abs(emptyspace1.localPosition.x - currentTile.localPosition.x )> 1.5f)avil = emptyspace1;
@@ -116,12 +131,13 @@ public class Puzzle : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(master.transform.localPosition.y < 0.78f && master.transform.localPosition.x > -0.61f && master.transform.localPosition.x < 0.61f){
+        if (master.transform.localPosition.y < 0.78f && master.transform.localPosition.x > -0.61f && master.transform.localPosition.x < 0.61f){
             wallsquish.GetComponent<WallSquish>().SetSolved();
             Door.GetComponent<DoorAOpen>().SetCanOpen();
             this.gameObject.transform.parent.gameObject.SetActive(false);
         }
         if(Input.GetMouseButtonDown(1)){
+            audioPlayer.PlayOneShot(click);
             Ray ray = camera_m.ScreenPointToRay(Input.mousePosition);
             RaycastHit2D hit = Physics2D.Raycast(ray.origin, ray.direction);
             if(hit){

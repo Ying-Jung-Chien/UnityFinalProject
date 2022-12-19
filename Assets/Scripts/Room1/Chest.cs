@@ -9,6 +9,8 @@ public class Chest : MonoBehaviour
     public Camera camera;
     private bool MouseIn;
     private bool IsOpen;
+    public AudioClip click;
+    public AudioSource audioPlayer;
     // Start is called before the first frame update
     void Start()
     {
@@ -30,6 +32,7 @@ public class Chest : MonoBehaviour
             {
                 if (hit.collider == GetComponent<Collider>())
                 {
+                    audioPlayer.PlayOneShot(click);
                     OpenChest();
                     IsOpen = true;
                     break;
