@@ -100,8 +100,8 @@ public class Puzzle : MonoBehaviour
     {
         audioPlayer.PlayOneShot(click);
         Transform avil = null;
-        if(Vector2.Distance(emptyspace.localPosition, currentTile.localPosition) < 2 && Mathf.Abs(emptyspace.localPosition.x - currentTile.localPosition.x )> 1.5f) avil = emptyspace;
-        else if(Vector2.Distance(emptyspace1.localPosition, currentTile.localPosition) < 2 && Mathf.Abs(emptyspace1.localPosition.x - currentTile.localPosition.x )> 1.5f)avil = emptyspace1;
+        if(Vector2.Distance(emptyspace.localPosition, currentTile.localPosition) < 2 &&  currentTile.localPosition.x - emptyspace.localPosition.x > 1.5f) avil = emptyspace;
+        else if(Vector2.Distance(emptyspace1.localPosition, currentTile.localPosition) < 2 && currentTile.localPosition.x - emptyspace1.localPosition.x > 1.5f)avil = emptyspace1;
         avil.localPosition = new Vector3( avil.localPosition.x + square_size*2f, avil.localPosition.y, avil.localPosition.z );
         currentTile.localPosition = new Vector3( currentTile.localPosition.x - square_size, currentTile.localPosition.y, currentTile.localPosition.z );
                 
@@ -113,10 +113,10 @@ public class Puzzle : MonoBehaviour
     {
         audioPlayer.PlayOneShot(click);
         Transform avil = null;
-        if(Vector2.Distance(emptyspace.localPosition, currentTile.localPosition) < 2 && Mathf.Abs(emptyspace.localPosition.x - currentTile.localPosition.x )> 1.5f) avil = emptyspace;
-        else if(Vector2.Distance(emptyspace1.localPosition, currentTile.localPosition) < 2 && Mathf.Abs(emptyspace1.localPosition.x - currentTile.localPosition.x )> 1.5f)avil = emptyspace1;
-        avil.localPosition = new Vector3( avil.localPosition.x + square_size*2f, avil.localPosition.y, avil.localPosition.z );
-        currentTile.localPosition = new Vector3( currentTile.localPosition.x - square_size, currentTile.localPosition.y, currentTile.localPosition.z );
+        if(Vector2.Distance(emptyspace.localPosition, currentTile.localPosition) < 2 && emptyspace.localPosition.x - currentTile.localPosition.x > 1.5f) avil = emptyspace;
+        else if(Vector2.Distance(emptyspace1.localPosition, currentTile.localPosition) < 2 && emptyspace1.localPosition.x - currentTile.localPosition.x> 1.5f)avil = emptyspace1;
+        avil.localPosition = new Vector3( avil.localPosition.x - square_size*2f, avil.localPosition.y, avil.localPosition.z );
+        currentTile.localPosition = new Vector3( currentTile.localPosition.x + square_size, currentTile.localPosition.y, currentTile.localPosition.z );
                
         ClearButton();
     }
