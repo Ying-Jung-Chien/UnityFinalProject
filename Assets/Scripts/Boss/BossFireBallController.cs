@@ -8,6 +8,7 @@ public class BossFireBallController : MonoBehaviour
     //public GameObject blackDragonHead;
     //public GameObject blackDragonHead_front;
     //public GameObject player;
+    public float fireBallAttack = 10;
     public float traceDelay = 0.5f;
     public float speed = 5.0f;
 
@@ -33,7 +34,7 @@ public class BossFireBallController : MonoBehaviour
     {
         _blackDragonHead_pos = blackDragonHead_pos;
         _blackDragonHead_front_pos = blackDragonHead_front_pos;
-        _player_pos = player_pos;
+        _player_pos = player_pos + new Vector3(0, 0.5f, 0);
         notInit = false;
     }
 
@@ -55,10 +56,16 @@ public class BossFireBallController : MonoBehaviour
             }
         }
         transform.Translate(Vector3.forward * speed * Time.deltaTime, Space.Self);
+
+        if (Vector3.Distance(transform.position, _player_pos) <= 0.05f)
+            Destroy(gameObject);
     }
 
     private void OnCollisionEnter(Collision collision)
     {
+        if (collision.transform.tag == "Player")
+            if (!TimeController.isInvincibleState)
+                DontDestroyVariable.PlayerHealth -= fireBallAttack;
         Destroy(gameObject);
     }
 }

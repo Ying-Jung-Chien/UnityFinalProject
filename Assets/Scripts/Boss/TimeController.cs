@@ -27,7 +27,8 @@ public class TimeController : MonoBehaviour
     public float ejectDelay_s = 0.5f;
     public float switchDelay_s = 1.0f;
 
-    public static bool pressT;
+    public static bool pressT = false;
+    public static bool isInvincibleState = false;
 
     private static Vector3 _initPlayerPos;
     private static Animator playerAnim;
@@ -217,6 +218,7 @@ public class TimeController : MonoBehaviour
                 endTime = Time.time;
                 goStorePos = true;
                 isTurningBackTheClock = false;
+                isInvincibleState = false;
             }
         }
     }
@@ -247,6 +249,7 @@ public class TimeController : MonoBehaviour
         {
             goStorePos = false;
             isTurningBackTheClock = true;
+            isInvincibleState = true;
             ActivePrefabs();
 
             // 停止操作
@@ -300,6 +303,7 @@ public class TimeController : MonoBehaviour
 
         // 開放操作
         UCanMove();
+        isInvincibleState = false;
 
         endTime = Time.time;
         goStorePos = true;
