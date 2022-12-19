@@ -32,6 +32,11 @@ public class fireball : MonoBehaviour
     private void OnCollisionEnter(Collision collision)
     {
         if(collision.contacts.Length > 0){
+            if (collision.gameObject.tag == "Boss")
+            {
+                gameObject.GetComponent<Collider>().enabled = false;
+                Boss.Health = Boss.Health - 70f;
+            }
             if (ExplosionEffect != null)
             {
                 GameObject exp = GameObject.Instantiate(ExplosionEffect, Vector3.zero, Quaternion.identity) as GameObject;

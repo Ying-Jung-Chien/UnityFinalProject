@@ -38,7 +38,12 @@ public class trap_ball : MonoBehaviour
     {
         if(other.tag == "Player")
         {
-            audioPlayer.PlayOneShot(sound);
+            gameObject.GetComponent<Collider>().enabled = false;
+            if (!TimeController.isInvincibleState)
+            {
+                DontDestroyVariable.PlayerHealth -= 10f;
+                audioPlayer.PlayOneShot(sound);
+            }
             agent.enabled = false;
             Destroy(gameObject);
         }

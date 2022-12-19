@@ -126,6 +126,8 @@ public class ThirdPersonController : MonoBehaviour
 
     private bool CameraRotation_status = true;
 
+    public GameObject sword;
+
     private bool IsCurrentDeviceMouse
     {
         get
@@ -151,7 +153,7 @@ public class ThirdPersonController : MonoBehaviour
     private void Start()
     {
         _cinemachineTargetYaw = CinemachineCameraTarget.transform.rotation.eulerAngles.y;
-            
+
         _hasAnimator = TryGetComponent(out _animator);
         _controller = GetComponent<CharacterController>();
         _input = GetComponent<StarterAssetsInputs>();
@@ -267,7 +269,7 @@ public class ThirdPersonController : MonoBehaviour
 
     private void Move()
     {
-            
+
         // set target speed based on move speed, sprint speed and if sprint is pressed
         float targetSpeed = _input.sprint ? SprintSpeed : MoveSpeed;
 
@@ -299,7 +301,7 @@ public class ThirdPersonController : MonoBehaviour
         {
             _speed = targetSpeed;
         }
-        
+
         _animationBlend = Mathf.Lerp(_animationBlend, targetSpeed, Time.deltaTime * SpeedChangeRate);
         if (_animationBlend < 0.01f) _animationBlend = 0f;
         if (Attacking) _speed = 0;
@@ -404,21 +406,21 @@ public class ThirdPersonController : MonoBehaviour
 
     private void Attack()
     {
-        if (_input.attack && Grounded)
+        if (Input.GetMouseButtonDown(0) && Grounded)
         {
             if (gameObject.GetComponent<test>().current_skill == 0)
             {
-                _animator.SetBool("normal", _input.attack);
+                _animator.SetBool("normal", true);
             }
             else if (gameObject.GetComponent<test>().current_skill == 1)
             {
-                _animator.SetBool("fireball", _input.attack);
+                _animator.SetBool("fireball", true);
             }
             else if (gameObject.GetComponent<test>().current_skill == 2)
             {
-                _animator.SetBool("shield", _input.attack);
+                _animator.SetBool("shield", true);
             }
-                
+
             Attacking = true;
         }
         else
@@ -437,6 +439,16 @@ public class ThirdPersonController : MonoBehaviour
     public void normal_attack()
     {
         audioPlayer.PlayOneShot(attack);
+        Collider[] collider = Physics.OverlapBox(sword.transform.TransformPoint(sword.gameObject.GetComponent<BoxCollider>().center), sword.gameObject.GetComponent<BoxCollider>().size, Quaternion.identity);
+
+        foreach (var col in collider)
+        {
+            if (col.tag == "Boss")
+            {
+                Boss.Health = Boss.Health - 100f;
+                break;
+            }
+        }
     }
 
     public void fireball_shoot()

@@ -50,6 +50,17 @@ public class bloodcontrol : MonoBehaviour
 		        }
 	        }
         }*/
+        if (DontDestroyVariable.PlayerHealth <= 0)
+        {
+            if (this.tag == "blood")
+            {
+                check = 1;
+                lose.gameObject.SetActive(true);
+                audioPlayer.PlayOneShot(fail);
+
+            }
+
+        }
     }
 
     /*IEnumerator Wait()
