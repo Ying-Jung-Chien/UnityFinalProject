@@ -16,7 +16,11 @@ public class manager : MonoBehaviour
     public item item1;
     public item item2;
 
+    public item[] allitem;
+
     private int check = 0;
+    private float cur_time;
+    private float nex_time;
 
     void Awake()
     {
@@ -32,6 +36,13 @@ public class manager : MonoBehaviour
     void Start()
     {
         StartCoroutine(ExampleCoroutine());
+        int i = 0;
+        while(allitem[i] != null)
+        {
+            allitem[i].itemHeld = 1;
+            allitem[i].itemactive = 0;
+            i++;
+        }
     }
 
     IEnumerator ExampleCoroutine()
@@ -62,6 +73,12 @@ public class manager : MonoBehaviour
             instance.itemInfo.text = "";
             check = 1;
         }
+        /*cur_time = Time.time;
+        if(cur_time >= nex_time)
+        {
+            nex_time = Time.time + 3.0f;
+            manager.ReflashItem();
+        }*/
     }
 
     public static void UpdateItemUse(int k)
