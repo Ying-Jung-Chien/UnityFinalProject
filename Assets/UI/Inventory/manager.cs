@@ -82,6 +82,7 @@ public class manager : MonoBehaviour
                 }
                 else if (k == 3 && eight.eight2 == 0)
                 {
+                    print(instance.mybag.itemList[i].name);
                     if (instance.mybag.itemList[i].name == "2" || instance.mybag.itemList[i].name == "3" || instance.mybag.itemList[i].name == "4" || instance.mybag.itemList[i].name == "5" || instance.mybag.itemList[i].name == "6" || instance.mybag.itemList[i].name == "8")
                     {
                         instance.mybag.itemList[i].itemHeld -= 1;
