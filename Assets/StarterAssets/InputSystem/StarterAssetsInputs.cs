@@ -44,10 +44,10 @@ using UnityEngine.InputSystem;
 			SprintInput(value.isPressed);
 		}
 
-		public void OnAttack(InputValue value)
-		{
-			AttackInput(value.isPressed);
-		}
+		// public void OnAttack(InputValue value)
+		// {
+		// 	AttackInput(value.isPressed);
+		// }
 #endif
 
 
@@ -71,10 +71,10 @@ using UnityEngine.InputSystem;
 			sprint = newSprintState;
 		}
 
-		public void AttackInput(bool newAttackState)
-		{
-			attack = newAttackState;
-		}
+		// public void AttackInput(bool newAttackState)
+		// {
+		// 	attack = newAttackState;
+		// }
 
 		private void OnApplicationFocus(bool hasFocus)
 		{

@@ -40,7 +40,6 @@ public class DontDestroyVariable : MonoBehaviour
 				
         if (objs.Length > 1 && this.tag == "DontDestroy")
         {
-            Debug.Log("Destroy(this.gameObject);");
             Destroy(this.gameObject);
         }
         if(this.tag == "DontDestroy") DontDestroyOnLoad(this.gameObject);
@@ -50,12 +49,9 @@ public class DontDestroyVariable : MonoBehaviour
     void Start()
     {
         if(firstComingIn){
-            Debug.Log("firstComingIn");
             manager.resetbag();
             firstComingIn = false;
         }
-        // Debug.Log("firstComingIn");
-        // manager.resetbag();
     }
 
     // Update is called once per frame
