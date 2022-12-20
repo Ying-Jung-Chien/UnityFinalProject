@@ -19,7 +19,7 @@ public class ToBoss : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag == "Player" && DontDestroyVariable.passRoom2) {
+        if (other.gameObject.tag == "Player" && (DontDestroyVariable.passRoom1 || DontDestroyVariable.passRoom2 || DontDestroyVariable.passRoom3)) {
             UnityEngine.SceneManagement.SceneManager.LoadSceneAsync("Boss");
         }
     }
