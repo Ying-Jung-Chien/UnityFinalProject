@@ -9,6 +9,7 @@ public class MainMaze : MonoBehaviour {
 	public int RandomSeed = 12345;
 	public GameObject Floor = null;
 	public GameObject Wall = null;
+	public GameObject Torch = null;
 	public int Rows = 14;
 	public int Columns = 30;
 	public float UnitWidth = 4;
@@ -32,6 +33,7 @@ public class MainMaze : MonoBehaviour {
 				float x = column * UnitWidth;
 				float z = row * UnitHeight;
 				int unit = MazeGenerator.GetMazeUnit(row, column);
+				int lamp = MazeGenerator.GetLampUnit(row, column);
 				GameObject tmp;
 				// tmp = Instantiate(Floor, new Vector3(x, 0, z), Quaternion.Euler(0, 0, 0)) as GameObject;
 				// tmp.transform.parent = transform;
@@ -54,6 +56,20 @@ public class MainMaze : MonoBehaviour {
                 if(unit >= 1){
                     unit -= 1;
 					tmp = Instantiate(Wall, new Vector3(x+UnitWidth/2, 0, z) + Wall.transform.position, Quaternion.Euler(0, 90, 0)) as GameObject;// right
+					tmp.transform.parent = transform;
+				}
+
+				if(lamp == 8){
+					tmp = Instantiate(Torch, new Vector3(x, 2, z+UnitHeight/2) + Torch.transform.position, Quaternion.Euler(0, 90, 0)) as GameObject;// up
+					tmp.transform.parent = transform;
+				} else if(lamp == 4){
+					tmp = Instantiate(Torch, new Vector3(x, 2, z-UnitHeight/2) + Torch.transform.position, Quaternion.Euler(0, 270, 0)) as GameObject;// down
+					tmp.transform.parent = transform;
+				} else if(lamp == 2){
+					tmp = Instantiate(Torch, new Vector3(x-UnitWidth/2, 2, z) + Torch.transform.position, Quaternion.Euler(0, 0, 0)) as GameObject;// left
+					tmp.transform.parent = transform;
+				} else if(lamp == 1){
+					tmp = Instantiate(Torch, new Vector3(x+UnitWidth/2, 2, z) + Torch.transform.position, Quaternion.Euler(0, 180, 0)) as GameObject;// right
 					tmp.transform.parent = transform;
 				}
 				// if((row != 0 || column != 0)){

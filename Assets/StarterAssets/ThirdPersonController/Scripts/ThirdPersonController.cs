@@ -168,6 +168,8 @@ public class ThirdPersonController : MonoBehaviour
         // reset our timeouts on start
         _jumpTimeoutDelta = JumpTimeout;
         _fallTimeoutDelta = FallTimeout;
+
+        Cursor.lockState = CursorLockMode.Confined;
     }
 
     private void Update()
@@ -183,6 +185,11 @@ public class ThirdPersonController : MonoBehaviour
         if (Time.time - startTime > 10.0f)
         {
             shield.SetActive(false);
+        }
+
+        if (CameraRotation_status)
+        {
+            CameraRotation();
         }
     }
 
@@ -213,10 +220,10 @@ public class ThirdPersonController : MonoBehaviour
 
     private void LateUpdate()
     {
-        if (CameraRotation_status)
-        {
-            CameraRotation();
-        }
+        // if (CameraRotation_status)
+        // {
+        //     CameraRotation();
+        // }
     }
 
     private void AssignAnimationIDs()

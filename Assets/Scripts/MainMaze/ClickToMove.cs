@@ -17,7 +17,7 @@ public class ClickToMove : MonoBehaviour
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);  
             RaycastHit hit;  
             if (Physics.Raycast(ray, out hit)) {
-                Debug.Log(hit.transform.name);
+                // Debug.Log(hit.transform.name);
                 if (hit.transform.name == gameObject.name) {
                     gameObject.GetComponent<Rigidbody>().AddForce(new Vector3 (0, 0, -1) * 300);
                 }

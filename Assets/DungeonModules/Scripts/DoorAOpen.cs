@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.SceneManagement;
 using UnityEngine;
 
 public class DoorAOpen : MonoBehaviour
@@ -19,6 +20,7 @@ public class DoorAOpen : MonoBehaviour
     void OnTriggerEnter(Collider other)
     {
         if(CanOpen){
+            if (SceneManager.GetActiveScene().name == "Room2") DontDestroyVariable.passRoom2 = true;
             GetComponent<Animator>().SetTrigger("DoorATrigger");
         }
         
