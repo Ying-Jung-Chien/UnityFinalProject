@@ -139,7 +139,10 @@ public class PlayerController : MonoBehaviour
             Cursor.visible = true;
         } else if (Input.GetMouseButtonDown(0) && Cursor.visible) {
             Cursor.visible = false;
+            Cursor.lockState = CursorLockMode.Confined;
         }
+
+        if (Input.GetKeyDown(KeyCode.Escape)) Cursor.lockState = CursorLockMode.None;
         
     }
 
@@ -204,11 +207,14 @@ public class PlayerController : MonoBehaviour
 
     void JumpingProcess()
     {
-        if ((transform.position.y > (_beforeJump + JumpHeight - 0.1f)) && isRising) {
+        // Debug.Log(_controller.velocity.y);
+        if (_controller.velocity.y < 0 && isRising) {
+            // Debug.Log("Jumping");
             isRising = false;
             isFalling = true;
         } else if (Grounded && isFalling)
         {
+            // Debug.Log("isFalling");
             audioPlayer.PlayOneShot(jump);
             isFalling = false;
             isLanding = true;
