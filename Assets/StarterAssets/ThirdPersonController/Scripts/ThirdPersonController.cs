@@ -186,11 +186,6 @@ public class ThirdPersonController : MonoBehaviour
         {
             shield.SetActive(false);
         }
-
-        if (CameraRotation_status)
-        {
-            CameraRotation();
-        }
     }
 
     void CursorVisible()
@@ -220,10 +215,10 @@ public class ThirdPersonController : MonoBehaviour
 
     private void LateUpdate()
     {
-        // if (CameraRotation_status)
-        // {
-        //     CameraRotation();
-        // }
+        if (CameraRotation_status)
+        {
+             CameraRotation();
+        }
     }
 
     private void AssignAnimationIDs()
