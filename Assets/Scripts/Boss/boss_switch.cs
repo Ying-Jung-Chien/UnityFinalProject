@@ -34,6 +34,7 @@ public class boss_switch : MonoBehaviour
             Debug.Log("switch open");
             audioPlayer.PlayOneShot(sound);
             StartCoroutine(ExampleCoroutine());
+            Invoke("StartCamera", 2f);
         }
     }
 
@@ -42,5 +43,10 @@ public class boss_switch : MonoBehaviour
         yield return new WaitForSeconds(2);
         audioPlayer.PlayOneShot(dragon);
         Destroy(black);
+    }
+
+    void StartCamera()
+    {
+        GameController.start = true;
     }
 }

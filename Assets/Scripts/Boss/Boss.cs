@@ -124,7 +124,8 @@ public class Boss : MonoBehaviour
             //Debug.Log("Boss.cs Update goFly");
             if (GameController.stopBoss)
                 return;
-            goFly = false;
+            if (GameController.start)
+                return;
             justStartFlying = true;
             smoothToTarget = true;
             //canFireBall = true;
