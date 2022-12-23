@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class BossAnimationController : MonoBehaviour
 {
+    public static float canGetAttackTime;
+
     private Animator animator;
     private float preDir;
     private float curDir;
@@ -60,6 +62,19 @@ public class BossAnimationController : MonoBehaviour
         {
             animator.SetBool("goAttack", false);
         }
+
+        
+        if(Boss.getAttack)
+        {
+            if (curTime >= canGetAttackTime)
+            {
+                Boss.getAttack = false;
+                animator.SetBool("getAttack", false);
+            }
+            else
+                animator.SetBool("getAttack", true);
+        }
+        
     }
 
     bool IsInState(int stateHash)

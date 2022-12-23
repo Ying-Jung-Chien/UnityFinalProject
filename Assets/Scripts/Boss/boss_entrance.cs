@@ -7,7 +7,9 @@ public class boss_entrance : MonoBehaviour
     public GameObject trap_ball;
     private GameObject trap_ball_clone;
     private float start_time;
-    private bool trap_activate = true;
+
+    public static bool trap_activate = true;
+
     // Start is called before the first frame update
     void Start()
     {
