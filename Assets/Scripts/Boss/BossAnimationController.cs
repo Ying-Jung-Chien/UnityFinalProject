@@ -36,20 +36,20 @@ public class BossAnimationController : MonoBehaviour
             if(flag)
             {
                 flag = false;
-                nextTime = curTime + 2f;
+                nextTime = curTime + 6f;
             }
 
             if (CurrentStateDone() && curTime >= nextTime)
             {
                 animator.SetBool("goScream", false);
                 Boss.goScream = false;
-                Boss.goFly = true;
             }
         }
 
         if (Boss.goFly)
         {
             Debug.Log("Black dragon go fly.");
+            Boss.goFly = false;
             animator.SetBool("goFly", true);
             flag = true;
         }
