@@ -36,7 +36,7 @@ public class BossAnimationController : MonoBehaviour
             if(flag)
             {
                 flag = false;
-                nextTime = curTime + 6f;
+                nextTime = curTime + 5f;
             }
 
             if (CurrentStateDone() && curTime >= nextTime)
