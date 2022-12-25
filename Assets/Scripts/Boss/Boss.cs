@@ -122,6 +122,7 @@ public class Boss : MonoBehaviour
         if (goFly)
         {
             //Debug.Log("Boss.cs Update goFly");
+            Debug.Log("GameController.stopBoss = " + GameController.stopBoss + ", GameController.start = " + GameController.start);
             if (GameController.stopBoss)
                 return;
             if (GameController.start)
