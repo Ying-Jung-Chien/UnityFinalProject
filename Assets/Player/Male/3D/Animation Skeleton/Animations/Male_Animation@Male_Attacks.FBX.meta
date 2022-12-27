@@ -458,8 +458,15 @@ ModelImporter:
         floatParameter: 0
         intParameter: 0
         messageOptions: 0
-      - time: 0.45121956
-        functionName: normal_attack
+      - time: 0.37845612
+        functionName: normal_attack_start
+        data: 
+        objectReferenceParameter: {fileID: 11500000, guid: 26e54e5a728a9234ab24fcf1460ed8a2, type: 3}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      - time: 0.70311
+        functionName: normal_attack_stop
         data: 
         objectReferenceParameter: {fileID: 11500000, guid: 26e54e5a728a9234ab24fcf1460ed8a2, type: 3}
         floatParameter: 0

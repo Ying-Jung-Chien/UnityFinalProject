@@ -127,6 +127,7 @@ public class ThirdPersonController : MonoBehaviour
     private bool CameraRotation_status = true;
 
     public GameObject sword;
+    private bool normal_isAttack = false;
 
     private bool IsCurrentDeviceMouse
     {
@@ -182,6 +183,7 @@ public class ThirdPersonController : MonoBehaviour
         Attack();
         CursorVisible();
         SearchMode();
+        normal_attack();
         if (Time.time - startTime > 10.0f)
         {
             shield.SetActive(false);
@@ -440,17 +442,31 @@ public class ThirdPersonController : MonoBehaviour
 
     public void normal_attack()
     {
-        audioPlayer.PlayOneShot(attack);
-        Collider[] collider = Physics.OverlapBox(sword.transform.TransformPoint(sword.gameObject.GetComponent<BoxCollider>().center), sword.gameObject.GetComponent<BoxCollider>().size, Quaternion.identity);
-
-        foreach (var col in collider)
+        if (normal_isAttack)
         {
-            if (col.tag == "Boss")
+            Collider[] collider = Physics.OverlapBox(sword.transform.TransformPoint(sword.gameObject.GetComponent<BoxCollider>().center), sword.gameObject.GetComponent<BoxCollider>().size, Quaternion.identity);
+
+            foreach (var col in collider)
             {
-                Boss.Health = Boss.Health - 100f;
-                break;
+                if (col.tag == "Boss")
+                {
+                    Boss.Health = Boss.Health - 100f;
+                    normal_isAttack = false;
+                    break;
+                }
             }
         }
+    }
+
+    public void normal_attack_start()
+    {
+        normal_isAttack = true;
+        audioPlayer.PlayOneShot(attack);
+    }
+
+    public void normal_attack_stop()
+    {
+        normal_isAttack = false;
     }
 
     public void fireball_shoot()
