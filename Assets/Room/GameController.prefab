@@ -1,0 +1,84 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &566292283789509296
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 566292283789509298}
+  - component: {fileID: 566292283789509309}
+  - component: {fileID: 566292283789509308}
+  m_Layer: 0
+  m_Name: GameController
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &566292283789509298
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 566292283789509296}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.22215796, y: -0.5549998, z: -21.654835}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &566292283789509309
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 566292283789509296}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2c1447352bc9a424aa6737b80f64e2be, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 0}
+  playerHead: {fileID: 0}
+  blackDragon: {fileID: 0}
+  blackDragonHead: {fileID: 0}
+  blackDragonHeadFront: {fileID: 0}
+  bossFireBall: {fileID: 2749046438227940036, guid: 169b2c0c4c1cc4292b28dbb766a11262, type: 3}
+--- !u!114 &566292283789509308
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 566292283789509296}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 45aec043c5a294bb6ab96dd4004217b8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mainCamera: {fileID: 0}
+  timeRepCamera: {fileID: 0}
+  lightRepCamera: {fileID: 0}
+  player: {fileID: 0}
+  blackDragon: {fileID: 0}
+  showPositionPrefab: {fileID: 5206789273205313668, guid: 3dfa0fb3d4f0446cda79d785ebb73336, type: 3}
+  showLinPrefab: {fileID: 7914819139218052223, guid: 119921135fe68434bb5943e25739a1fa, type: 3}
+  showRepPrefab: {fileID: 1014261630889233060, guid: 220bf4393ec5f4fd18d6d620c2097ee9, type: 3}
+  representativeObj: {fileID: 0}
+  repLightObj: {fileID: 0}
+  forceDirArrow: {fileID: 0}
+  cdTime: 6
+  lenOfRecord_s: 5
+  frequence_s: 0.05
+  forceStrength: 500
+  ghostRelicNum: 5
+  turnBackTimeWidth: 0.05
+  ejectDelay_s: 0.1
+  switchDelay_s: 0.8

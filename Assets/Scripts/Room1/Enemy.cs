@@ -9,13 +9,13 @@ public class Enemy : MonoBehaviour
     public AudioClip attack;
 	public AudioSource audioplayer;
 
-	private bool enemydead;
+	public static bool enemydead;
 
 	private GameObject playerObject;
 	// private Player player;
 	
-	public int maxHealth;
-    private int health;
+	public static int maxHealth;
+    public static int health;
 
 	private float move = 20;
 	private bool stop = false;	
@@ -44,7 +44,7 @@ public class Enemy : MonoBehaviour
     public float sightRange, attackRange;
     public bool playerInSightRange, playerInAttackRange;
 
-    Animator anim;
+    public static Animator anim;
     public GameObject coffin;
     private bool begining;
     private Vector3 previous;
@@ -52,7 +52,7 @@ public class Enemy : MonoBehaviour
 
    
     public LayerMask playerLayer;
-    public GameObject Door;
+    public static  GameObject Door;
     void Awake()
     {
         player_trans = GameObject.Find("Player").transform;
@@ -197,11 +197,11 @@ public class Enemy : MonoBehaviour
         alreadyAttacked = false;
     }
 
-    public void TakeDamage(int damage)
+    public static void TakeDamage(int damage)
     {
 		anim.SetTrigger("Damage");
         health -= damage;
-		// Debug.Log(health);
+		print("Damage");
 		// healthBarImage.fillAmount = Mathf.Clamp((float)health / maxHealth, 0, 1f);
         if (health <= 0){
 			enemydead = true;
@@ -218,7 +218,7 @@ public class Enemy : MonoBehaviour
 
     private void OnTriggerEnter(Collider other){
         if(other.name == "Sword_2_Long" && PlayerController.isAttacking){
-            TakeDamage(1);
+            TakeDamage(100);
         }
     }
 
