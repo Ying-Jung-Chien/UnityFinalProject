@@ -26,8 +26,6 @@ public class Puzzle : MonoBehaviour
 
     public void ButtonUp(){
         Transform empty;
-
-        audioPlayer.PlayOneShot(click);
         if (emptyspace.localPosition.y > emptyspace1.localPosition.y)empty = emptyspace;
         else empty = emptyspace1;
         Vector3 lastemptyspace = empty.localPosition;
@@ -37,8 +35,6 @@ public class Puzzle : MonoBehaviour
     }
 
     public void ButtonDown(){
-
-        audioPlayer.PlayOneShot(click);
         Transform empty;
         if(emptyspace.localPosition.y < emptyspace1.localPosition.y) empty = emptyspace;
         else empty = emptyspace1;
@@ -49,8 +45,6 @@ public class Puzzle : MonoBehaviour
     }
 
     public void ButtonLeft(){
-
-        audioPlayer.PlayOneShot(click);
         Transform empty;
         if(emptyspace.localPosition.x < emptyspace1.localPosition.x) empty = emptyspace;
         else empty = emptyspace1;
@@ -62,7 +56,6 @@ public class Puzzle : MonoBehaviour
 
     public void ButtonRight(){
 
-        audioPlayer.PlayOneShot(click);
         Transform empty;
         if(emptyspace.localPosition.x > emptyspace1.localPosition.x) empty = emptyspace;
         else empty = emptyspace1;
@@ -74,7 +67,7 @@ public class Puzzle : MonoBehaviour
 
      public void RectUp()
     {
-        audioPlayer.PlayOneShot(click);
+        
         Transform avil = null;
         if(Vector2.Distance(emptyspace.localPosition, currentTile.localPosition) < 2 && Mathf.Abs(emptyspace.localPosition.y - currentTile.localPosition.y )> 1.5f) avil = emptyspace;
         else if(Vector2.Distance(emptyspace1.localPosition, currentTile.localPosition) < 2 && Mathf.Abs(emptyspace1.localPosition.y - currentTile.localPosition.y )> 1.5f)avil = emptyspace1;
@@ -86,7 +79,7 @@ public class Puzzle : MonoBehaviour
 
     public void RectDown()
     {
-        audioPlayer.PlayOneShot(click);
+        
         Transform avil = null;
         if(Vector2.Distance(emptyspace.localPosition, currentTile.localPosition) < 2 && Mathf.Abs(emptyspace.localPosition.y - currentTile.localPosition.y )> 1.5f) avil = emptyspace;
         else if(Vector2.Distance(emptyspace1.localPosition, currentTile.localPosition) < 2 && Mathf.Abs(emptyspace1.localPosition.y - currentTile.localPosition.y )> 1.5f)avil = emptyspace1;
@@ -98,7 +91,7 @@ public class Puzzle : MonoBehaviour
 
     public void RectLeft()
     {
-        audioPlayer.PlayOneShot(click);
+       
         Transform avil = null;
         if(Vector2.Distance(emptyspace.localPosition, currentTile.localPosition) < 2 &&  currentTile.localPosition.x - emptyspace.localPosition.x > 1.5f) avil = emptyspace;
         else if(Vector2.Distance(emptyspace1.localPosition, currentTile.localPosition) < 2 && currentTile.localPosition.x - emptyspace1.localPosition.x > 1.5f)avil = emptyspace1;
@@ -111,7 +104,7 @@ public class Puzzle : MonoBehaviour
 
     public void RectRight()
     {
-        audioPlayer.PlayOneShot(click);
+        
         Transform avil = null;
         if(Vector2.Distance(emptyspace.localPosition, currentTile.localPosition) < 2 && emptyspace.localPosition.x - currentTile.localPosition.x > 1.5f) avil = emptyspace;
         else if(Vector2.Distance(emptyspace1.localPosition, currentTile.localPosition) < 2 && emptyspace1.localPosition.x - currentTile.localPosition.x> 1.5f)avil = emptyspace1;
