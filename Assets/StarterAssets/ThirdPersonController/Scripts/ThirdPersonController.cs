@@ -128,6 +128,8 @@ public class ThirdPersonController : MonoBehaviour
 
     public GameObject sword;
     private bool normal_isAttack = false;
+    public float shield_c = 1.0f;
+    private float player_hp;
 
     private bool IsCurrentDeviceMouse
     {
@@ -171,6 +173,8 @@ public class ThirdPersonController : MonoBehaviour
         _fallTimeoutDelta = FallTimeout;
 
         Cursor.lockState = CursorLockMode.Confined;
+
+        player_hp = DontDestroyVariable.PlayerHealth;
     }
 
     private void Update()
@@ -184,9 +188,11 @@ public class ThirdPersonController : MonoBehaviour
         CursorVisible();
         SearchMode();
         normal_attack();
+        damage_animation();
         if (Time.time - startTime > 10.0f)
         {
             shield.SetActive(false);
+            shield_c = 1.0f;
         }
     }
 
@@ -414,24 +420,18 @@ public class ThirdPersonController : MonoBehaviour
         {
             if (gameObject.GetComponent<test>().current_skill == 0)
             {
-                _animator.SetBool("normal", true);
+                _animator.SetTrigger("normal");
             }
             else if (gameObject.GetComponent<test>().current_skill == 1)
             {
-                _animator.SetBool("fireball", true);
+                _animator.SetTrigger("fireball");
             }
             else if (gameObject.GetComponent<test>().current_skill == 2)
             {
-                _animator.SetBool("shield", true);
+                _animator.SetTrigger("shield");
             }
 
             Attacking = true;
-        }
-        else
-        {
-            _animator.SetBool("normal", false);
-            _animator.SetBool("fireball", false);
-            _animator.SetBool("shield", false);
         }
     }
 
@@ -481,7 +481,18 @@ public class ThirdPersonController : MonoBehaviour
     {
         shield.SetActive(true);
         audioPlayer.PlayOneShot(bgmshield);
+        shield_c = 0.5f;
         startTime = Time.time;
+    }
+
+    public void damage_animation()
+    {
+        if(player_hp > DontDestroyVariable.PlayerHealth)
+        {
+            _animator.SetTrigger("damage");
+            Attacking = true;
+            player_hp = DontDestroyVariable.PlayerHealth;
+        }
     }
 
     private static float ClampAngle(float lfAngle, float lfMin, float lfMax)
