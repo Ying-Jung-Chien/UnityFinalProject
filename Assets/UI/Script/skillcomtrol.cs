@@ -12,6 +12,7 @@ public class skillcomtrol : MonoBehaviour
 
     public Image skillmask1;
     public Image skillmask2;
+    public Image skillmask3;
     // Start is called before the first frame update
     void Start()
     {
@@ -23,6 +24,7 @@ public class skillcomtrol : MonoBehaviour
     {
         skillmask1.fillAmount -= 0.002f;
         skillmask2.fillAmount -= 0.01f;
+        skillmask3.fillAmount -= 0.01f;
         if (skill_choose == 0)
         {
             skill1.gameObject.SetActive(true);
