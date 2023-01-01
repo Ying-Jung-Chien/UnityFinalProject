@@ -7,7 +7,13 @@ public class boss_entrance : MonoBehaviour
     public GameObject trap_ball;
     private GameObject trap_ball_clone;
     private float start_time;
-    private bool trap_activate = true;
+    public GameObject player;
+
+    public GameObject R_door;
+    public GameObject L_door;
+
+    public static bool trap_activate = true;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -24,6 +30,11 @@ public class boss_entrance : MonoBehaviour
             {
                 generate_trap_ball();
             }
+        }
+        if (player.GetComponent<break_door>().door_open)
+        {
+            if (R_door.transform.eulerAngles.y > 246.9f || R_door.transform.eulerAngles.y == 0) { R_door.transform.Rotate(0, -1, 0); }
+            if (L_door.transform.eulerAngles.y < 98.9f) { L_door.transform.Rotate(0, 1, 0); }
         }
     }
 

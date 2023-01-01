@@ -12,9 +12,6 @@ public class Boss : MonoBehaviour
     public GameObject playerFront;
     public GameObject[] spiral;
     private int spiralSize;
-    public static float Health = 1000;
-    public static float biteAttack = 50f;
-    public static float touchBossAttack = 20f;
     public float transitionSpead = 0.5f;
     public float dampTime = 3f;
     public int attackFreq_UpperBound = 10;
@@ -27,6 +24,9 @@ public class Boss : MonoBehaviour
     public bool scream;
     public bool fly;
 
+    public static float Health = 1000;
+    public static float biteAttack = 50f;
+    public static float touchBossAttack = 20f;
     public static float Speed { get; set; } = 3.5f;
     public static float TouchATK { get; set; } = 10;
     public static float ATK { get; set; } = 20;
@@ -34,6 +34,7 @@ public class Boss : MonoBehaviour
     public static bool goFly { get; set; } = false;
     public static bool isIdle { get; set; } = false;
     public static bool goAttack { get; set; } = false;
+    public static bool getAttack { get; set; } = false;
     public static bool timeStop { get; set; } = false;
     public static bool turnOffTimeStop { get; set; } = false;
 
@@ -53,6 +54,7 @@ public class Boss : MonoBehaviour
     private float nextTime;
     private float nextFireBallTime;
     private float counter;
+    private float _preHealth;
     private int spiralCounter;
     private int attackCounter;
     private int attackRandomNum;
@@ -95,6 +97,13 @@ public class Boss : MonoBehaviour
         curTime = Time.time;
         curPos = transform.position;
 
+        if(_preHealth != Health)
+        {
+            _preHealth = Health;
+            BossAnimationController.canGetAttackTime = Time.time + 0.5f;
+            getAttack = true;
+        }
+
         if(timeStop)
         {
             //Debug.Log("Boss.cs Update timeStop");
@@ -113,7 +122,11 @@ public class Boss : MonoBehaviour
         if (goFly)
         {
             //Debug.Log("Boss.cs Update goFly");
-            goFly = false;
+            Debug.Log("GameController.stopBoss = " + GameController.stopBoss + ", GameController.start = " + GameController.start);
+            if (GameController.stopBoss)
+                return;
+            if (GameController.start)
+                return;
             justStartFlying = true;
             smoothToTarget = true;
             //canFireBall = true;
