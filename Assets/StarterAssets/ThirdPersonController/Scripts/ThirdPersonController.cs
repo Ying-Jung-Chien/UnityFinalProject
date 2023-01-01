@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 #if ENABLE_INPUT_SYSTEM && STARTER_ASSETS_PACKAGES_CHECKED
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
@@ -131,6 +132,9 @@ public class ThirdPersonController : MonoBehaviour
     private bool normal_isAttack = false;
     public float shield_c = 1.0f;
     private float player_hp;
+
+    public Image skillmask1;
+    public Image skillmask2;
 
     private bool IsCurrentDeviceMouse
     {
@@ -423,17 +427,24 @@ public class ThirdPersonController : MonoBehaviour
             if (gameObject.GetComponent<test>().current_skill == 0)
             {
                 _animator.SetTrigger("normal");
+                Attacking = true;
             }
-            else if (gameObject.GetComponent<test>().current_skill == 1)
+            else if (gameObject.GetComponent<test>().current_skill == 1 && skillmask1.fillAmount == 0)
             {
                 _animator.SetTrigger("fireball");
+                skillmask1.fillAmount = 1;
+                Attacking = true;
+                DontDestroyVariable.PlayerBlue -= 10.0f;
             }
-            else if (gameObject.GetComponent<test>().current_skill == 2)
+            else if (gameObject.GetComponent<test>().current_skill == 2 && skillmask2.fillAmount == 0)
             {
                 _animator.SetTrigger("shield");
+                skillmask2.fillAmount = 1;
+                Attacking = true;
+                DontDestroyVariable.PlayerBlue -= 20.0f;
             }
 
-            Attacking = true;
+            
         }
     }
 

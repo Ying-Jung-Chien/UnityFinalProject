@@ -6,6 +6,10 @@ public class CoffinAnimation : MonoBehaviour
 {
     private Animation anim;
     public bool IsOpen;
+    public AudioClip open;
+    public AudioClip click;
+    public AudioSource audioplayer;
+    public GameObject alertui;
     // Start is called before the first frame update
     void Start()
     {
@@ -22,6 +26,9 @@ public class CoffinAnimation : MonoBehaviour
     public void OpenCoffin(){
         if(anim != null && !IsOpen){
             anim.Play("OpenLid");
+            audioplayer.PlayOneShot(click);
+            audioplayer.PlayOneShot(open);
+            alertui.SetActive(true);
             IsOpen = true;
         }
     }

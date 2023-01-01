@@ -8,6 +8,7 @@ public class DontDestroyVariable : MonoBehaviour
     public static int[] getNinePuzzle = new int[] {0, 0, 0, 0, 0};
     public static int lastRoom = 0;
     public static float PlayerHealth = 100.0f;
+    public static float PlayerBlue = 100.0f;
     public static bool isMonsterADead = false;
     public static bool isMonsterBDead = false;
     public static bool getKey = false;
@@ -33,6 +34,11 @@ public class DontDestroyVariable : MonoBehaviour
     public static bool passRoom1 = false;
     public static bool passRoom2 = false;
     public static bool passRoom3 = false;
+    public static bool getball1 = false;
+    public static bool getball2 = false;
+    public static bool getball3 = false;
+    public static bool getball4 = false;
+    public static bool getball5 = false;
 
     void Awake()
     {
@@ -57,6 +63,5 @@ public class DontDestroyVariable : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
     }
 }

@@ -12,12 +12,14 @@ public class trap_ball : MonoBehaviour
 
     public AudioClip sound;
     public AudioSource audioPlayer;
+    public AudioSource audioPlayer1;
 
     // Start is called before the first frame update
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
         start_time = Time.time;
+        audioPlayer1.Play();
     }
 
     // Update is called once per frame
@@ -26,6 +28,7 @@ public class trap_ball : MonoBehaviour
         if (Time.time - start_time > 7.0f)
         {
             agent.enabled = false;
+            audioPlayer1.Stop();
             Destroy(gameObject);
         }
         else
@@ -45,6 +48,7 @@ public class trap_ball : MonoBehaviour
                 audioPlayer.PlayOneShot(sound);
             }
             agent.enabled = false;
+            audioPlayer1.Stop();
             Destroy(gameObject);
         }
     }

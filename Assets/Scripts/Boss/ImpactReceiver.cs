@@ -1,12 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 
 public class ImpactReceiver : MonoBehaviour
 {
     // Start is called before the first frame update
 
+    public Image skillmask;
     float mass = 3.0F; // defines the character mass
     Vector3 impact = Vector3.zero;
     private CharacterController character;
@@ -14,6 +16,7 @@ public class ImpactReceiver : MonoBehaviour
     // Use this for initialization
     void Start()
     {
+        skillmask.fillAmount = 1;
         character = GetComponent<CharacterController>();
     }
 

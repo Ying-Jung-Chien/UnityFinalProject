@@ -13,9 +13,5 @@ MonoBehaviour:
   m_Name: player
   m_EditorClassIdentifier: 
   itemList:
-  - {fileID: 11400000, guid: c628ca722c8d87742b1b815850a863d3, type: 2}
-  - {fileID: 11400000, guid: 5ac90b649324234439d4150a923cb6b2, type: 2}
+  - {fileID: 11400000, guid: 1f14b56a83a3c7f499b6fad0191d89f5, type: 2}
   - {fileID: 11400000, guid: c7a1d50dae5363e4aa56ad2841f1c101, type: 2}
-  - {fileID: 11400000, guid: aa061c410a42c6149b2f828f307b7639, type: 2}
-  - {fileID: 11400000, guid: 6d809bc3deb0e804f93a20edffaaddb0, type: 2}
-  - {fileID: 11400000, guid: f626cdab2e232694ebeca85e7ab14fe9, type: 2}

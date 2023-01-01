@@ -8,6 +8,9 @@ public class mouse : MonoBehaviour
 
     public AudioClip click;
     public AudioSource audioPlayer;
+
+    public item item1;
+    public inventory playerInventory;
     // Start is called before the first frame update
     void Start()
     {
@@ -24,13 +27,35 @@ public class mouse : MonoBehaviour
             if (Physics.Raycast(ray, out hit))
             {
                 GameObject obj = hit.collider.gameObject;
-                if (obj.name == "Sphere")
+                if (obj.name == "ball1")
                 {
+                    DontDestroyVariable.getball1 = true;
+                    AddNewItem(item1);
+                    audioPlayer.PlayOneShot(click);
+                    alertui.gameObject.SetActive(true);
+                    Destroy(obj);
+                }else if (obj.name == "ball3")
+                {
+                    DontDestroyVariable.getball3 = true;
+                    AddNewItem(item1);
                     audioPlayer.PlayOneShot(click);
                     alertui.gameObject.SetActive(true);
                     Destroy(obj);
                 }
             }
         }
+    }
+
+    public void AddNewItem(item item)
+    {
+        if (!playerInventory.itemList.Contains(item))
+        {
+            playerInventory.itemList.Add(item);
+        }
+        else
+        {
+            item.itemHeld += 1;
+        }
+        manager.ReflashItem();
     }
 }

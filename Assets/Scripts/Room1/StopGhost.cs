@@ -24,7 +24,7 @@ public class StopGhost : MonoBehaviour
             Ray ray = Camera.main.ScreenPointToRay (Input.mousePosition);
             foreach(RaycastHit hit in Physics.RaycastAll (ray))
             {
-                if (hit.collider == GetComponent<Collider>())
+                if (hit.collider == GetComponent<Collider>() && DontDestroyVariable.getball2 == false)
                 {
                     alertui.SetActive(true);
                     audioPlayer.PlayOneShot(click);
