@@ -14,8 +14,17 @@ public class EnemyBody : MonoBehaviour
     void Update()
     {
         
-    }
-    private void OnTriggerEnter(Collider other){
         
     }
+    // private void OnTriggerEnter(Collider other){
+    //     print("enter ");
+    //     print(other.name);
+    //     print(GameObject.FindGameObjectWithTag("Player").GetComponent<ThirdPersonController>().Attacking);
+    //     if(other.name == "Sword_2_Long" && GameObject.FindGameObjectWithTag("Player").GetComponent<ThirdPersonController>().Attacking){
+    //         Enemy.TakeDamage(100);
+    //     }
+    // }
+
+
+    
 }

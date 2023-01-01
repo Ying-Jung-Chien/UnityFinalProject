@@ -14,8 +14,8 @@ public class Enemy : MonoBehaviour
 	private GameObject playerObject;
 	// private Player player;
 	
-	public static int maxHealth;
-    public static int health;
+	public static float maxHealth;
+    public static float Health;
 
 	private float move = 20;
 	private bool stop = false;	
@@ -57,13 +57,14 @@ public class Enemy : MonoBehaviour
     {
         player_trans = GameObject.Find("Player").transform;
         agent = GetComponent<NavMeshAgent>();
+        maxHealth = 1000f;
     }
 
     void Start()
     {
         anim = GetComponent<Animator>();
         enemydead = false;
-		health = maxHealth;
+		Health = maxHealth;
 
 		playerObject = GameObject.Find("Player");
 		
@@ -197,13 +198,13 @@ public class Enemy : MonoBehaviour
         alreadyAttacked = false;
     }
 
-    public static void TakeDamage(int damage)
+    public static void TakeDamage(float damage)
     {
 		anim.SetTrigger("Damage");
-        health -= damage;
+        Health -= damage;
 		print("Damage");
 		// healthBarImage.fillAmount = Mathf.Clamp((float)health / maxHealth, 0, 1f);
-        if (health <= 0){
+        if (Health <= 0){
 			enemydead = true;
 			anim.SetTrigger("Dead");
             Door.GetComponent<OpenDoor>().SetDefeat();
