@@ -450,9 +450,18 @@ public class ThirdPersonController : MonoBehaviour
 
             foreach (var col in collider)
             {
+                
                 if (col.tag == "Boss")
                 {
                     Boss.Health = Boss.Health - 100f;
+                    normal_isAttack = false;
+                    break;
+                }
+                if (col.tag == "enemy")
+                {
+                    Enemy.TakeDamage(100f);
+                    //Enemy.Health = Enemy.Health - 100f;
+                   
                     normal_isAttack = false;
                     break;
                 }
