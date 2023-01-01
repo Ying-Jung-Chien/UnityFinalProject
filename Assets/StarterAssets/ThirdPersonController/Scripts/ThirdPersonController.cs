@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 #if ENABLE_INPUT_SYSTEM && STARTER_ASSETS_PACKAGES_CHECKED
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 #endif
 
 /* Note: animations are called via the controller for both the character and capsule using animator null checks
@@ -189,6 +190,7 @@ public class ThirdPersonController : MonoBehaviour
         SearchMode();
         normal_attack();
         damage_animation();
+        load_scene();
         if (Time.time - startTime > 10.0f)
         {
             shield.SetActive(false);
@@ -492,6 +494,30 @@ public class ThirdPersonController : MonoBehaviour
             _animator.SetTrigger("damage");
             Attacking = true;
             player_hp = DontDestroyVariable.PlayerHealth;
+        }
+    }
+
+    public void load_scene()
+    {
+        if(Input.GetKeyDown(KeyCode.Alpha1))
+        {
+            SceneManager.LoadScene(4);
+        }
+        else if (Input.GetKeyDown(KeyCode.Alpha2))
+        {
+            SceneManager.LoadScene(1);
+        }
+        else if (Input.GetKeyDown(KeyCode.Alpha3))
+        {
+            SceneManager.LoadScene(2);
+        }
+        else if (Input.GetKeyDown(KeyCode.Alpha4))
+        {
+            SceneManager.LoadScene(3);
+        }
+        else if (Input.GetKeyDown(KeyCode.Alpha5))
+        {
+            SceneManager.LoadScene(0);
         }
     }
 
