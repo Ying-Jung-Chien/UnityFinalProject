@@ -37,6 +37,9 @@ public class bloodcontrol : MonoBehaviour
     void Update()
     {
         blood.fillAmount = DontDestroyVariable.PlayerHealth / 100.0f;
+        if(DontDestroyVariable.PlayerHealth < 100.0f && DontDestroyVariable.getball1 == true){
+            DontDestroyVariable.PlayerHealth += 0.1f;
+        }
         /*if(check == 0){
         	if(DontDestroyVariable.PlayerHealth <= 0)
 	        {

@@ -53,6 +53,11 @@ public class Enemy : MonoBehaviour
    
     public LayerMask playerLayer;
     public static  GameObject Door;
+
+
+    public Image nowblood;
+    public Image noblood;
+    public Image head;
     void Awake()
     {
         player_trans = GameObject.Find("Player").transform;
@@ -75,6 +80,12 @@ public class Enemy : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        nowblood.fillAmount = Health / maxHealth;
+        if(Health <= 0){
+            Destroy(nowblood);
+            Destroy(noblood);
+            Destroy(head);
+        }
         if(!enemydead){
             if(begining){
                 if(coffin.GetComponent<CoffinAnimation>().IsOpen){
@@ -202,7 +213,6 @@ public class Enemy : MonoBehaviour
     {
 		anim.SetTrigger("Damage");
         Health -= damage;
-		
 		// healthBarImage.fillAmount = Mathf.Clamp((float)health / maxHealth, 0, 1f);
         if (Health <= 0){
 			enemydead = true;

@@ -6,9 +6,7 @@ using UnityEngine.UI;
 public class bluecontrol : MonoBehaviour
 {
 	public Image blue;
-	public float nowblue;
     
-
     void Awake()
     {
         /*GameObject[] objs = GameObject.FindGameObjectsWithTag("blue");
@@ -29,7 +27,11 @@ public class bluecontrol : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        blue.fillAmount = nowblue / 100.0f;
+        blue.fillAmount = DontDestroyVariable.PlayerBlue / 100.0f;
+
+        if(DontDestroyVariable.PlayerBlue < 100.0f){
+            DontDestroyVariable.PlayerBlue += 0.1f;
+        }
     }
     
 
