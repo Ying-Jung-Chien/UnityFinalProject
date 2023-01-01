@@ -202,7 +202,7 @@ public class Enemy : MonoBehaviour
     {
 		anim.SetTrigger("Damage");
         Health -= damage;
-		print("Damage");
+		
 		// healthBarImage.fillAmount = Mathf.Clamp((float)health / maxHealth, 0, 1f);
         if (Health <= 0){
 			enemydead = true;
