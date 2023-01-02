@@ -14,6 +14,7 @@ TagManager:
   - door
   - GoldPile
   - DontDestroy
+  - PlayerRepLight
   layers:
   - Default
   - TransparentFX

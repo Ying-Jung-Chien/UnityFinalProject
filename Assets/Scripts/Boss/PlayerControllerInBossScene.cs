@@ -38,14 +38,14 @@ public class PlayerControllerInBossScene : MonoBehaviour
                 {
                     if (!gotBite)
                     {
-                        DontDestroyVariable.PlayerHealth -= Boss.biteAttack;
+                        DontDestroyVariable.PlayerHealth -= Boss.biteAttack * gameObject.GetComponent<ThirdPersonController>().shield_c;
                         gotBite = true;
                         biteTime = Time.time;
                     }
                 }
                 else
                 {
-                    DontDestroyVariable.PlayerHealth -= Boss.touchBossAttack;
+                    DontDestroyVariable.PlayerHealth -= Boss.touchBossAttack * gameObject.GetComponent<ThirdPersonController>().shield_c;
                 }
             }
         }
