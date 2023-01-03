@@ -11,6 +11,9 @@ public class MonsterAController : MonoBehaviour
     public static float monsterAHealth =  100.0f;
     public LayerMask playerLayer;
 
+    public static bool isDamaged = false;
+    public static bool isFireBallDamaged = false;
+
     private NavMeshAgent agent;
     private Transform player;
 	private bool hasAniComp = false;
@@ -31,15 +34,23 @@ public class MonsterAController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        player = GameObject.Find("Player").transform;
-        agent = GetComponent<NavMeshAgent>();
-        if ( GetComponent<Animation>() != null ) hasAniComp = true;
+        if (DontDestroyVariable.isMonsterADead) Destroy(gameObject);
+        else {
+            player = GameObject.Find("Player").transform;
+            agent = GetComponent<NavMeshAgent>();
+            if ( GetComponent<Animation>() != null ) hasAniComp = true;
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
         if (!DontDestroyVariable.isMonsterADead) {
+            if (isFireBallDamaged) {
+                monsterAHealth -= 20.0f;
+                isFireBallDamaged = false;
+                Damage();
+            }
             if (DetectPlayerA.isPlayerIn) ChaseAndAttackPlayer();
             else Back();
         }
@@ -83,8 +94,8 @@ public class MonsterAController : MonoBehaviour
 			GetComponent<Animation>().CrossFade("attack01",0.2f);
 			GetComponent<Animation>().CrossFadeQueued("idle01");
             if (isTriggerPlayer) {
-                DontDestroyVariable.PlayerHealth -= 5.0f;
-                if ( !IsInvoking(nameof(SetPlayerDamage)) ) Invoke(nameof(SetPlayerDamage), 0.5f);
+                Debug.Log("Triggering");
+                DontDestroyVariable.PlayerHealth -= 5.0f * player.GetComponent<ThirdPersonController>().shield_c;
             }
 		}
     }
@@ -107,14 +118,25 @@ public class MonsterAController : MonoBehaviour
         }
     }
 
-    void SetPlayerDamage()
+    void Damage()
     {
-        PlayerController.isDamaging = true;
-    }
-
-    void SetMonsterDamage()
-    {
-        PlayerController.isDamaging = true;
+        // monsterAHealth -= 10.0f;
+        // Debug.Log("monsterAHealth");
+        // Debug.Log(monsterAHealth);
+        nowblood.fillAmount = monsterAHealth / 100.0f;
+        blood.Play();
+        if (monsterAHealth <= 0) {
+            DontDestroyVariable.isMonsterADead = true;
+            DontDestroyVariable.getPuzzle[4] = 1;
+            GetComponent<Animation>().CrossFade("dead",0.1f);
+            audioPlayer.PlayOneShot(click);
+            AddNewItem(thisitem);
+            alertui.SetActive(true);
+            StartCoroutine(Wait());
+        } else {
+            GetComponent<Animation>().CrossFade("damage",0.2f);
+            GetComponent<Animation>().CrossFadeQueued("idle01");
+        }
     }
 
     private void OnTriggerEnter(Collider other)
@@ -124,22 +146,9 @@ public class MonsterAController : MonoBehaviour
             isTriggerPlayer = true;
         }
 
-        if (other.name == "Sword_2_Long" && PlayerController.isAttacking && !DontDestroyVariable.isMonsterADead && !GetComponent<Animation>().IsPlaying("damage")) {
+        if (other.name == "Sword_2_Long" && player.GetComponent<ThirdPersonController>().normal_isAttack && !DontDestroyVariable.isMonsterADead && !GetComponent<Animation>().IsPlaying("damage")) {
             monsterAHealth -= 10.0f;
-            nowblood.fillAmount = monsterAHealth / 100.0f;
-            blood.Play();
-            if (monsterAHealth <= 0) {
-                DontDestroyVariable.isMonsterADead = true;
-                DontDestroyVariable.getPuzzle[4] = 1;
-                GetComponent<Animation>().CrossFade("dead",0.1f);
-                audioPlayer.PlayOneShot(click);
-                AddNewItem(thisitem);
-                alertui.SetActive(true);
-                StartCoroutine(Wait());
-            } else {
-                GetComponent<Animation>().CrossFade("damage",0.2f);
-                GetComponent<Animation>().CrossFadeQueued("idle01");
-            }
+            Damage();
         }
     }
 

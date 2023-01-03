@@ -37,6 +37,14 @@ public class fireball : MonoBehaviour
                 gameObject.GetComponent<Collider>().enabled = false;
                 Boss.Health = Boss.Health - 70f;
             }
+
+            if (collision.gameObject.name == "MonsterA") {
+                MonsterAController.isFireBallDamaged = true;
+            } 
+            if (collision.gameObject.name == "MonsterB") {
+                MonsterBController.isFireBallDamaged = true;
+            }
+
             if (ExplosionEffect != null)
             {
                 GameObject exp = GameObject.Instantiate(ExplosionEffect, Vector3.zero, Quaternion.identity) as GameObject;
