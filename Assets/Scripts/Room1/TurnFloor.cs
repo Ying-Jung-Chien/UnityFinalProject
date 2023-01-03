@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class TurnFloor : MonoBehaviour
 {
-    
+    public GameObject floor;
     // Start is called before the first frame update
     void Start()
     {
@@ -17,10 +17,10 @@ public class TurnFloor : MonoBehaviour
         
     }
 
-    void OnCollisionEnter(Collision collision)
+    void OnTriggerEnter(Collider collider)
     {
-        if(collision.gameObject.tag == "Player"){
-            this.GetComponent<Animation>().Play("TurnAround");
+        if(collider.tag == "Player"){
+            floor.GetComponent<Animation>().Play("TurnAround");
         }
     }
 }
