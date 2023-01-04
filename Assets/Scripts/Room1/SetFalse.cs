@@ -2,9 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TurnFloor : MonoBehaviour
+public class SetFalse : MonoBehaviour
 {
-    public GameObject floor;
+    public GameObject HuaRon;
     // Start is called before the first frame update
     void Start()
     {
@@ -17,10 +17,7 @@ public class TurnFloor : MonoBehaviour
         
     }
 
-    void OnTriggerEnter(Collider collider)
-    {
-        if(collider.tag == "Player"){
-            floor.GetComponent<Animation>().Play("TurnAround");
-        }
+    public void SetInvisible(){
+        HuaRon.SetActive(false);
     }
 }
