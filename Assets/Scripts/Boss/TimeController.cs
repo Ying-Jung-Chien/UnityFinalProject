@@ -16,13 +16,13 @@ public class TimeController : MonoBehaviour
     public GameObject representativeObj;
     public GameObject repLightObj;
     public GameObject forceDirArrow;
-    public float cdTime = 10.0f;
+    public float cdTime = 6.0f;
     public float lenOfRecord_s = 5.0f; // (s)
-    public float frequence_s = 0.1f; // (s)
-    public float forceStrength = 300;
-    public float turnBackTimeWidth = 0.1f;
-    public float ejectDelay_s = 0.5f;
-    public float switchDelay_s = 1.0f;
+    public float frequence_s = 0.05f; // (s)
+    public float forceStrength = 600;
+    public float turnBackTimeWidth = 0.05f;
+    public float ejectDelay_s = 0.1f;
+    public float switchDelay_s = 0.8f;
     public int shoePosRepDensity = 5;
 
     public static bool pressT = false;
@@ -230,6 +230,7 @@ public class TimeController : MonoBehaviour
             isTurningBackTheClock = false;
             showedPreLightPrefab = repLightObj;
             showedPreLightPrefab.SetActive(true);
+            player.SetActive(false);
             showedPreLightPrefab.GetComponent<Animator>().enabled = true;
             showedPreLightPrefab.GetComponent<Animator>().Play(representativeObj.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).fullPathHash);
             showedPreLightPrefab.transform.rotation = pastRotation[timePosIndex];
