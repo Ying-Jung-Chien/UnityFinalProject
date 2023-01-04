@@ -102,7 +102,7 @@ public class Boss : MonoBehaviour
         curTime = Time.time;
         curPos = transform.position;
 
-        if(_preHealth != Health)
+        if(_preHealth > Health)
         {
             _preHealth = Health;
             BossAnimationController.canGetAttackTime = Time.time + 0.5f;

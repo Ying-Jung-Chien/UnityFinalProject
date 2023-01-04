@@ -142,7 +142,8 @@ public class TimeController : MonoBehaviour
         {
             forceDirArrow.transform.position = showedPreLightPrefab.transform.position + bias;
             int nextIdx = (timePosIndex - 1 < 0) ? (totalNumOfPos - 1) : (timePosIndex - 1);
-            forceDirArrow.transform.rotation = Quaternion.LookRotation(pastPosition[nextIdx] - showedPreLightPrefab.transform.position);
+            //forceDirArrow.transform.rotation = Quaternion.LookRotation(pastPosition[nextIdx] - showedPreLightPrefab.transform.position);
+            forceDirArrow.transform.rotation = Quaternion.LookRotation(pastPosition[nextIdx] - pastPosition[timePosIndex]);
 
             if (curTime >= tmp)
                 showedPreLightPrefab.GetComponent<Animator>().enabled = false;
@@ -194,7 +195,8 @@ public class TimeController : MonoBehaviour
             {
                 forceDirArrow.transform.position = Vector3.SmoothDamp(forceDirArrow.transform.position, representativeObj.transform.position + bias, ref velocity, turnBackTimeWidth / 20);
                 int nextIdx = (timePosIndex - 1 < 0) ? (totalNumOfPos - 1) : (timePosIndex - 1);
-                forceDirArrow.transform.rotation = Quaternion.LookRotation(pastPosition[nextIdx] - representativeObj.transform.position);
+                //forceDirArrow.transform.rotation = Quaternion.LookRotation(pastPosition[nextIdx] - representativeObj.transform.position);
+                forceDirArrow.transform.rotation = Quaternion.LookRotation(pastPosition[nextIdx] - pastPosition[timePosIndex]);
             }
 
             timePosIndex = (timePosIndex - 1 < 0) ? (totalNumOfPos - 1) : (timePosIndex - 1);
@@ -265,7 +267,7 @@ public class TimeController : MonoBehaviour
     void Ejection()
     {
         //showedPreLightPrefab.transform.position = pastPosition[timePosIndex];
-        Debug.Log("1. curPos = " + showedPreLightPrefab.transform.position + "originPos = " + pastPosition[timePosIndex]);
+        //Debug.Log("1. curPos = " + showedPreLightPrefab.transform.position + "originPos = " + pastPosition[timePosIndex]);
         playerRepLightScale = false;
         lightRepCamera.enabled = true;
         timeRepCamera.enabled = false;
@@ -276,11 +278,11 @@ public class TimeController : MonoBehaviour
 
         // 增加作用力
         showedPreLightPrefab.transform.position = pastPosition[timePosIndex];
-        Debug.Log("2. curPos = " + showedPreLightPrefab.transform.position + "originPos = " + pastPosition[timePosIndex]);
+        //Debug.Log("2. curPos = " + showedPreLightPrefab.transform.position + "originPos = " + pastPosition[timePosIndex]);
         Vector3 curPos = pastPosition[timePosIndex];
         int preIndex = (timePosIndex - 1 < 0) ? (totalNumOfPos - 1) : (timePosIndex - 1);
         Vector3 prePos = pastPosition[preIndex];
-        Debug.Log("curPos = " + curPos + ", prePos = " + prePos + ", forceDir = " + (prePos - curPos) + "distance = " + Vector3.Distance(curPos, prePos));
+        //Debug.Log("curPos = " + curPos + ", prePos = " + prePos + ", forceDir = " + (prePos - curPos) + "distance = " + Vector3.Distance(curPos, prePos));
         showedPreLightPrefab.GetComponent<ImpactReceiver_RepLight>().AddImpact((prePos - curPos), Vector3.Distance(curPos, prePos) * forceStrength);
 
         InitArrays();

@@ -105,11 +105,13 @@ public class GameController : MonoBehaviour
             //{
             //    stopBoss = !stopBoss;
             //}
-            //if(Input.GetKeyDown(KeyCode.Alpha4))
-            //{
-            //    Debug.Log("Press 4");
-            //    start = true;
-            //}
+            if(Input.GetKeyDown(KeyCode.Minus))
+            {
+                blackDragon.SetActive(true);
+                bossBlood.SetActive(true);
+                Debug.Log("Press 4");
+                start = true;
+            }
         }
 
         if (start)

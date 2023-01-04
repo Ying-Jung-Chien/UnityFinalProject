@@ -476,6 +476,10 @@ public class ThirdPersonController : MonoBehaviour
                     normal_isAttack = false;
                     break;
                 }
+                if(col.tag == "Crystal")
+                {
+                    col.GetComponent<CrystalController>().DestoryCrystal();
+                }
             }
         }
     }
