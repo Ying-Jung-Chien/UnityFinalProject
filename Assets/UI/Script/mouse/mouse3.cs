@@ -37,6 +37,7 @@ public class mouse3 : MonoBehaviour, IPointerClickHandler
     {
         audioPlayer.PlayOneShot(click);
         AddNewItem(item1);
+        DontDestroyVariable.nowskillnum = 2;
         DontDestroyVariable.getball2 = true;
         passwordshow.passwordshow1 = false;
         passwordshow.eightshow = false;

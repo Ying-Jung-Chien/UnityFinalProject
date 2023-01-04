@@ -15,7 +15,7 @@ MonoBehaviour:
   itemName: ball5
   itemimage: {fileID: 21300000, guid: 88d82072d32597940a38af802a98e646, type: 3}
   itemimage1: {fileID: 21300000, guid: ad136444419e2994a93eb66fa8e0259b, type: 3}
-  itemHeld: 1
+  itemHeld: 0
   itemType: 0
   itemactive: 0
   itemInfo: "\u85CD\u8272\u5BF6\u73E0"

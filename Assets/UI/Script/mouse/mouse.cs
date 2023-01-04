@@ -36,6 +36,7 @@ public class mouse : MonoBehaviour
                     Destroy(obj);
                 }else if (obj.name == "ball3")
                 {
+                    DontDestroyVariable.nowskillnum = 3;
                     DontDestroyVariable.getball3 = true;
                     AddNewItem(item1);
                     audioPlayer.PlayOneShot(click);

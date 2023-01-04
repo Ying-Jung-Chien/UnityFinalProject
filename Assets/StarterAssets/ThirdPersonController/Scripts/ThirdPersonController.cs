@@ -125,6 +125,7 @@ public class ThirdPersonController : MonoBehaviour
     public AudioSource audioPlayer;
     public AudioClip bgmshield;
     public AudioClip attack;
+    public AudioClip hitsound;
 
     private bool CameraRotation_status = true;
 
@@ -135,6 +136,11 @@ public class ThirdPersonController : MonoBehaviour
 
     public Image skillmask1;
     public Image skillmask2;
+
+    public item item1;
+    public item item2;
+    public item item3;
+    public inventory playerInventory;
 
     private bool IsCurrentDeviceMouse
     {
@@ -432,17 +438,21 @@ public class ThirdPersonController : MonoBehaviour
             }
             else if (gameObject.GetComponent<test>().current_skill == 1 && skillmask1.fillAmount == 0)
             {
-                _animator.SetTrigger("fireball");
-                skillmask1.fillAmount = 1;
-                Attacking = true;
-                DontDestroyVariable.PlayerBlue -= 10.0f;
+                if(DontDestroyVariable.PlayerBlue >= 20.0f){
+                    _animator.SetTrigger("fireball");
+                    skillmask1.fillAmount = 1;
+                    Attacking = true;
+                    DontDestroyVariable.PlayerBlue -= 20.0f;
+                }
             }
             else if (gameObject.GetComponent<test>().current_skill == 2 && skillmask2.fillAmount == 0)
             {
-                _animator.SetTrigger("shield");
-                skillmask2.fillAmount = 1;
-                Attacking = true;
-                DontDestroyVariable.PlayerBlue -= 20.0f;
+                if(DontDestroyVariable.PlayerBlue >= 30.0f){
+                    _animator.SetTrigger("shield");
+                    skillmask2.fillAmount = 1;
+                    Attacking = true;
+                    DontDestroyVariable.PlayerBlue -= 30.0f;
+                }
             }
 
             
@@ -464,12 +474,18 @@ public class ThirdPersonController : MonoBehaviour
             {
                 if (col.tag == "Boss")
                 {
+                    if(Boss.Health > 0){
+                        audioPlayer.PlayOneShot(hitsound);
+                    }
                     Boss.Health = Boss.Health - 100f;
                     normal_isAttack = false;
                     break;
                 }
                 if (col.tag == "enemy")
                 {
+                    if(Enemy.Health > 0){
+                        audioPlayer.PlayOneShot(hitsound);
+                    }
                     Enemy.TakeDamage(100f);
                     //Enemy.Health = Enemy.Health - 100f;
                    
@@ -479,6 +495,7 @@ public class ThirdPersonController : MonoBehaviour
 
                 if(col.tag == "Crystal")
                 {
+                    audioPlayer.PlayOneShot(hitsound);
                     col.GetComponent<CrystalController>().DestoryCrystal();
                 }
 
@@ -537,24 +554,50 @@ public class ThirdPersonController : MonoBehaviour
     {
         if(Input.GetKeyDown(KeyCode.Alpha1))
         {
+            DontDestroyVariable.nowplace = 4;
             SceneManager.LoadScene(4);
         }
         else if (Input.GetKeyDown(KeyCode.Alpha2))
         {
+            DontDestroyVariable.nowplace = 1;
             SceneManager.LoadScene(1);
         }
         else if (Input.GetKeyDown(KeyCode.Alpha3))
         {
+            DontDestroyVariable.nowplace = 2;
             SceneManager.LoadScene(2);
         }
         else if (Input.GetKeyDown(KeyCode.Alpha4))
         {
+            DontDestroyVariable.nowplace = 3;
             SceneManager.LoadScene(3);
         }
         else if (Input.GetKeyDown(KeyCode.Alpha5))
         {
+            DontDestroyVariable.nowplace = 0;
             SceneManager.LoadScene(0);
         }
+        else if (Input.GetKeyDown(KeyCode.Alpha6))
+        {
+            DontDestroyVariable.nowskillnum = 2;
+            DontDestroyVariable.getball2 = true;
+        }
+        else if (Input.GetKeyDown(KeyCode.Alpha7))
+        {
+            DontDestroyVariable.nowskillnum = 3;
+            DontDestroyVariable.getball3 = true;
+        }
+        else if (Input.GetKeyDown(KeyCode.Alpha8))
+        {
+            AddNewItem(item1);
+            AddNewItem(item2);
+            AddNewItem(item3);
+        }
+        else if (Input.GetKeyDown(KeyCode.Alpha9))
+        {
+            Boss.Health = 0;
+        }
+
     }
 
     private static float ClampAngle(float lfAngle, float lfMin, float lfMax)
@@ -596,5 +639,18 @@ public class ThirdPersonController : MonoBehaviour
         {
             AudioSource.PlayClipAtPoint(LandingAudioClip, transform.TransformPoint(_controller.center), FootstepAudioVolume);
         }
+    }
+
+    public void AddNewItem(item item)
+    {
+        if (!playerInventory.itemList.Contains(item))
+        {
+            playerInventory.itemList.Add(item);
+        }
+        else
+        {
+            item.itemHeld += 1;
+        }
+        manager.ReflashItem();
     }
 }

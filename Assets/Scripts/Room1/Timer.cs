@@ -35,16 +35,20 @@ public class Timer : MonoBehaviour
             if (m_sec < 0 && m_min > 0)         //如果秒數為 0 且分鐘大於 0
             {
                 m_min -= 1;                     //先將分鐘減去 1
-                m_sec = 59;                     //再將秒數設為 59
+                m_sec = 9;                     //再將秒數設為 59
             }
             else if (m_sec < 0 && m_min == 0)   //如果秒數為 0 且分鐘大於 0
             {
                 m_sec = 0;                      //設定秒數等於 0
+                DontDestroyVariable.PlayerHealth = 0.0f;
             }
             m_TextComponent.text = string.Format("{0}:{1}", m_min.ToString("00"), m_sec.ToString("00"));
+            
         }
 
         yield return new WaitForSeconds(1);   //時間結束時，顯示 00:00 停留一秒
+
+        
         
         // Time.timeScale = 0;                   //時間結束時，控制遊戲暫停無法操作
     }

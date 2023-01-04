@@ -9,6 +9,9 @@ public class ToBoss : MonoBehaviour
     public GameObject loadingPanel;
     public Slider loadingBar;
 
+    public GameObject alertui;
+    public AudioClip getevent;
+    public AudioSource audioPlayer;
     // Start is called before the first frame update
     void Start()
     {
@@ -18,13 +21,19 @@ public class ToBoss : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if(DontDestroyVariable.goBoss == true){
+            DontDestroyVariable.nowplace = 4;
+            StartCoroutine(LoadSceneAsync("Boss"));
+        }
     }
 
     void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag == "Player" && (DontDestroyVariable.passRoom1 && DontDestroyVariable.passRoom2 && DontDestroyVariable.passRoom3))
-            StartCoroutine(LoadSceneAsync("Boss"));
+        if (other.gameObject.tag == "Player" && (DontDestroyVariable.passRoom1 && DontDestroyVariable.passRoom2 && DontDestroyVariable.passRoom3)){
+            audioPlayer.PlayOneShot(getevent);
+            alertui.SetActive(true);
+            //StartCoroutine(LoadSceneAsync("Boss"));
+        }
         // if (other.gameObject.tag == "Player") StartCoroutine(LoadSceneAsync("Boss"));
     }
 

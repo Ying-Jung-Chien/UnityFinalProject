@@ -58,6 +58,9 @@ public class Enemy : MonoBehaviour
     public Image nowblood;
     public Image noblood;
     public Image head;
+
+    public AudioClip sound;
+    public AudioSource audioPlayer;
     void Awake()
     {
         player_trans = GameObject.Find("Player").transform;
@@ -187,7 +190,6 @@ public class Enemy : MonoBehaviour
 
     IEnumerator PlayAttackSound(){
 		yield return new WaitForSeconds(0.5f);
-		audioplayer.PlayOneShot(attack);
 	}
 	 private void AttackingStart()
     {
@@ -199,6 +201,7 @@ public class Enemy : MonoBehaviour
         Attacking = false;
         bool playerInAttackRange = Physics.CheckSphere(transform.position, attackRange, playerLayer);
         if (playerInAttackRange ) {
+            audioplayer.PlayOneShot(attack);
             DontDestroyVariable.PlayerHealth -= 5.0f;
             PlayerController.isDamaging = true;
         }
@@ -223,12 +226,12 @@ public class Enemy : MonoBehaviour
     }
     private void DestroyEnemy()
     {
-		
         Destroy(gameObject);
     }
 
     private void OnTriggerEnter(Collider other){
         if(other.name == "Sword_2_Long" && PlayerController.isAttacking){
+            audioplayer.PlayOneShot(sound);
             TakeDamage(100);
         }
     }

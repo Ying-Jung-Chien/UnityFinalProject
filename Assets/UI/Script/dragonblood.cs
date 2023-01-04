@@ -47,22 +47,23 @@ public class dragonblood : MonoBehaviour
 		        }
 	        }
         }*/
-        if (Boss.Health <= 0)
+        if (Boss.Health <= 0 && check == 0)
         {
-            Boss.Health = 1000.0f;
             win.SetActive(true);
+            check = 1;
+            DontDestroyVariable.PlayerHealth = 10000.0f;
             audioPlayer.PlayOneShot(success);
+            StartCoroutine(Wait());
         }
     }
 
-    /*IEnumerator Wait()
+    IEnumerator Wait()
     {
-        yield return new WaitForSeconds(2.0f);
-        check = 0;
-        UnityEngine.SceneManagement.SceneManager.LoadSceneAsync("Mainmaze");
-        DontDestroyVariable.PlayerHealth = 100;
-		lose.gameObject.SetActive(false);
-    }*/
+        yield return new WaitForSeconds(5.0f);
+        DontDestroyVariable.PlayerHealth = 100.0f;
+        DontDestroyVariable.PlayerBlue = 100.0f;
+        UnityEngine.SceneManagement.SceneManager.LoadSceneAsync("Start");
+    }
 
 
 }

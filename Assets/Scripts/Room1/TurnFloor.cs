@@ -5,6 +5,8 @@ using UnityEngine;
 public class TurnFloor : MonoBehaviour
 {
     public GameObject floor;
+    public AudioClip sound;
+    public AudioSource audioPlayer;
     // Start is called before the first frame update
     void Start()
     {
@@ -20,6 +22,7 @@ public class TurnFloor : MonoBehaviour
     void OnTriggerEnter(Collider collider)
     {
         if(collider.tag == "Player"){
+            audioPlayer.PlayOneShot(sound);
             floor.GetComponent<Animation>().Play("TurnAround");
         }
     }
