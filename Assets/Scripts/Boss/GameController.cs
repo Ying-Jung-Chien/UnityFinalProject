@@ -14,8 +14,13 @@ public class GameController : MonoBehaviour
     public GameObject blackDragon;
     public GameObject blackDragonHead;
     public GameObject blackDragonHeadFront;
+    public GameObject blackDragonSpine;
     public GameObject bossBlood;
     public GameObject[] cameraTargets;
+    public GameObject[] crystals;
+    public GameObject[] crystalCores;
+    public GameObject enrichBossBloodPrefab;
+    public GameObject enrichBossBloodBar;
 
     public static bool stopBoss = false;
     public static bool start = false;
@@ -23,12 +28,15 @@ public class GameController : MonoBehaviour
     private Vector3 velocity;
     private bool firstScream;
     private bool test = false;
+    private bool addBlood = false;
     private float curTime;
     private float nextTime;
     private float endTime;
     private int camTarNum;
     private int curTarIdx = 0;
     private bool start_flag = false;
+    private GameObject closestCrystal;
+
 
     // Start is called before the first frame update
     void Start()
@@ -37,6 +45,11 @@ public class GameController : MonoBehaviour
         test = false;
         camTarNum = cameraTargets.Length;
         //firstScream = false;
+        foreach (var crystal in crystals)
+            crystal.SetActive(false);
+        nextTime = curTime + 10000f;
+        enrichBossBloodBar.SetActive(false);
+        addBlood = false;
     }
 
     // Update is called once per frame
@@ -44,7 +57,7 @@ public class GameController : MonoBehaviour
     {
         curTime = Time.time;
 
-        if(Input.GetKeyDown(KeyCode.Alpha9))
+        if(Input.GetKeyDown(KeyCode.Equals))
         {
             test = !test;
             if (test)
@@ -69,42 +82,50 @@ public class GameController : MonoBehaviour
         }
         if(test)
         {
-            if(Input.GetKeyDown(KeyCode.Alpha0))
+            if (Input.GetKeyDown(KeyCode.Alpha0))
             {
                 blackDragon.SetActive(false);
                 bossBlood.SetActive(false);
             }
-            if (Input.GetKeyDown(KeyCode.Alpha1))
+            if (Input.GetKeyDown(KeyCode.Alpha9))
             {
                 blackDragon.SetActive(true);
                 bossBlood.SetActive(true);
             }
-            if(Input.GetKeyDown(KeyCode.Alpha2))
+            if(Input.GetKeyDown(KeyCode.P))
             {
-                Boss.goFly = true;
-                blackDragon.GetComponent<Animator>().SetBool("goFly", true);
+                Boss.Health -= 100f;
             }
-            if(Input.GetKeyDown(KeyCode.Alpha3))
+            //if(Input.GetKeyDown(KeyCode.Alpha2))
+            //{
+            //    Boss.goFly = true;
+            //    blackDragon.GetComponent<Animator>().SetBool("goFly", true);
+            //
+            //if(Input.GetKeyDown(KeyCode.Alpha3))
+            //{
+            //    stopBoss = !stopBoss;
+            //}
+            if(Input.GetKeyDown(KeyCode.Minus))
             {
-                stopBoss = !stopBoss;
-            }
-            if(Input.GetKeyDown(KeyCode.Alpha4))
-            {
+                blackDragon.SetActive(true);
+                bossBlood.SetActive(true);
                 Debug.Log("Press 4");
                 start = true;
             }
         }
 
-        if(start)
+        if (start)
         {
             if(!start_flag)
             {
                 start_flag = true;
                 UCanNOTMove();
             }
-            Debug.Log("start");
-            Debug.Log("curTarIdx = " + curTarIdx + ", camTarNum = " + camTarNum);
+            //Debug.Log("start");
+            //Debug.Log("curTarIdx = " + curTarIdx + ", camTarNum = " + camTarNum);
             startObj.SetActive(true);
+            foreach (var crystal in crystals)
+                crystal.SetActive(true);
             mainCamera.enabled = false;
 
             startObj.transform.rotation = Quaternion.LookRotation(Vector3.RotateTowards(startObj.transform.forward, blackDragon.transform.position - startObj.transform.position, Time.deltaTime * 1f, 0.0F));
@@ -123,6 +144,8 @@ public class GameController : MonoBehaviour
                 curTarIdx = 0;
                 Boss.goFly = true;
                 UCanMove();
+                //nextTime = Time.time;
+                addBlood = true;
             }
         }
 
@@ -148,6 +171,30 @@ public class GameController : MonoBehaviour
             {
                 Boss.goScream = true;
                 firstScream = false;
+            }
+        }
+
+        if (addBlood)
+        {
+            Vector3 mid = (blackDragonSpine.transform.position + closestCrystal.transform.position) / 2;
+            enrichBossBloodBar.transform.position = mid;
+            enrichBossBloodBar.transform.rotation = Quaternion.LookRotation(blackDragonSpine.transform.position - closestCrystal.transform.position);
+            enrichBossBloodBar.transform.localScale = new Vector3(0.2f, 0.2f, Vector3.Distance(blackDragonSpine.transform.position, closestCrystal.transform.position));
+            enrichBossBloodBar.SetActive(true);
+        }
+    }
+
+    private void FixedUpdate()
+    {
+        float minDist = 1000f;
+        for (int i = 0; i < crystals.Length; i++)
+        {
+            if (!crystals[i].activeInHierarchy)
+                continue;
+            if (minDist > Vector3.Distance(crystalCores[i].transform.position, blackDragon.transform.position))
+            {
+                closestCrystal = crystalCores[i];
+                minDist = Vector3.Distance(closestCrystal.transform.position, blackDragon.transform.position);
             }
         }
     }

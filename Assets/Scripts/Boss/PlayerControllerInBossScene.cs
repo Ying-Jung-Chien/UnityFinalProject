@@ -27,6 +27,7 @@ public class PlayerControllerInBossScene : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
+        Debug.Log("player OnCollisionEnter " + collision.transform.tag);
         if(collision.transform.tag == "Boss")
         {
             if (TimeController.isInvincibleState)
@@ -38,6 +39,7 @@ public class PlayerControllerInBossScene : MonoBehaviour
                 {
                     if (!gotBite)
                     {
+                        Debug.Log("gotBite");
                         DontDestroyVariable.PlayerHealth -= Boss.biteAttack * gameObject.GetComponent<ThirdPersonController>().shield_c;
                         gotBite = true;
                         biteTime = Time.time;

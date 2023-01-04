@@ -29,6 +29,6 @@ public class ImpactReceiver_RepLight : MonoBehaviour
         //if (dir.y < 0) dir.y = -dir.y; // reflect down force on the ground
         impact = Vector3.zero;
         impact += dir.normalized * force / mass;
-        Debug.Log("impact dir = " + dir + ", dir.normalized = " + dir.normalized + ", force = " + force + ", mass = " + mass + ", impact = " + impact);
+        //Debug.Log("impact dir = " + dir + ", dir.normalized = " + dir.normalized + ", force = " + force + ", mass = " + mass + ", impact = " + impact);
     }
 }

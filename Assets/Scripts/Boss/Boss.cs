@@ -12,6 +12,7 @@ public class Boss : MonoBehaviour
     public GameObject playerFront;
     public GameObject[] spiral;
     private int spiralSize;
+    public float maxHealth = 1000f;
     public float transitionSpead = 0.5f;
     public float dampTime = 3f;
     public int attackFreq_UpperBound = 10;
@@ -25,6 +26,7 @@ public class Boss : MonoBehaviour
     public bool fly;
 
     public static float Health = 1000;
+    public static float _maxHealth = 1000;
     public static float biteAttack = 50f;
     public static float touchBossAttack = 20f;
     public static float Speed { get; set; } = 3.5f;
@@ -53,6 +55,7 @@ public class Boss : MonoBehaviour
     private float curTime;
     private float nextTime;
     private float nextFireBallTime;
+    private float nextAddBloodTime;
     private float counter;
     private float _preHealth;
     private int spiralCounter;
@@ -76,6 +79,8 @@ public class Boss : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        Health = maxHealth;
+        _maxHealth = maxHealth;
         initPos = transform.position;
         initDir = transform.forward;
         _dampTime = dampTime;
@@ -97,14 +102,16 @@ public class Boss : MonoBehaviour
         curTime = Time.time;
         curPos = transform.position;
 
-        if(_preHealth != Health)
+        if(_preHealth > Health)
         {
             _preHealth = Health;
             BossAnimationController.canGetAttackTime = Time.time + 0.5f;
             getAttack = true;
         }
+        else
+            _preHealth = Health;
 
-        if(timeStop)
+        if (timeStop)
         {
             //Debug.Log("Boss.cs Update timeStop");
             transform.position = curPos;

@@ -15,6 +15,7 @@ TagManager:
   - GoldPile
   - DontDestroy
   - PlayerRepLight
+  - Crystal
   layers:
   - Default
   - TransparentFX
