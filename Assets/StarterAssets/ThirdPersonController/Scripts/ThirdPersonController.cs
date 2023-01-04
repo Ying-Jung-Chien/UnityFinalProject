@@ -477,6 +477,11 @@ public class ThirdPersonController : MonoBehaviour
                     break;
                 }
 
+                if(col.tag == "Crystal")
+                {
+                    col.GetComponent<CrystalController>().DestoryCrystal();
+                }
+
                 // if (col.gameObject.name == "MonsterA") {
                 //     MonsterAController.isDamaged = true;
                 //     normal_isAttack = false;
