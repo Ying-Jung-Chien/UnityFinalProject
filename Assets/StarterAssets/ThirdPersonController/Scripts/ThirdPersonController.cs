@@ -476,17 +476,6 @@ public class ThirdPersonController : MonoBehaviour
                     normal_isAttack = false;
                     break;
                 }
-
-                // if (col.gameObject.name == "MonsterA") {
-                //     MonsterAController.isDamaged = true;
-                //     normal_isAttack = false;
-                //     break;
-                // } 
-                // if (col.gameObject.name == "MonsterB") {
-                //     MonsterBController.isDamaged = true;
-                //     normal_isAttack = false;
-                //     break;
-                // }
             }
         }
     }
