@@ -65,7 +65,7 @@ public class BossFireBallController : MonoBehaviour
     {
         if (collision.transform.tag == "Player")
             if (!TimeController.isInvincibleState)
-                DontDestroyVariable.PlayerHealth -= fireBallAttack;
+                DontDestroyVariable.PlayerHealth -= fireBallAttack * collision.gameObject.GetComponent<ThirdPersonController>().shield_c;
         Destroy(gameObject);
     }
 }
