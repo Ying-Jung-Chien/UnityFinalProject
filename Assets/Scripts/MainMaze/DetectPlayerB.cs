@@ -18,9 +18,16 @@ public class DetectPlayerB : MonoBehaviour
         
     }
 
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.tag == "Player") {
+            isPlayerIn = true;
+        }
+    }
     private void OnTriggerExit(Collider other)
     {
-        if (other.gameObject.tag == "Player")
-            isPlayerIn = isPlayerIn ? false : true;
+        if (other.gameObject.tag == "Player") {
+            isPlayerIn = false;
+        }
     }
 }

@@ -60,16 +60,16 @@ public class MainMaze : MonoBehaviour {
 				}
 
 				if(lamp == 8){
-					tmp = Instantiate(Torch, new Vector3(x, 2, z+UnitHeight/2) + Torch.transform.position, Quaternion.Euler(0, 90, 0)) as GameObject;// up
+					tmp = Instantiate(Torch, new Vector3(x, 1.5f, z+UnitHeight/2) + Torch.transform.position, Quaternion.Euler(0, 90, 0)) as GameObject;// up
 					tmp.transform.parent = transform;
 				} else if(lamp == 4){
-					tmp = Instantiate(Torch, new Vector3(x, 2, z-UnitHeight/2) + Torch.transform.position, Quaternion.Euler(0, 270, 0)) as GameObject;// down
+					tmp = Instantiate(Torch, new Vector3(x, 1.5f, z-UnitHeight/2) + Torch.transform.position, Quaternion.Euler(0, 270, 0)) as GameObject;// down
 					tmp.transform.parent = transform;
 				} else if(lamp == 2){
-					tmp = Instantiate(Torch, new Vector3(x-UnitWidth/2, 2, z) + Torch.transform.position, Quaternion.Euler(0, 0, 0)) as GameObject;// left
+					tmp = Instantiate(Torch, new Vector3(x-UnitWidth/2, 1.5f, z) + Torch.transform.position, Quaternion.Euler(0, 0, 0)) as GameObject;// left
 					tmp.transform.parent = transform;
 				} else if(lamp == 1){
-					tmp = Instantiate(Torch, new Vector3(x+UnitWidth/2, 2, z) + Torch.transform.position, Quaternion.Euler(0, 180, 0)) as GameObject;// right
+					tmp = Instantiate(Torch, new Vector3(x+UnitWidth/2, 1.5f, z) + Torch.transform.position, Quaternion.Euler(0, 180, 0)) as GameObject;// right
 					tmp.transform.parent = transform;
 				}
 				// if((row != 0 || column != 0)){

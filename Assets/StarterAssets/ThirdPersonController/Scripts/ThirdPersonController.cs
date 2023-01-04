@@ -129,7 +129,7 @@ public class ThirdPersonController : MonoBehaviour
     private bool CameraRotation_status = true;
 
     public GameObject sword;
-    private bool normal_isAttack = false;
+    public bool normal_isAttack = false;
     public float shield_c = 1.0f;
     private float player_hp;
 
@@ -177,6 +177,7 @@ public class ThirdPersonController : MonoBehaviour
         _jumpTimeoutDelta = JumpTimeout;
         _fallTimeoutDelta = FallTimeout;
 
+        Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Confined;
 
         player_hp = DontDestroyVariable.PlayerHealth;
@@ -195,6 +196,7 @@ public class ThirdPersonController : MonoBehaviour
         normal_attack();
         damage_animation();
         load_scene();
+
         if (Time.time - startTime > 10.0f)
         {
             shield.SetActive(false);
@@ -204,17 +206,16 @@ public class ThirdPersonController : MonoBehaviour
 
     void CursorVisible()
     {
-        if (Input.GetMouseButtonDown(1))
-        {
-            // Cursor.visible = Cursor.visible ? false : true;
+        if (Input.GetMouseButtonDown(1)) {
             Cursor.visible = true;
-        }
-        else if (Input.GetMouseButtonDown(0) && Cursor.visible)
-        {
+        } else if (Input.GetMouseButtonDown(0) && Cursor.visible) {
             Cursor.visible = false;
+            Cursor.lockState = CursorLockMode.Confined;
         }
 
+        if (Input.GetKeyDown(KeyCode.Escape)) Cursor.lockState = CursorLockMode.None;
     }
+
     void SearchMode()
     {
         if (Input.GetMouseButtonDown(1) && Cursor.visible)
@@ -461,7 +462,6 @@ public class ThirdPersonController : MonoBehaviour
 
             foreach (var col in collider)
             {
-                
                 if (col.tag == "Boss")
                 {
                     Boss.Health = Boss.Health - 100f;
@@ -476,6 +476,17 @@ public class ThirdPersonController : MonoBehaviour
                     normal_isAttack = false;
                     break;
                 }
+
+                // if (col.gameObject.name == "MonsterA") {
+                //     MonsterAController.isDamaged = true;
+                //     normal_isAttack = false;
+                //     break;
+                // } 
+                // if (col.gameObject.name == "MonsterB") {
+                //     MonsterBController.isDamaged = true;
+                //     normal_isAttack = false;
+                //     break;
+                // }
             }
         }
     }

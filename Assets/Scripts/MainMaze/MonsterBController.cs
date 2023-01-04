@@ -10,6 +10,8 @@ public class MonsterBController : MonoBehaviour
     public float attackDistance = 2.0f;
     public static float monsterBHealth =  100.0f;
     public LayerMask playerLayer;
+    public static bool isDamaged = false;
+    public static bool isFireBallDamaged = false;
 
     private UnityEngine.AI.NavMeshAgent agent;
     private Transform player;
@@ -39,6 +41,11 @@ public class MonsterBController : MonoBehaviour
     void Update()
     {
         if (!DontDestroyVariable.isMonsterBDead) {
+            if (isFireBallDamaged) {
+                monsterBHealth -= 20.0f;
+                isFireBallDamaged = false;
+                Damage();
+            }
             if (DetectPlayerB.isPlayerIn) ChaseAndAttackPlayer();
             else Back();
         }
@@ -107,30 +114,35 @@ public class MonsterBController : MonoBehaviour
     {
         bool playerInAttackRange = Physics.CheckSphere(transform.position, attackDistance, playerLayer);
         if (playerInAttackRange && GetComponent<Animation>().IsPlaying("attack03")) {
-            DontDestroyVariable.PlayerHealth -= 5.0f;
-            PlayerController.isDamaging = true;
+            DontDestroyVariable.PlayerHealth -= 10.0f * player.GetComponent<ThirdPersonController>().shield_c;
         }
     }
 
+    void Damage()
+    {
+        // monsterBHealth -= 10.0f;
+        nowblood.fillAmount = monsterBHealth / 100.0f;
+        blood.Play();
+        // Debug.Log(monsterBHealth);
+        if (monsterBHealth <= 0) {
+            DontDestroyVariable.isMonsterBDead = true;
+            DontDestroyVariable.getPuzzle[5] = 1;
+            GetComponent<Animation>().CrossFade("dead",0.1f);
+            audioPlayer.PlayOneShot(click);
+            AddNewItem(thisitem);
+            alertui.SetActive(true);
+            StartCoroutine(Wait());
+        } else {
+            GetComponent<Animation>().CrossFade("damage",0.2f);
+            GetComponent<Animation>().CrossFadeQueued("idle01");
+        }
+    }
+    
     private void OnTriggerEnter(Collider other)
     {
-        if (other.name == "Sword_2_Long" && PlayerController.isAttacking && !DontDestroyVariable.isMonsterBDead && !GetComponent<Animation>().IsPlaying("damage")) {
+        if (other.name == "Sword_2_Long" && player.GetComponent<ThirdPersonController>().normal_isAttack && !DontDestroyVariable.isMonsterBDead && !GetComponent<Animation>().IsPlaying("damage")) {
             monsterBHealth -= 10.0f;
-            nowblood.fillAmount = monsterBHealth / 100.0f;
-            blood.Play();
-            // Debug.Log(monsterBHealth);
-            if (monsterBHealth <= 0) {
-                DontDestroyVariable.isMonsterBDead = true;
-                DontDestroyVariable.getPuzzle[5] = 1;
-                GetComponent<Animation>().CrossFade("dead",0.1f);
-                audioPlayer.PlayOneShot(click);
-                AddNewItem(thisitem);
-                alertui.SetActive(true);
-                StartCoroutine(Wait());
-            } else {
-                GetComponent<Animation>().CrossFade("damage",0.2f);
-                GetComponent<Animation>().CrossFadeQueued("idle01");
-            }
+            Damage();
         }
     }
 
