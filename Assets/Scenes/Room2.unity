@@ -1035,11 +1035,19 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5168874856775582366, guid: 962f089ef7943b842bcf3596618ba99f, type: 3}
+      propertyPath: audioPlayer
+      value: 
+      objectReference: {fileID: 1081564342}
     - target: {fileID: 5532287133388864815, guid: 962f089ef7943b842bcf3596618ba99f, type: 3}
       propertyPath: audioPlayer
       value: 
       objectReference: {fileID: 1081564342}
     - target: {fileID: 5532287134166652384, guid: 962f089ef7943b842bcf3596618ba99f, type: 3}
+      propertyPath: audioPlayer
+      value: 
+      objectReference: {fileID: 1081564342}
+    - target: {fileID: 7219476853134651271, guid: 962f089ef7943b842bcf3596618ba99f, type: 3}
       propertyPath: audioPlayer
       value: 
       objectReference: {fileID: 1081564342}
@@ -2275,6 +2283,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2329687158515054576, guid: 95e54750ae2e4e348a202e6314c1ae25, type: 3}
+      propertyPath: skillmask1
+      value: 
+      objectReference: {fileID: 1192002801}
+    - target: {fileID: 2329687158515054576, guid: 95e54750ae2e4e348a202e6314c1ae25, type: 3}
+      propertyPath: audioPlayer
+      value: 
+      objectReference: {fileID: 1081564342}
     - target: {fileID: 2329687158515054587, guid: 95e54750ae2e4e348a202e6314c1ae25, type: 3}
       propertyPath: m_Name
       value: PlayerArmature
@@ -2439,6 +2455,17 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1183671851}
   m_CullTransparentMesh: 1
+--- !u!114 &1192002801 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7691137196982798616, guid: 962f089ef7943b842bcf3596618ba99f, type: 3}
+  m_PrefabInstance: {fileID: 424296502}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1264368622 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4984225513511839364, guid: 7f87ecea87d88f944afcf4e29918da41, type: 3}

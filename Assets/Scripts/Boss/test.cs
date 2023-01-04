@@ -11,6 +11,7 @@ public class test : MonoBehaviour
     public Text showCurrent_skill;
     public int current_skill = 0;
 
+    public Image skillmask;
     // Start is called before the first frame update
     void Start()
     {
@@ -19,8 +20,8 @@ public class test : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        current_skill += (int)Mouse.current.scroll.ReadValue().normalized.y;
-        current_skill = (current_skill < 0 ? 2 : current_skill) % 3;
+        current_skill -= (int)Mouse.current.scroll.ReadValue().normalized.y;
+        current_skill = (current_skill < 0 ? DontDestroyVariable.nowskillnum - 1 : current_skill) % DontDestroyVariable.nowskillnum;
         //showCurrent_skill.text = "Current Skill:" + SkillList[current_skill];
         skillcomtrol.skill_choose = current_skill;
 
@@ -56,6 +57,7 @@ public class test : MonoBehaviour
         if(value.isPressed)
         {
             TimeController.pressT = true;
+            skillmask.fillAmount = 1;
             Debug.Log("test.Ontest4.isPressed");
         }
     }

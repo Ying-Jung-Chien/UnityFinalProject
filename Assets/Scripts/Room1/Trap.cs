@@ -7,6 +7,9 @@ public class Trap : MonoBehaviour
     private float timer;
     public float hurttime;
     public bool iscontact;
+
+    public AudioClip hurt;
+    public AudioSource audioPlayer;
     // Start is called before the first frame update
     void Start()
     {
@@ -25,6 +28,7 @@ public class Trap : MonoBehaviour
     void OnTriggerEnter(Collider collider)
     {
         if(collider.tag == "Player"){
+            audioPlayer.PlayOneShot(hurt);
             DontDestroyVariable.PlayerHealth -= 5.0f;
             
         }

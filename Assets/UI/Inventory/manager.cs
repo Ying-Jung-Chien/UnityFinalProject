@@ -241,6 +241,30 @@ public class manager : MonoBehaviour
                         instance.mybag.itemList[i].itemHeld -= 1;
                     }
                 }
+                else if (k == 21 && BossTest.bossA == -1)
+                {
+                    if (instance.mybag.itemList[i].name == "ball1" || instance.mybag.itemList[i].name == "ball2" || instance.mybag.itemList[i].name == "ball5")
+                    {
+                        instance.mybag.itemList[i].itemHeld -= 1;
+                        BossTest.bossA = instance.mybag.itemList[i].itemType;
+                    }
+                }
+                else if (k == 22 && BossTest.bossB == -1)
+                {
+                    if (instance.mybag.itemList[i].name == "ball1" || instance.mybag.itemList[i].name == "ball2" || instance.mybag.itemList[i].name == "ball5")
+                    {
+                        instance.mybag.itemList[i].itemHeld -= 1;
+                        BossTest.bossB = instance.mybag.itemList[i].itemType;
+                    }
+                }
+                else if (k == 23 && BossTest.bossC == -1)
+                {
+                    if (instance.mybag.itemList[i].name == "ball1" || instance.mybag.itemList[i].name == "ball2" || instance.mybag.itemList[i].name == "ball5")
+                    {
+                        instance.mybag.itemList[i].itemHeld -= 1;
+                        BossTest.bossC = instance.mybag.itemList[i].itemType;
+                    }
+                }
 
                 if (instance.mybag.itemList[i].itemHeld == 0)
                 {

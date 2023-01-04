@@ -23,6 +23,8 @@ public class MonsterBController : MonoBehaviour
     public GameObject alertui;
 
     public AudioClip click;
+    public AudioClip hurt;
+    public AudioClip attack;
     public AudioSource audioPlayer;
     public ParticleSystem blood;
     
@@ -114,6 +116,7 @@ public class MonsterBController : MonoBehaviour
     {
         bool playerInAttackRange = Physics.CheckSphere(transform.position, attackDistance, playerLayer);
         if (playerInAttackRange && GetComponent<Animation>().IsPlaying("attack03")) {
+            audioPlayer.PlayOneShot(attack);
             DontDestroyVariable.PlayerHealth -= 10.0f * player.GetComponent<ThirdPersonController>().shield_c;
         }
     }
@@ -141,6 +144,7 @@ public class MonsterBController : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         if (other.name == "Sword_2_Long" && player.GetComponent<ThirdPersonController>().normal_isAttack && !DontDestroyVariable.isMonsterBDead && !GetComponent<Animation>().IsPlaying("damage")) {
+            audioPlayer.PlayOneShot(hurt);
             monsterBHealth -= 10.0f;
             Damage();
         }

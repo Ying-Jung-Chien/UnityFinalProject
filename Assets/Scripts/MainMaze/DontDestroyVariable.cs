@@ -31,14 +31,17 @@ public class DontDestroyVariable : MonoBehaviour
     public static bool useChess = false;
     public static bool useBoard = false;
     public static bool firstComingIn = true;
-    public static bool passRoom1 = false;
-    public static bool passRoom2 = false;
-    public static bool passRoom3 = false;
+    public static bool passRoom1 = true;
+    public static bool passRoom2 = true;
+    public static bool passRoom3 = true;
     public static bool getball1 = false;
     public static bool getball2 = false;
     public static bool getball3 = false;
     public static bool getball4 = false;
     public static bool getball5 = false;
+    public static int nowskillnum = 1;
+    public static bool goBoss = false;
+    public static int nowplace = 0;
 
     void Awake()
     {
