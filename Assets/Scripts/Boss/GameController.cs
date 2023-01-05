@@ -112,6 +112,13 @@ public class GameController : MonoBehaviour
                 Debug.Log("Press 4");
                 start = true;
             }
+            if(Input.GetKeyDown(KeyCode.B))
+            {
+                foreach(var crystal in crystals)
+                {
+                    Destroy(crystal);
+                }
+            }
         }
 
         if (start)
@@ -125,7 +132,8 @@ public class GameController : MonoBehaviour
             //Debug.Log("curTarIdx = " + curTarIdx + ", camTarNum = " + camTarNum);
             startObj.SetActive(true);
             foreach (var crystal in crystals)
-                crystal.SetActive(true);
+                if (crystal != null)
+                    crystal.SetActive(true);
             mainCamera.enabled = false;
 
             startObj.transform.rotation = Quaternion.LookRotation(Vector3.RotateTowards(startObj.transform.forward, blackDragon.transform.position - startObj.transform.position, Time.deltaTime * 1f, 0.0F));
@@ -176,6 +184,12 @@ public class GameController : MonoBehaviour
 
         if (addBlood)
         {
+            if(closestCrystal == null)
+            {
+                enrichBossBloodBar.SetActive(false);
+                addBlood = false;
+                return;
+            }
             Vector3 mid = (blackDragonSpine.transform.position + closestCrystal.transform.position) / 2;
             enrichBossBloodBar.transform.position = mid;
             enrichBossBloodBar.transform.rotation = Quaternion.LookRotation(blackDragonSpine.transform.position - closestCrystal.transform.position);
@@ -189,7 +203,7 @@ public class GameController : MonoBehaviour
         float minDist = 1000f;
         for (int i = 0; i < crystals.Length; i++)
         {
-            if (!crystals[i].activeInHierarchy)
+            if (crystals[i] == null)
                 continue;
             if (minDist > Vector3.Distance(crystalCores[i].transform.position, blackDragon.transform.position))
             {
