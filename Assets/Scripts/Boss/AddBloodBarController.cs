@@ -34,7 +34,7 @@ public class AddBloodBarController : MonoBehaviour
             if (curTime > nextTime)
             {
                 //Debug.Log("addblood");
-                nextTime = Time.time + 1f;
+                nextTime = Time.time + 0.5f;
                 Boss.Health = (Boss.Health + 10f > Boss._maxHealth) ? Boss._maxHealth : Boss.Health + 10f;
             }
         }
