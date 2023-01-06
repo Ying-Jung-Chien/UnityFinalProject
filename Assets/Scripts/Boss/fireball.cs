@@ -12,10 +12,12 @@ public class fireball : MonoBehaviour
 
     public Object ExplosionEffect;
 
+    public GameObject player;
+
     // Start is called before the first frame update
     void Start()
     {
-        dir_y = GameObject.FindGameObjectWithTag("Player").GetComponent<ThirdPersonController>()._cinemachineTargetPitch * -1;
+        dir_y = player.GetComponent<ThirdPersonController>()._cinemachineTargetPitch * -1;
         dir_y = Mathf.Clamp(dir_y , min, max);
         normalizedFloat = (dir_y - min) / (max - min);
         normalizedFloat = Mathf.Clamp(normalizedFloat, 0, 0.5f);
