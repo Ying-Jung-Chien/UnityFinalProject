@@ -13,17 +13,34 @@ public class Puzzle : MonoBehaviour
     public GameObject master;
     public GameObject wallsquish;
     public GameObject Door;
-
+  
     public AudioClip click;
     public AudioSource audioPlayer;
+
+    public Vector3[] OriginalPosition;
     // Start is called before the first frame update
     void Start()
     {
         
         square_size = 1.22f;
-        
+        OriginalPosition = new Vector3[12];
+        if(emptyspace.parent != null){
+            for(int i=0;i<emptyspace.parent.transform.childCount;i++){
+                OriginalPosition[i] = emptyspace.parent.GetChild(i).localPosition;
+            
+            }
+        } 
     }
 
+    public void ResetAll(){
+
+        if(emptyspace.parent != null){
+            for(int i=0;i<emptyspace.parent.transform.childCount;i++){
+                emptyspace.parent.GetChild(i).localPosition = OriginalPosition[i];
+            
+            }
+        } 
+    }
     public void ButtonUp(){
         Transform empty;
         if (emptyspace.localPosition.y > emptyspace1.localPosition.y)empty = emptyspace;
