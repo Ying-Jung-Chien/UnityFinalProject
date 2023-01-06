@@ -7468,6 +7468,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 221359217}
     - target: {fileID: 566292283789509308, guid: ebe913bc7465be849b2a2359b4168bb2, type: 3}
+      propertyPath: skillmask
+      value: 
+      objectReference: {fileID: 986888075}
+    - target: {fileID: 566292283789509308, guid: ebe913bc7465be849b2a2359b4168bb2, type: 3}
       propertyPath: mainCamera
       value: 
       objectReference: {fileID: 1781867261}
@@ -7475,6 +7479,10 @@ PrefabInstance:
       propertyPath: repLightObj
       value: 
       objectReference: {fileID: 441663722}
+    - target: {fileID: 566292283789509308, guid: ebe913bc7465be849b2a2359b4168bb2, type: 3}
+      propertyPath: skillchoose
+      value: 
+      objectReference: {fileID: 1634239599}
     - target: {fileID: 566292283789509308, guid: ebe913bc7465be849b2a2359b4168bb2, type: 3}
       propertyPath: forceDirArrow
       value: 
@@ -9851,6 +9859,11 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 4300180, guid: 4e15996ba1e2f4b4392985ef6ac6b27c, type: 3}
+--- !u!1 &1634239599 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4221044979586087468, guid: 962f089ef7943b842bcf3596618ba99f, type: 3}
+  m_PrefabInstance: {fileID: 860172515}
+  m_PrefabAsset: {fileID: 0}
 --- !u!64 &1639729983
 MeshCollider:
   m_ObjectHideFlags: 0
