@@ -5,6 +5,7 @@ using UnityEngine;
 public class AddBloodBarController : MonoBehaviour
 {
     public float clockwiseRoatateSpeed = 3f;
+    public float barWidth = 1f;
 
     private float curTime;
     private float nextTime;
@@ -23,7 +24,7 @@ public class AddBloodBarController : MonoBehaviour
 
     void Rotate()
     {
-        transform.Rotate(Vector3.down * clockwiseRoatateSpeed, Space.World);
+        transform.Rotate(Vector3.right * clockwiseRoatateSpeed, Space.Self);
     }
 
 
@@ -38,5 +39,10 @@ public class AddBloodBarController : MonoBehaviour
                 Boss.Health = (Boss.Health + 10f > Boss._maxHealth) ? Boss._maxHealth : Boss.Health + 10f;
             }
         }
+    }
+
+    public void Stretch(float distance)
+    {
+        gameObject.transform.localScale = new Vector3(distance, barWidth, barWidth);
     }
 }

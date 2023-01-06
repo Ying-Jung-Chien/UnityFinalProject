@@ -19,7 +19,7 @@ public class GameController : MonoBehaviour
     public GameObject[] cameraTargets;
     public GameObject[] crystals;
     public GameObject[] crystalCores;
-    public GameObject enrichBossBloodPrefab;
+    public GameObject enrichBossBloodObj;
     public GameObject enrichBossBloodBar;
 
     public static bool stopBoss = false;
@@ -48,7 +48,7 @@ public class GameController : MonoBehaviour
         foreach (var crystal in crystals)
             crystal.SetActive(false);
         nextTime = curTime + 10000f;
-        enrichBossBloodBar.SetActive(false);
+        enrichBossBloodObj.SetActive(false);
         addBlood = false;
     }
 
@@ -186,15 +186,16 @@ public class GameController : MonoBehaviour
         {
             if(closestCrystal == null)
             {
-                enrichBossBloodBar.SetActive(false);
+                enrichBossBloodObj.SetActive(false);
                 addBlood = false;
                 return;
             }
             Vector3 mid = (blackDragonSpine.transform.position + closestCrystal.transform.position) / 2;
-            enrichBossBloodBar.transform.position = mid;
-            enrichBossBloodBar.transform.rotation = Quaternion.LookRotation(blackDragonSpine.transform.position - closestCrystal.transform.position);
-            enrichBossBloodBar.transform.localScale = new Vector3(0.2f, 0.2f, Vector3.Distance(blackDragonSpine.transform.position, closestCrystal.transform.position));
-            enrichBossBloodBar.SetActive(true);
+            enrichBossBloodObj.transform.position = mid;
+            enrichBossBloodObj.transform.rotation = Quaternion.LookRotation(blackDragonSpine.transform.position - closestCrystal.transform.position);
+            enrichBossBloodBar.GetComponent<AddBloodBarController>().Stretch(Vector3.Distance(blackDragonSpine.transform.position, closestCrystal.transform.position));
+            //enrichBossBloodBar.transform.localScale = new Vector3(0.2f, 0.2f, Vector3.Distance(blackDragonSpine.transform.position, closestCrystal.transform.position));
+            enrichBossBloodObj.SetActive(true);
         }
     }
 
