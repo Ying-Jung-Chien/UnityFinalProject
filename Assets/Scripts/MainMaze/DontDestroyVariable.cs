@@ -31,9 +31,9 @@ public class DontDestroyVariable : MonoBehaviour
     public static bool useChess = false;
     public static bool useBoard = false;
     public static bool firstComingIn = true;
-    public static bool passRoom1 = true;
-    public static bool passRoom2 = true;
-    public static bool passRoom3 = true;
+    public static bool passRoom1 = false;
+    public static bool passRoom2 = false;
+    public static bool passRoom3 = false;
     public static bool getball1 = false;
     public static bool getball2 = true;
     public static bool getball3 = true;
