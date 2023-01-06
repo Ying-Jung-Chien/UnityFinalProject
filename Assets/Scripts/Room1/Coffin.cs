@@ -21,7 +21,7 @@ public class Coffin : MonoBehaviour
 
     private void OnMouseEnter()
     {
-	    renderer.material.color = Color.red;
+	    renderer.material.color = Color.white;
         MouseIn = true;
     }
 

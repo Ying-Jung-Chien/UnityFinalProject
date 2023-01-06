@@ -120,7 +120,7 @@ public class Enemy : MonoBehaviour
             {
                 if (hit.collider == this.transform.GetChild(2).GetComponent<Collider>())
                 {
-                    print("hitdead");
+                    
                     break;
                 }
             }
@@ -169,7 +169,7 @@ public class Enemy : MonoBehaviour
         {
             ///Attack code here
            
-			StartCoroutine(PlayAttackSound());
+			// StartCoroutine(PlayAttackSound());
 			
 			// if ( hasAniComp == true ){	
                 
