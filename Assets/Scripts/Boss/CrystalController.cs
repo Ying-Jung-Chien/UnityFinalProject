@@ -47,7 +47,7 @@ public class CrystalController : MonoBehaviour
         {
             ExplosionEffect.SetActive(true);
             GameObject exp = GameObject.Instantiate(ExplosionEffect, crystalCore.transform.position, Quaternion.identity) as GameObject;
-            exp.transform.position = gameObject.transform.position + Vector3.left;
+            //exp.transform.position = gameObject.transform.position + Vector3.left;
             // Destroy after 4 sec
             GameObject.Destroy(exp, 4);
             // Destroy Self
