@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class CrystalController : MonoBehaviour
 {
+    public GameObject ExplosionEffect;
+    public GameObject crystalCore;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -36,5 +39,19 @@ public class CrystalController : MonoBehaviour
     public void DestoryCrystal()
     {
         Destroy(gameObject);
+    }
+
+    private void OnDestroy()
+    {
+        if (ExplosionEffect != null)
+        {
+            ExplosionEffect.SetActive(true);
+            GameObject exp = GameObject.Instantiate(ExplosionEffect, crystalCore.transform.position, Quaternion.identity) as GameObject;
+            //exp.transform.position = gameObject.transform.position + Vector3.left;
+            // Destroy after 4 sec
+            GameObject.Destroy(exp, 4);
+            // Destroy Self
+            GameObject.Destroy(gameObject);
+        }
     }
 }

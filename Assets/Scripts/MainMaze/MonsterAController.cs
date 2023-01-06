@@ -25,6 +25,8 @@ public class MonsterAController : MonoBehaviour
     public GameObject alertui;
 
     public AudioClip click;
+    public AudioClip hurt;
+    public AudioClip attack;
     public AudioSource audioPlayer;
     public ParticleSystem blood;
 
@@ -95,6 +97,7 @@ public class MonsterAController : MonoBehaviour
 			GetComponent<Animation>().CrossFadeQueued("idle01");
             if (isTriggerPlayer) {
                 Debug.Log("Triggering");
+                audioPlayer.PlayOneShot(attack);
                 DontDestroyVariable.PlayerHealth -= 5.0f * player.GetComponent<ThirdPersonController>().shield_c;
             }
 		}
@@ -147,6 +150,7 @@ public class MonsterAController : MonoBehaviour
         }
 
         if (other.name == "Sword_2_Long" && player.GetComponent<ThirdPersonController>().normal_isAttack && !DontDestroyVariable.isMonsterADead && !GetComponent<Animation>().IsPlaying("damage")) {
+            audioPlayer.PlayOneShot(hurt);
             monsterAHealth -= 10.0f;
             Damage();
         }

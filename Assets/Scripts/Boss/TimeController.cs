@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using StarterAssets;
 using Unity.IO.LowLevel.Unsafe;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class TimeController : MonoBehaviour
 {
@@ -16,6 +17,8 @@ public class TimeController : MonoBehaviour
     public GameObject representativeObj;
     public GameObject repLightObj;
     public GameObject forceDirArrow;
+    public GameObject skillchoose;
+    public Image skillmask;
     public float cdTime = 6.0f;
     public float lenOfRecord_s = 5.0f; // (s)
     public float frequence_s = 0.05f; // (s)
@@ -32,6 +35,7 @@ public class TimeController : MonoBehaviour
     private static Animator playerAnim;
     private static bool goStorePos;
     private static bool isTurningBackTheClock;
+    private static bool skillCanRotate;
     private static float curTime;
     private static float nextTime;
     private static float tmp;
@@ -73,6 +77,7 @@ public class TimeController : MonoBehaviour
         pastPosIndex = 0;
         goStorePos = true;
         isTurningBackTheClock = false;
+        skillCanRotate = true;
         totalNumOfPos = (int)(lenOfRecord_s / frequence_s);
         Debug.Log("totalNumOfPos = " + totalNumOfPos);
         pastPosition = new Vector3[totalNumOfPos];
@@ -86,6 +91,9 @@ public class TimeController : MonoBehaviour
     void Update()
     {
         curTime = Time.time;
+        if (skillCanRotate)
+            skillmask.fillAmount = 1 - (curTime - endTime) / cdTime;
+
         if (curTime >= nextTime)
         {
             nextTime += frequence_s;
@@ -218,6 +226,12 @@ public class TimeController : MonoBehaviour
                 goStorePos = true;
                 isTurningBackTheClock = false;
                 isInvincibleState = false;
+
+                // 關閉技能
+                skillchoose.SetActive(false);
+                //技能變暗
+                skillCanRotate = true;
+                skillmask.fillAmount = 1;
             }
         }
     }
@@ -248,6 +262,8 @@ public class TimeController : MonoBehaviour
             goStorePos = false;
             isTurningBackTheClock = true;
             isInvincibleState = true;
+            skillchoose.SetActive(true);
+            skillCanRotate = false;
             ActivePrefabs();
 
             // 停止操作
@@ -306,6 +322,12 @@ public class TimeController : MonoBehaviour
 
         endTime = Time.time;
         goStorePos = true;
+
+        // 關閉技能
+        skillchoose.SetActive(false);
+        //技能變暗
+        skillCanRotate = true;
+        skillmask.fillAmount = 1;
     }
 
     void UCanMove()

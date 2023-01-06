@@ -1,4 +1,4 @@
-using System.Collections;
+ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -7,6 +7,9 @@ public class Trap : MonoBehaviour
     private float timer;
     public float hurttime;
     public bool iscontact;
+
+    public AudioClip hurt;
+    public AudioSource audioPlayer;
     // Start is called before the first frame update
     void Start()
     {
@@ -18,30 +21,18 @@ public class Trap : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(iscontact){
-            timer += Time.deltaTime;
-            if(timer > hurttime){
-                DontDestroyVariable.PlayerHealth -= 5.0f;
-                timer = 0;
-            }
-        }
+        
         
     }
 
-    void OnCollisionEnter(Collision collision)
+    void OnTriggerEnter(Collider collider)
     {
-        if(collision.gameObject.tag == "Player"){
-            iscontact = true;
+        if(collider.tag == "Player"){
+            audioPlayer.PlayOneShot(hurt);
+            DontDestroyVariable.PlayerHealth -= 5.0f;
             
         }
     }
 
-    void OnCollisionExit(Collision collision)
-    {
-        if(collision.gameObject.tag == "Player"){
-            iscontact = false;
-            
-        }
-    }
      
 }

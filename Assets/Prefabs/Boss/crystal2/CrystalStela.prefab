@@ -590,6 +590,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f37ac0037c1e845d6bdbf5d9b36c61b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ExplosionEffect: {fileID: 0}
+  crystalCore: {fileID: 683387383720008412}
 --- !u!1 &3817280834058815913 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5816094005235251740, guid: fcdc1bd94a8a24a7c9d5ac455b46d844, type: 3}

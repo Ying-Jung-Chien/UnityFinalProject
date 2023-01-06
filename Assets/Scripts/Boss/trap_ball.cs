@@ -14,6 +14,8 @@ public class trap_ball : MonoBehaviour
     public AudioSource audioPlayer;
     public AudioSource audioPlayer1;
 
+    public GameObject ExplosionEffect;
+    public GameObject player;
     // Start is called before the first frame update
     void Start()
     {
@@ -49,7 +51,18 @@ public class trap_ball : MonoBehaviour
             }
             agent.enabled = false;
             audioPlayer1.Stop();
-            Destroy(gameObject);
+            //Destroy(gameObject);
+
+            if (ExplosionEffect != null)
+            {
+            	ExplosionEffect.SetActive(true);
+                GameObject exp = GameObject.Instantiate(ExplosionEffect, Vector3.zero, Quaternion.identity) as GameObject;
+                exp.transform.position = player.transform.position + Vector3.up * 1;
+                // Destroy after 4 sec
+                GameObject.Destroy(exp, 4);
+                // Destroy Self
+                GameObject.Destroy(gameObject);                   
+            }
         }
     }
 }
