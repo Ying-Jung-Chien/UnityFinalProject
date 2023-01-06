@@ -35,6 +35,11 @@ public class boss_entrance : MonoBehaviour
         {
             if (R_door.transform.eulerAngles.y > 246.9f || R_door.transform.eulerAngles.y == 0) { R_door.transform.Rotate(0, -1, 0); }
             if (L_door.transform.eulerAngles.y < 98.9f) { L_door.transform.Rotate(0, 1, 0); }
+            trap_activate = false;
+            if (trap_ball_clone)
+            {
+                Destroy(trap_ball_clone);
+            }
         }
     }
 
@@ -45,17 +50,5 @@ public class boss_entrance : MonoBehaviour
         trap_ball_clone = (GameObject)Instantiate(trap_ball, pos, rot);
         trap_ball_clone.SetActive(true);
         start_time = Time.time;
-    }
-
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.tag == "Player")
-        {
-            trap_activate = false;
-            if (trap_ball_clone)
-            {
-                Destroy(trap_ball_clone);
-            }
-        }
     }
 }
