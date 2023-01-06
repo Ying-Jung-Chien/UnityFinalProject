@@ -35,11 +35,11 @@ public class DontDestroyVariable : MonoBehaviour
     public static bool passRoom2 = true;
     public static bool passRoom3 = true;
     public static bool getball1 = false;
-    public static bool getball2 = false;
-    public static bool getball3 = false;
+    public static bool getball2 = true;
+    public static bool getball3 = true;
     public static bool getball4 = false;
     public static bool getball5 = false;
-    public static int nowskillnum = 1;
+    public static int nowskillnum = 3;
     public static bool goBoss = false;
     public static int nowplace = 0;
 
