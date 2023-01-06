@@ -57,7 +57,7 @@ public class test : MonoBehaviour
         if(value.isPressed)
         {
             TimeController.pressT = true;
-            skillmask.fillAmount = 1;
+            //skillmask.fillAmount = 1;
             Debug.Log("test.Ontest4.isPressed");
         }
     }

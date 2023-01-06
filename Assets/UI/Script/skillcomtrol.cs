@@ -32,7 +32,7 @@ public class skillcomtrol : MonoBehaviour
     {
         skillmask1.fillAmount -= 0.002f;
         skillmask2.fillAmount -= 0.02f;
-        skillmask3.fillAmount -= 0.006f;
+        //skillmask3.fillAmount -= 0.006f;
         if (skill_choose == 0)
         {
             skill1.gameObject.SetActive(true);

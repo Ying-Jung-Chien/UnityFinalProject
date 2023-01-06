@@ -36129,6 +36129,8 @@ MonoBehaviour:
   representativeObj: {fileID: 1720852336}
   repLightObj: {fileID: 87862744}
   forceDirArrow: {fileID: 645093349}
+  skillchoose: {fileID: 1706049985}
+  skillmask: {fileID: 1749151762}
   cdTime: 6
   lenOfRecord_s: 5
   frequence_s: 0.05
@@ -41062,6 +41064,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 26b03b80c4ae424479accdb3695997a1, type: 3}
+--- !u!1 &1706049985 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4221044979586087468, guid: 962f089ef7943b842bcf3596618ba99f, type: 3}
+  m_PrefabInstance: {fileID: 5532287133205239206}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1708677194
 GameObject:
   m_ObjectHideFlags: 0
