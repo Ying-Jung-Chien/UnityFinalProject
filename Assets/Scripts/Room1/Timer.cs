@@ -35,7 +35,7 @@ public class Timer : MonoBehaviour
             if (m_sec < 0 && m_min > 0)         //如果秒數為 0 且分鐘大於 0
             {
                 m_min -= 1;                     //先將分鐘減去 1
-                m_sec = 9;                     //再將秒數設為 59
+                m_sec = 59;                     //再將秒數設為 59
             }
             else if (m_sec < 0 && m_min == 0)   //如果秒數為 0 且分鐘大於 0
             {
