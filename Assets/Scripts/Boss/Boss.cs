@@ -104,6 +104,7 @@ public class Boss : MonoBehaviour
 
         if(_preHealth > Health)
         {
+            Debug.Log("preHealth != oriHealth");
             _preHealth = Health;
             BossAnimationController.canGetAttackTime = Time.time + 0.5f;
             getAttack = true;
@@ -242,6 +243,7 @@ public class Boss : MonoBehaviour
                     //Debug.Log("at init pos");
                     transform.position = Vector3.SmoothDamp(transform.position, targetPos, ref velocity, dampTime);
                     transform.rotation = Quaternion.LookRotation(Vector3.RotateTowards(transform.forward, initDir, Time.deltaTime * rotateSpeed, 0.0F));
+                    Debug.Log("dir = " + Vector3.Distance(transform.forward, initDir));
                     if (Vector3.Distance(transform.forward, initDir) <= 0.1)
                     {
                         backToInitPos = false;

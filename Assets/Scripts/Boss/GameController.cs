@@ -21,6 +21,7 @@ public class GameController : MonoBehaviour
     public GameObject[] crystalCores;
     public GameObject enrichBossBloodObj;
     public GameObject enrichBossBloodBar;
+    public GameObject testBossFireBall;
 
     public static bool stopBoss = false;
     public static bool start = false;
@@ -96,15 +97,6 @@ public class GameController : MonoBehaviour
             {
                 Boss.Health -= 100f;
             }
-            //if(Input.GetKeyDown(KeyCode.Alpha2))
-            //{
-            //    Boss.goFly = true;
-            //    blackDragon.GetComponent<Animator>().SetBool("goFly", true);
-            //
-            //if(Input.GetKeyDown(KeyCode.Alpha3))
-            //{
-            //    stopBoss = !stopBoss;
-            //}
             if(Input.GetKeyDown(KeyCode.Minus))
             {
                 blackDragon.SetActive(true);
@@ -118,6 +110,15 @@ public class GameController : MonoBehaviour
                 {
                     Destroy(crystal);
                 }
+            }
+            if(Input.GetKeyDown(KeyCode.H))
+            {
+                DontDestroyVariable.PlayerHealth = 100f;
+            }
+            if(Input.GetKeyDown(KeyCode.F))
+            {
+                GameObject fireball = Instantiate(testBossFireBall, new Vector3(0, 10f, 0), Quaternion.identity);
+                fireball.GetComponent<BossFireBallController>().Init(new Vector3(0, 5f, 0), new Vector3(0, 5f, 0), blackDragon.transform.position);
             }
         }
 

@@ -11,6 +11,7 @@ public class BossFireBallController : MonoBehaviour
     public float fireBallAttack = 10;
     public float traceDelay = 0.5f;
     public float speed = 5.0f;
+    public GameObject ExplosionEffect;
 
     public static Vector3 _blackDragonHead_pos;
     public static Vector3 _blackDragonHead_front_pos;
@@ -67,5 +68,17 @@ public class BossFireBallController : MonoBehaviour
             if (!TimeController.isInvincibleState)
                 DontDestroyVariable.PlayerHealth -= fireBallAttack * collision.gameObject.GetComponent<ThirdPersonController>().shield_c;
         Destroy(gameObject);
+    }
+
+    private void OnDestroy()
+    {
+        if (ExplosionEffect != null)
+        {
+            GameObject exp = GameObject.Instantiate(ExplosionEffect, transform.position, Quaternion.identity);
+            // Destroy after 4 sec
+            GameObject.Destroy(exp, 4);
+            // Destroy Self
+            GameObject.Destroy(gameObject);
+        }
     }
 }

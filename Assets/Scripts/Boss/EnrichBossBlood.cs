@@ -17,29 +17,29 @@ public class EnrichBossBlood : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (target == null)
-            return;
-        transform.position = Vector3.SmoothDamp(transform.position, target.transform.position, ref velocity, dampTime);
-        if(Vector3.Distance(transform.position, target.transform.position) <= 2f)
-        {
-            Boss.Health = (Boss.Health + 1f > Boss._maxHealth) ? Boss._maxHealth : Boss.Health + 1f;
-            Destroy(gameObject);
-        }
+        //if (target == null)
+        //    return;
+        //transform.position = Vector3.SmoothDamp(transform.position, target.transform.position, ref velocity, dampTime);
+        //if(Vector3.Distance(transform.position, target.transform.position) <= 2f)
+        //{
+        //    Boss.Health = (Boss.Health + 1f > Boss._maxHealth) ? Boss._maxHealth : Boss.Health + 1f;
+        //    Destroy(gameObject);
+        //}
     }
 
-    public void SetTarget(GameObject t)
-    {
-        Debug.Log("target = " + t.tag);
-        target = t;
-    }
+    //public void SetTarget(GameObject t)
+    //{
+    //    Debug.Log("target = " + t.tag);
+    //    target = t;
+    //}
 
-    private void OnTriggerEnter(Collider other)
-    {
-        if(other.tag == "Boss")
-        {
-            Debug.Log("destory");
-            Boss.Health = (Boss.Health + 1f > Boss._maxHealth) ? Boss._maxHealth : Boss.Health + 1f;
-            Destroy(gameObject);
-        }
-    }
+    //private void OnTriggerEnter(Collider other)
+    //{
+    //    if(other.tag == "Boss")
+    //    {
+    //        Debug.Log("destory");
+    //        Boss.Health = (Boss.Health + 1f > Boss._maxHealth) ? Boss._maxHealth : Boss.Health + 1f;
+    //        Destroy(gameObject);
+    //    }
+    //}
 }
