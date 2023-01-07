@@ -44,6 +44,7 @@ public class PlayerRepLightController : MonoBehaviour
             if (curTime >= nextGetRepLightAttackTime)
             {
                 nextGetRepLightAttackTime = Time.time + 5f;
+                Debug.Log("lightattack");
                 Boss.Health = Boss.Health - lightAttack;
                 //spotlight.enabled = true;
                 //spotlight.transform.position = collision.transform.position;

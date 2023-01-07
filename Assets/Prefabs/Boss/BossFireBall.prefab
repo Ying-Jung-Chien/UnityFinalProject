@@ -4837,7 +4837,6 @@ GameObject:
   - component: {fileID: 2864881811321326106}
   - component: {fileID: 2770069699478231744}
   - component: {fileID: 2802049304276105344}
-  - component: {fileID: 5352680257809253397}
   - component: {fileID: 3226588999684825441}
   m_Layer: 0
   m_Name: BossFireBall
@@ -4942,20 +4941,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &5352680257809253397
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2749046438227940036}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a67c8bc0c16d71f4aa3e077cf97b0b42, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 10
-  ExplosionEffect: {fileID: 1235156878892770, guid: 636ccd8f63d0e41409085009cc43870c, type: 3}
 --- !u!114 &3226588999684825441
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4971,6 +4956,7 @@ MonoBehaviour:
   fireBallAttack: 10
   traceDelay: 0.2
   speed: 10
+  ExplosionEffect: {fileID: 1235156878892770, guid: 636ccd8f63d0e41409085009cc43870c, type: 3}
 --- !u!1 &7160276841228878941
 GameObject:
   m_ObjectHideFlags: 0
