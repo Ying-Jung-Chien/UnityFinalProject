@@ -183,7 +183,7 @@ public class Enemy : MonoBehaviour
             alreadyAttacked = true;
 			Invoke(nameof(AttackingStop), timeAttacking);
             
-            Invoke(nameof(ResetAttack), timeBetweenAttacks);
+            
         }
         
     }
@@ -194,17 +194,21 @@ public class Enemy : MonoBehaviour
 	 private void AttackingStart()
     {
         Attacking = true;
-
+        
     }
 	 private void AttackingStop()
     {
         Attacking = false;
         bool playerInAttackRange = Physics.CheckSphere(transform.position, attackRange, playerLayer);
         if (playerInAttackRange ) {
+            print("damage");
             audioplayer.PlayOneShot(attack);
             DontDestroyVariable.PlayerHealth -= 5.0f;
             PlayerController.isDamaging = true;
         }
+        Invoke(nameof(ResetAttack), timeBetweenAttacks);
+
+        
     }
 
 	 private void ResetAttack()
